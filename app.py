@@ -1,5 +1,4 @@
-
-# soccer transfer API bot
+# soccer transfer API bot with FBref links
 
 import requests
 from collections import Counter
@@ -10,9 +9,12 @@ import certifi
 # Load spaCy English model
 nlp = spacy.load("en_core_web_sm")
 
+# Prompt user for team name
+team_name = input("Enter the team name to search for transfers: ").strip()
+query = f"{team_name} transfer"
+
 # Your NewsAPI key here
 API_KEY = "df28d02564c64ca891c9e91da26e32fa"
-QUERY = "Chelsea transfer"
 ENDPOINT = "https://newsapi.org/v2/everything"
 
 # Time range: past 24 hours
@@ -25,7 +27,7 @@ to_date = now.isoformat()
 
 # Request parameters
 params = {
-    "q": QUERY,
+    "q": query,
     "from": from_date,
     "to": to_date,
     "language": "en",
@@ -52,7 +54,9 @@ for text in texts:
 # Count mentions
 mention_counts = Counter(player_names)
 
-# Display results
-print("Player mentions in the past 24 hours:")
+# Display results with FBref links
+print(f"\nPlayer mentions in the past 24 hours for '{team_name}':")
 for name, count in mention_counts.most_common():
-    print(f"{name}: {count}")
+    search_name = name.replace(" ", "+")
+    fbref_link = f"https://fbref.com/en/search/search.fcgi?search={search_name}"
+    print(f"{name}: {count} — FBref: {fbref_link}")

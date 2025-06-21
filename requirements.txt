@@ -3,5 +3,3 @@ requests
 spacy==3.8.7
 certifi
 gunicorn
-en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.7/en_core_web_sm-3.8.7.tar.gz
-python_version >= "3.9" and python_version < "3.14"

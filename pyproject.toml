@@ -2,7 +2,8 @@
 name = "transfer-tracker-api"
 version = "0.1.0"
 description = ""
-authors = ["albapepper <albapepper@gmail.com>"]
+authors = ["Your Name <your@email.com>"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.9"

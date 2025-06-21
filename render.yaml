@@ -7,6 +7,3 @@ services:
     envVars:
       - key: NEWS_API_KEY
         value: df28d02564c64ca891c9e91da26e32fa
-    disk:
-      name: persistent
-      sizeGB: 1

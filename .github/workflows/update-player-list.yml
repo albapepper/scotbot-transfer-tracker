@@ -18,7 +18,9 @@ jobs:
 
       - name: Install R packages
         run: |
-          Rscript -e 'install.packages(c("worldfootballR", "dplyr", "readr", "purrr"))'
+          Rscript -e 'install.packages("remotes", repos = "http://cran.us.r-project.org")'
+          Rscript -e 'remotes::install_github("JaseZiv/worldfootballR")'
+          Rscript -e 'install.packages(c("dplyr", "readr", "purrr"), repos = "http://cran.us.r-project.org")'
 
       - name: Generate player list
         run: Rscript generate_player_list.R

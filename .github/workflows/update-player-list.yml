@@ -1,1 +1,32 @@
+name: Update Player List Weekly
 
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 6:00 UTC
+  workflow_dispatch:     # Allow manual trigger
+
+jobs:
+  update-list:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages(c("worldfootballR", "dplyr", "readr", "purrr"))'
+
+      - name: Generate player list
+        run: Rscript generate_player_list.R
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add player_names.txt
+          git commit -m "Update player list [auto]" || echo "No changes to commit"
+          git push

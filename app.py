@@ -4,8 +4,8 @@ import os
 
 app = Flask(__name__)
 
-OPTA_API_ENDPOINT = "https://api.opta-like.com/playerstats"  # Replace with your real endpoint
-OPTA_API_KEY = os.environ.get("OPTA_API_KEY", "your_actual_key_here")  # Uses env variable if set
+OPTA_API_ENDPOINT = "https://api.opta-like.com/playerstats"  # Replace with your actual endpoint
+OPTA_API_KEY = os.environ.get("OPTA_API_KEY", "your_actual_key_here")  # Uses environment variable
 
 @app.route("/player")
 def player_stats():

@@ -1,12 +1,12 @@
 name: Update Player Names
 
 on:
-  workflow_dispatch:      # Manual trigger
+  workflow_dispatch:      # Manually trigger
   schedule:
-    - cron: '0 6 * * 1'   # Every Monday at 06:00 UTC
+    - cron: '0 6 * * 1'   # Runs every Monday at 06:00 UTC
 
 jobs:
-  build:
+  update-player-names:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,14 +16,28 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
 
-      - name: Install dependencies & run script
+      - name: Install worldfootballR and dependencies
         run: |
-          Rscript generate_player_names.R
+          Rscript -e 'user_lib <- Sys.getenv("R_LIBS_USER"); if (!dir.exists(user_lib)) dir.create(user_lib, recursive = TRUE); install.packages("worldfootballR", lib = user_lib, repos = "https://cloud.r-project.org")'
 
-      - name: Commit updated player names
+      - name: Run player extraction script
+        run: |
+          Rscript -e '
+            user_lib <- Sys.getenv("R_LIBS_USER")
+            library(worldfootballR, lib.loc = user_lib)
+            league_url <- "https://fbref.com/en/comps/9/Premier-League-Stats"
+            teams <- fb_teams_urls(league_url)
+            squads <- lapply(teams, fb_team_player_stats, stat_type = "standard")
+            combined <- do.call(rbind, squads)
+            players <- sort(unique(combined$Player))
+            writeLines(players, "player_names.txt")
+            cat("✅ Saved", length(players), "players to player_names.txt\n")
+          '
+
+      - name: Commit updated player_names.txt
         run: |
           git config user.name github-actions
           git config user.email github-actions@users.noreply.github.com
           git add player_names.txt
-          git commit -m "⬆️ Auto-update player_names.txt"
+          git commit -m "⬆️ Auto-update player_names.txt" || echo "No changes to commit"
           git push

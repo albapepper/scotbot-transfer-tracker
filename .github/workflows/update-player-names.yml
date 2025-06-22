@@ -1,9 +1,9 @@
 name: Update Player Names
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:      # Manual trigger
   schedule:
-    - cron: '0 6 * * 1'
+    - cron: '0 6 * * 1'   # Every Monday at 06:00 UTC
 
 jobs:
   update-players:
@@ -16,14 +16,13 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run generate_player_names.R (from container)
-        run: |
-          cp player_names.txt ./player_names.txt
+      - name: Run generate_player_names.R inside container
+        run: Rscript /usr/local/src/generate_player_names.R
 
-      - name: Commit player_names.txt
+      - name: Commit updated player names
         run: |
           git config user.name github-actions
           git config user.email github-actions@users.noreply.github.com

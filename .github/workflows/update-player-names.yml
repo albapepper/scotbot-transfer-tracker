@@ -1,38 +1,29 @@
 name: Update Player Names
 
 on:
+  workflow_dispatch:      # Manual trigger
   schedule:
-    - cron: '0 6 * * 1'  # Runs every Monday at 6:00 UTC
-  workflow_dispatch:     # Allows you to trigger it manually from GitHub
+    - cron: '0 6 * * 1'   # Every Monday at 06:00 UTC
 
 jobs:
-  fetch-and-commit:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
 
-      - name: Install Poetry
+      - name: Install dependencies & run script
         run: |
-          pip install poetry
-          poetry config virtualenvs.create false
-          poetry install --no-root
+          Rscript generate_player_names.R
 
-      - name: Run player name generator
-        run: python generate_player_names.py
-
-      - name: Commit and push changes
+      - name: Commit updated player names
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
           git add player_names.txt
-          git commit -m "⬆️ Auto-update player_names.txt [bot]" || echo "No changes to commit"
+          git commit -m "⬆️ Auto-update player_names.txt"
           git push

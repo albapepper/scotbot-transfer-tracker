@@ -2,15 +2,15 @@ name: Update Player Names
 
 on:
   schedule:
-    - cron: '0 6 * * 1'  # Every Monday at 6:00 UTC
-  workflow_dispatch:     # Allows manual runs from the GitHub UI
+    - cron: '0 6 * * 1'  # Runs every Monday at 6:00 UTC
+  workflow_dispatch:     # Allows you to trigger it manually from GitHub
 
 jobs:
   fetch-and-commit:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -26,11 +26,10 @@ jobs:
           poetry config virtualenvs.create false
           poetry install --no-root
 
-      - name: Run transfer script
-        run: |
-          python app.py  # or your actual script filename if it's not app.py
+      - name: Run player name generator
+        run: python generate_player_names.py
 
-      - name: Commit updated player_names.txt
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

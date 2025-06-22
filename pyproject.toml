@@ -1,10 +1,9 @@
 [tool.poetry]
 name = "api-transfer-tracker"
 version = "0.1.0"
-description = ""
+description = "A Flask app for tracking football transfer rumors"
 authors = ["albapepper <albapepper@gmail.com>"]
 readme = "README.md"
-packages = []
 package-mode = false
 requires-python = ">=3.12"
 

@@ -6,9 +6,8 @@ services:
     buildCommand: |
       pip install poetry
       poetry config virtualenvs.create false
-      poetry install
-    startCommand: gunicorn app:app  # or python app.py
+      poetry install --no-root
+    startCommand: gunicorn app:app
     envVars:
       - key: NEWS_API_KEY
         value: "df28d02564c64ca891c9e91da26e32fa"
-

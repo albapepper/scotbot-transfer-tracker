@@ -1,0 +1,33 @@
+name: Update Player Names Weekly
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 6:00 UTC
+  workflow_dispatch:
+
+jobs:
+  update-names:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run name generator
+        run: python generate_player_names.py
+
+      - name: Commit and push updated player_names.txt
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add player_names.txt
+          git commit -m "Update player names [auto]" || echo "No changes to commit"
+          git push

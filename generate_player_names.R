@@ -1,17 +1,13 @@
-# Install worldfootballR if not already installed
-if (!require("worldfootballR")) install.packages("worldfootballR", repos = "http://cran.us.r-project.org")
+user_lib <- Sys.getenv("R_LIBS_USER")
+if (!dir.exists(user_lib)) dir.create(user_lib, recursive = TRUE)
+install.packages("worldfootballR", lib = user_lib, repos = "https://cloud.r-project.org")
+library(worldfootballR, lib.loc = user_lib)
 
-library(worldfootballR)
-
-# Example: Get all players from the English Premier League 2023/24 season
 league_url <- "https://fbref.com/en/comps/9/Premier-League-Stats"
-squad_data <- fb_teams_urls(league_url) |>
-  lapply(fb_team_player_stats, stat_type = "standard") |>
-  do.call(rbind, _)
+teams <- fb_teams_urls(league_url)
+squads <- lapply(teams, fb_team_player_stats, stat_type = "standard")
+combined <- do.call(rbind, squads)
 
-# Extract unique player names
-player_names <- sort(unique(squad_data$Player))
-
-# Save to file
-writeLines(player_names, "player_names.txt")
-cat("✅ Saved", length(player_names), "unique player names to player_names.txt\n")
+players <- sort(unique(combined$Player))
+writeLines(players, "player_names.txt")
+cat("✅ Saved", length(players), "players to player_names.txt\n")

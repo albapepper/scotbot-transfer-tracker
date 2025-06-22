@@ -1,3 +1,5 @@
+name: Update Player List Weekly
+
 - name: Install packages and generate player list
   env:
     GITHUB_PAT: ${{ secrets.GH_PAT }}

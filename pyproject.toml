@@ -5,9 +5,9 @@ description = "A Flask app for tracking football transfer rumors"
 authors = ["albapepper <albapepper@gmail.com>"]
 readme = "README.md"
 package-mode = false
-requires-python = ">=3.12"
 
 [tool.poetry.dependencies]
+python = ">=3.12"
 flask = ">=3.1.1,<4.0.0"
 requests = ">=2.32.4,<3.0.0"
 rapidfuzz = ">=3.13.0,<4.0.0"

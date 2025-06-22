@@ -1,0 +1,17 @@
+install.packages("remotes", repos = "http://cran.us.r-project.org")
+remotes::install_github("JaseZiv/worldfootballR")
+install.packages(c("dplyr", "readr", "purrr"), repos = "http://cran.us.r-project.org")
+
+library(worldfootballR)
+library(dplyr)
+library(readr)
+
+leagues <- c("ENG-Premier League", "ESP-La Liga", "GER-Bundesliga", "ITA-Serie A", "FRA-Ligue 1")
+season <- 2024
+
+players <- purrr::map_df(leagues, ~ fb_teams(.x, season_end_year = season) %>%
+  pull(Squad_url) %>%
+  purrr::map_df(~ fb_player_squad_stats(.x, stat_type = "standard")))
+
+player_names <- unique(players$Player)
+write_lines(player_names, "player_names.txt")

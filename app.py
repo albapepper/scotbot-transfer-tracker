@@ -17,13 +17,6 @@ except FileNotFoundError:
     KNOWN_PLAYERS = set()
     print("⚠️  player_names.txt not found — no players loaded.")
 
-
-EXCLUDED_NAMES = {
-    "Chelsea", "Manchester City", "Manchester United", "Arsenal", "Liverpool", "Tottenham",
-    "Real Madrid", "Barcelona", "PSG", "Bayern Munich", "Juventus", "Inter Milan", "AC Milan",
-    "Sky Sports", "ESPN", "BBC", "The Guardian", "Telegraph", "Reuters", "Goal", "Fabrizio Romano"
-}
-
 @app.route("/", methods=["GET"])
 def home():
     return Response("""

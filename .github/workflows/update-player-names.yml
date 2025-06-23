@@ -1,31 +1,32 @@
 name: Update Player Names
 
 on:
-  workflow_dispatch:      # Manual trigger
   schedule:
-    - cron: '0 6 * * 1'   # Every Monday at 06:00 UTC
+    - cron: '0 6 1 * *'  # 1st of every month at 06:00 UTC
+  workflow_dispatch:
 
 jobs:
   update-players:
     runs-on: ubuntu-latest
 
-    container:
-      image: ghcr.io/albapepper/player-names:latest
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Run generate_player_names.R inside container
-        run: Rscript /usr/local/src/generate_player_names.R
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install beautifulsoup4 requests
+
+      - name: Run player name scraper
+        run: python generate_player_names.py
 
       - name: Commit updated player names
         run: |
           git config user.name github-actions
           git config user.email github-actions@users.noreply.github.com
           git add player_names.txt
-          git commit -m "⬆️ Auto-update player_names.txt" || echo "No changes"
+          git commit -m "⬆️ Monthly update of player_names.txt" || echo "No changes"
           git push

@@ -13,9 +13,10 @@ ENDPOINT = "https://newsapi.org/v2/everything"
 try:
     with open("player_names.txt", "r", encoding="utf-8") as f:
         KNOWN_PLAYERS = set(line.strip() for line in f if line.strip())
+    print(f"✅ Loaded {len(KNOWN_PLAYERS)} players from player_names.txt")
 except FileNotFoundError:
     KNOWN_PLAYERS = set()
-    print("⚠️  player_names.txt not found — no players loaded.")
+    print("⚠️ player_names.txt not found — no players loaded.")
 
 @app.route("/", methods=["GET"])
 def home():
@@ -28,11 +29,11 @@ def home():
         <style>
             body {
                 margin: 0;
-                height: 100vh;
+                padding: 2rem 0;
+                min-height: 100vh;
                 background: linear-gradient(to bottom right, #eef6fb, #d7e9f7);
                 font-family: 'Inter', sans-serif;
                 display: flex;
-                align-items: center;
                 justify-content: center;
             }
             .container {
@@ -72,7 +73,7 @@ def home():
         <div class="container">
             <h2>Football Transfer Tracker</h2>
             <form action="/transfers" method="get">
-                <input type="text" id="team" name="team" placeholder="e.g. Arsenal" required>
+                <input type="text" id="team" name="team" placeholder="e.g. Chelsea" required>
                 <br>
                 <button type="submit">Search Transfers</button>
             </form>
@@ -90,11 +91,11 @@ def get_transfer_mentions():
 
     query = f"{team_name} transfer"
     now = datetime.now(timezone.utc)
-    yesterday = now - timedelta(days=3)
+    three_days_ago = now - timedelta(days=3)
 
     params = {
         "q": query,
-        "from": yesterday.isoformat(),
+        "from": three_days_ago.isoformat(),
         "to": now.isoformat(),
         "language": "en",
         "sortBy": "publishedAt",
@@ -129,12 +130,12 @@ def get_transfer_mentions():
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
         <style>
             body {{
+                margin: 0;
+                padding: 2rem 0;
+                min-height: 100vh;
                 background: linear-gradient(to bottom right, #eef6fb, #d7e9f7);
                 font-family: 'Inter', sans-serif;
-                height: 100vh;
-                margin: 0;
                 display: flex;
-                align-items: center;
                 justify-content: center;
             }}
             .results-container {{
@@ -142,12 +143,11 @@ def get_transfer_mentions():
                 padding: 2rem 3rem;
                 border-radius: 12px;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                text-align: left;
                 max-width: 500px;
+                width: 100%;
             }}
             h2 {{
                 color: #003366;
-                margin-bottom: 1rem;
                 text-align: center;
             }}
             ul {{
@@ -179,7 +179,7 @@ def get_transfer_mentions():
         for name, count in frequency_counter.most_common():
             search_name = name.replace(" ", "+")
             fbref_link = f"https://fbref.com/en/search/search.fcgi?search={search_name}"
-            html_body += f'<li><strong>{name}</strong> ({name} has been mentioned {count} times): <a href="{fbref_link}" target="_blank">View stats</a></li>'
+            html_body += f'<li><strong>{name}</strong> ({count} mentions): <a href="{fbref_link}" target="_blank">View stats</a></li>'
 
     html_footer = """
     </ul>

@@ -2,7 +2,7 @@ name: Update Player Names
 
 on:
   schedule:
-    - cron: '0 6 1 * *'  # 1st of every month at 06:00 UTC
+    - cron: '0 6 1 * *'  # Run at 06:00 UTC on the 1st of each month
   workflow_dispatch:
 
 jobs:
@@ -10,15 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install dependencies
-        run: pip install beautifulsoup4 requests
+      - name: Install scraping dependencies
+        run: pip install beautifulsoup4 cloudscraper
 
       - name: Run player name scraper
         run: python generate_player_names.py

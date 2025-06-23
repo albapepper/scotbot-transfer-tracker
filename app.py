@@ -18,6 +18,7 @@ except FileNotFoundError:
     KNOWN_PLAYERS = set()
     print("⚠️ player_names.txt not found — no players loaded.")
 
+
 @app.route("/", methods=["GET"])
 def home():
     return Response("""
@@ -115,8 +116,6 @@ def get_transfer_mentions():
 
     frequency_counter = Counter()
     for player in KNOWN_PLAYERS:
-        if player in EXCLUDED_NAMES:
-            continue
         pattern = r"\b" + re.escape(player.lower()) + r"\b"
         matches = re.findall(pattern, combined_text, re.IGNORECASE)
         if matches:

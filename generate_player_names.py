@@ -27,7 +27,8 @@ def find_latest_stats_url(overview_url):
 
 def scrape_player_names(stats_url, league):
     res = scraper.get(stats_url)
-    soup = BeautifulSoup(res.text, "html.parser")
+    html = res.text.replace("<!--", "").replace("-->", "")  # Unwrap commented-out tables
+    soup = BeautifulSoup(html, "html.parser")
     table = soup.find("table", {"id": "stats_standard"})
     if not table:
         print(f"⚠️  No stats table found for {league} at {stats_url}")

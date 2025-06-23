@@ -10,10 +10,13 @@ app = Flask(__name__)
 API_KEY = "df28d02564c64ca891c9e91da26e32fa"
 ENDPOINT = "https://newsapi.org/v2/everything"
 
-KNOWN_PLAYERS = {
-    "Erling Haaland", "Kylian Mbappe", "Harry Kane", "Jude Bellingham", "João Félix",
-    "Lionel Messi", "Cristiano Ronaldo", "Marcus Rashford", "Declan Rice", "Kai Havertz"
-}
+try:
+    with open("player_names.txt", "r", encoding="utf-8") as f:
+        KNOWN_PLAYERS = set(line.strip() for line in f if line.strip())
+except FileNotFoundError:
+    KNOWN_PLAYERS = set()
+    print("⚠️  player_names.txt not found — no players loaded.")
+
 
 EXCLUDED_NAMES = {
     "Chelsea", "Manchester City", "Manchester United", "Arsenal", "Liverpool", "Tottenham",

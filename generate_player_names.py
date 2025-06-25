@@ -12,7 +12,7 @@ LEAGUE_OVERVIEWS = {
 }
 
 scraper = cloudscraper.create_scraper()
-all_players = set()
+all_players = []
 league_summary = {}
 
 def find_latest_stats_url(overview_url):
@@ -25,19 +25,24 @@ def find_latest_stats_url(overview_url):
     print(f"⚠️  Could not find Standard Stats link for {overview_url}")
     return None
 
-def scrape_player_names(stats_url, league):
+def scrape_player_data(stats_url, league):
     res = scraper.get(stats_url)
-    html = res.text.replace("<!--", "").replace("-->", "")  # Unwrap commented-out tables
+    html = res.text.replace("&lt;!--", "").replace("--&gt;", "")  # Unwrap commented-out tables
     soup = BeautifulSoup(html, "html.parser")
     table = soup.find("table", {"id": "stats_standard"})
     if not table:
         print(f"⚠️  No stats table found for {league} at {stats_url}")
         return []
-    players = set()
+    players = []
     for row in table.find_all("tr"):
-        cell = row.find("td", {"data-stat": "player"})
-        if cell:
-            players.add(cell.text.strip())
+        player_cell = row.find("td", {"data-stat": "player"})
+        position_cell = row.find("td", {"data-stat": "position"})
+        team_cell = row.find("td", {"data-stat": "team"})
+        if player_cell and position_cell and team_cell:
+            player_name = player_cell.text.strip()
+            position = position_cell.text.strip()
+            team = team_cell.text.strip()
+            players.append((player_name, position, team))
     print(f"✅ {league}: {len(players)} players")
     league_summary[league] = len(players)
     return players
@@ -46,13 +51,14 @@ for league, overview in LEAGUE_OVERVIEWS.items():
     stats_url = find_latest_stats_url(overview)
     if stats_url:
         time.sleep(1)  # Be polite to FBref servers
-        all_players.update(scrape_player_names(stats_url, league))
+        all_players.extend(scrape_player_data(stats_url, league))
 
-print(f"\n📝 Writing {len(all_players)} total players to player_names.txt")
+print(f"\n📝 Writing {len(all_players)} total players to player-position-club.txt")
 
-with open("player_names.txt", "w", encoding="utf-8") as f:
-    for name in sorted(all_players):
-        f.write(name + "\n")
+with open("player-position-club.txt", "w", encoding="utf-8") as f:
+    f.write("Player Name\tPosition\tCurrent Club\n")
+    for player in sorted(all_players):
+        f.write("\t".join(player) + "\n")
 
 print("\n📊 Player count by league:")
 for league, count in league_summary.items():

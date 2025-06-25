@@ -8,7 +8,6 @@ import re
 app = Flask(__name__)
 
 GNEWS_API_KEY = "1eee521d1029ae7fc382bdacf81ceda7"
-
 GNEWS_ENDPOINT = "https://gnews.io/api/v4/search"
 
 try:

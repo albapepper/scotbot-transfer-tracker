@@ -2,6 +2,7 @@ import cloudscraper
 from bs4 import BeautifulSoup
 import time
 import re
+import os
 
 BASE_URL = "https://fbref.com"
 LEAGUE_OVERVIEWS = {
@@ -58,12 +59,23 @@ for league, overview in LEAGUE_OVERVIEWS.items():
         time.sleep(1)  # Be polite to FBref servers
         all_players.extend(scrape_player_data(stats_url, league))
 
-print(f"\n📝 Writing {len(all_players)} total players to player-position-club.txt")
+# Debugging: Print sample entries
+print(f"\nSample entries: {all_players[:5]}")
 
-with open("player-position-club.txt", "w", encoding="utf-8") as f:
+# Write to file with validation and debugging
+output_file = "player-position-club.txt"
+print("Writing to:", os.path.abspath(output_file))
+
+with open(output_file, "w", encoding="utf-8") as f:
     f.write("Player Name\tPosition\tCurrent Club\n")
+    written = 0
     for player in sorted(all_players):
-        f.write("\t".join(player) + "\n")
+        if isinstance(player, tuple) and len(player) == 3 and all(isinstance(field, str) for field in player):
+            f.write("\t".join(player) + "\n")
+            written += 1
+        else:
+            print(f"⚠️ Skipping malformed entry: {player}")
+    print(f"✅ Wrote {written} players to file.")
 
 print("\n📊 Player count by league:")
 for league, count in league_summary.items():

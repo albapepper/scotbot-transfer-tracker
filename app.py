@@ -7,8 +7,8 @@ import re
 
 app = Flask(__name__)
 
-API_KEY = "df28d02564c64ca891c9e91da26e32fa"
-ENDPOINT = "https://newsapi.org/v2/everything"
+GNEWS_API_KEY = "1eee521d1029ae7fc382bdacf81ceda7"
+GNEWS_ENDPOINT = "https://gnews.io/api/v4/search"
 
 try:
     with open("player_names.txt", "r", encoding="utf-8") as f:
@@ -26,7 +26,7 @@ def home():
     <html>
     <head>
         <title>Transfer Tracker</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@lay=swap
         <style>
             body {
                 margin: 0;
@@ -92,20 +92,19 @@ def get_transfer_mentions():
 
     query = f"{team_name} transfer"
     now = datetime.now(timezone.utc)
-    three_days_ago = now - timedelta(days=3)
+    three_days_ago = now - timedelta(days=1)
 
     params = {
         "q": query,
+        "lang": "en",
         "from": three_days_ago.isoformat(),
         "to": now.isoformat(),
-        "language": "en",
-        "sortBy": "publishedAt",
-        "apiKey": API_KEY,
-        "pageSize": 100
+        "token": GNEWS_API_KEY,
+        "max": 100
     }
 
     try:
-        response = requests.get(ENDPOINT, params=params, verify=certifi.where())
+        response = requests.get(GNEWS_ENDPOINT, params=params, verify=certifi.where())
         response.raise_for_status()
         articles = response.json().get("articles", [])
     except Exception as e:
@@ -126,9 +125,7 @@ def get_transfer_mentions():
     <html>
     <head>
         <title>Transfer Results</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
-        <style>
-            body {{
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheetbody {{
                 margin: 0;
                 padding: 2rem 0;
                 min-height: 100vh;

@@ -63,7 +63,7 @@ for league, overview in LEAGUE_OVERVIEWS.items():
 print(f"\nSample entries: {all_players[:5]}")
 
 # Write to file with validation and debugging
-output_file = "player-position-club.txt"
+output_file = os.path.join(os.getenv("GITHUB_WORKSPACE", "."), "player-position-club.txt")
 print("Writing to:", os.path.abspath(output_file))
 
 with open(output_file, "w", encoding="utf-8") as f:

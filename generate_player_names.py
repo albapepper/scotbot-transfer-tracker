@@ -1,6 +1,7 @@
 import cloudscraper
 from bs4 import BeautifulSoup
 import time
+import re
 
 BASE_URL = "https://fbref.com"
 LEAGUE_OVERVIEWS = {
@@ -27,39 +28,12 @@ def find_latest_stats_url(overview_url):
 
 def scrape_player_data(stats_url, league):
     res = scraper.get(stats_url)
-    html = res.text.replace("&lt;!--", "").replace("--&gt;", "")  # Unwrap commented-out tables
+    html = res.text
+    # Unwrap commented-out tables
+    commented_html = re.findall(r'<!--(.*?)-->', html, re.DOTALL)
+    for comment in commented_html:
+        html = html.replace(f"<!--{comment}-->", comment)
     soup = BeautifulSoup(html, "html.parser")
     table = soup.find("table", {"id": "stats_standard"})
     if not table:
-        print(f"⚠️  No stats table found for {league} at {stats_url}")
-        return []
-    players = []
-    for row in table.find_all("tr"):
-        player_cell = row.find("td", {"data-stat": "player"})
-        position_cell = row.find("td", {"data-stat": "position"})
-        team_cell = row.find("td", {"data-stat": "team"})
-        if player_cell and position_cell and team_cell:
-            player_name = player_cell.text.strip()
-            position = position_cell.text.strip()
-            team = team_cell.text.strip()
-            players.append((player_name, position, team))
-    print(f"✅ {league}: {len(players)} players")
-    league_summary[league] = len(players)
-    return players
-
-for league, overview in LEAGUE_OVERVIEWS.items():
-    stats_url = find_latest_stats_url(overview)
-    if stats_url:
-        time.sleep(1)  # Be polite to FBref servers
-        all_players.extend(scrape_player_data(stats_url, league))
-
-print(f"\n📝 Writing {len(all_players)} total players to player-position-club.txt")
-
-with open("player-position-club.txt", "w", encoding="utf-8") as f:
-    f.write("Player Name\tPosition\tCurrent Club\n")
-    for player in sorted(all_players):
-        f.write("\t".join(player) + "\n")
-
-print("\n📊 Player count by league:")
-for league, count in league_summary.items():
-    print(f" - {league}: {count}")
+        print(f"⚠

@@ -24,7 +24,7 @@ jobs:
       - name: Run player name scraper
         run: python generate_player_names.py
 
-            - name: Commit updated player-position-club.txt
+      - name: Commit updated player-position-club.txt
         run: |
           git config user.name github-actions
           git config user.email github-actions@users.noreply.github.com

@@ -1,15 +1,9 @@
 from flask import Flask, request, Response
-import requests
+import feedparser
 from collections import Counter
-from datetime import datetime, timedelta, timezone
-import certifi
 import re
 
 app = Flask(__name__)
-
-API_KEY = "df28d02564c64ca891c9e91da26e32fa"
-ENDPOINT = "https://newsapi.org/v2/everything"
-
 
 try:
     with open("player_names.txt", "r", encoding="utf-8") as f:
@@ -27,7 +21,7 @@ def home():
     <html>
     <head>
         <title>Transfer Tracker</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+        https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap
         <style>
             body {
                 margin: 0;
@@ -91,29 +85,16 @@ def get_transfer_mentions():
     if not team_name:
         return Response("Missing 'team' query parameter", status=400)
 
-    query = f"{team_name} transfer"
-    now = datetime.now(timezone.utc)
-    three_days_ago = now - timedelta(days=1)
-
-    params = {
-        "q": query,
-        "from": three_days_ago.isoformat(),
-        "to": now.isoformat(),
-        "language": "en",
-        "sortBy": "publishedAt",
-        "apiKey": API_KEY,
-        "pageSize": 100
-    }
+    query = f"{team_name} transfer".replace(" ", "+")
+    rss_url = f"https://news.google.com/rss/search?q={query}"
 
     try:
-        response = requests.get(ENDPOINT, params=params, verify=certifi.where())
-        response.raise_for_status()
-        articles = response.json().get("articles", [])
+        feed = feedparser.parse(rss_url)
+        articles = [entry.title + " " + entry.get("description", "") for entry in feed.entries]
     except Exception as e:
         return Response(f"<p>Failed to fetch news: {str(e)}</p>", mimetype="text/html")
 
-    texts = [f"{a['title']} {a.get('description', '')}" for a in articles]
-    combined_text = " ".join(texts).lower()
+    combined_text = " ".join(articles).lower()
 
     frequency_counter = Counter()
     for player in KNOWN_PLAYERS:
@@ -127,7 +108,7 @@ def get_transfer_mentions():
     <html>
     <head>
         <title>Transfer Results</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+        https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap
         <style>
             body {{
                 margin: 0;

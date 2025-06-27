@@ -14,6 +14,7 @@ rapidfuzz = ">=3.13.0,<4.0.0"
 certifi = ">=2025.6.15,<2026.0.0"
 feedparser = "^6.0.11"
 gunicorn = "^23.0.0"
+feedparser = "^6.0.11"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

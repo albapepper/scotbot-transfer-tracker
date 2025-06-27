@@ -92,7 +92,7 @@ def get_transfer_mentions():
 
     query = f"{team_name} transfer"
     now = datetime.now(timezone.utc)
-    three_days_ago = now - timedelta(days=3)
+    three_days_ago = now - timedelta(days=1)
 
     params = {
         "q": query,

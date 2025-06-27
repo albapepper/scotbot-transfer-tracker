@@ -8,7 +8,7 @@ import re
 app = Flask(__name__)
 
 API_KEY = "df28d02564c64ca891c9e91da26e32fa"
-ENDPOINT = "https://newsapi.org/v2/everything?q=sports&apiKey=df28d02564c64ca891c9e91da26e32fa"
+ENDPOINT = "https://newsapi.org/v2/everything"
 
 
 try:

@@ -1,10 +1,14 @@
+
 from flask import Flask, request, Response
 import feedparser
 from collections import Counter
+from datetime import datetime, timedelta
+import time
 import re
 
 app = Flask(__name__)
 
+# Load known player names from file
 try:
     with open("player_names.txt", "r", encoding="utf-8") as f:
         KNOWN_PLAYERS = set(line.strip() for line in f if line.strip())
@@ -13,6 +17,16 @@ except FileNotFoundError:
     KNOWN_PLAYERS = set()
     print("⚠️ player_names.txt not found — no players loaded.")
 
+# Filter articles published in the last 24 hours
+def filter_recent_articles(entries, hours=24):
+    cutoff = datetime.utcnow() - timedelta(hours=hours)
+    recent_entries = []
+    for entry in entries:
+        if hasattr(entry, 'published_parsed'):
+            published = datetime.fromtimestamp(time.mktime(entry.published_parsed))
+            if published > cutoff:
+                recent_entries.append(entry)
+    return recent_entries
 
 @app.route("/", methods=["GET"])
 def home():
@@ -21,7 +35,7 @@ def home():
     <html>
     <head>
         <title>Transfer Tracker</title>
-        https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
         <style>
             body {
                 margin: 0;
@@ -78,7 +92,6 @@ def home():
     </html>
     """, mimetype="text/html")
 
-
 @app.route("/transfers", methods=["GET"])
 def get_transfer_mentions():
     team_name = request.args.get("team")
@@ -90,11 +103,12 @@ def get_transfer_mentions():
 
     try:
         feed = feedparser.parse(rss_url)
-        articles = [entry.title + " " + entry.get("description", "") for entry in feed.entries]
+        recent_articles = filter_recent_articles(feed.entries)
+        texts = [entry.title + " " + entry.get("description", "") for entry in recent_articles]
     except Exception as e:
         return Response(f"<p>Failed to fetch news: {str(e)}</p>", mimetype="text/html")
 
-    combined_text = " ".join(articles).lower()
+    combined_text = " ".join(texts).lower()
 
     frequency_counter = Counter()
     for player in KNOWN_PLAYERS:
@@ -108,7 +122,7 @@ def get_transfer_mentions():
     <html>
     <head>
         <title>Transfer Results</title>
-        https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
         <style>
             body {{
                 margin: 0;
@@ -155,7 +169,7 @@ def get_transfer_mentions():
 
     html_body = ""
     if not frequency_counter:
-        html_body += "<li>No players mentioned recently.</li>"
+        html_body += "<li>No players mentioned in the last 24 hours.</li>"
     else:
         for name, count in frequency_counter.most_common():
             search_name = name.replace(" ", "+")
@@ -170,7 +184,6 @@ def get_transfer_mentions():
     """
 
     return Response(html_head + html_body + html_footer, mimetype="text/html")
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)

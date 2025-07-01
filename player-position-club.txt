@@ -475,7 +475,7 @@ Cedric Zesiger	DF	Wolfsburg
 Cenk Özkacar	DF	Valladolid
 Cesare Casadei	MF	Torino
 Chadi Riad	DF	Crystal Palace
-Charalambos Lykogiannis	DF	Bologna
+Charalampos Lykogiannis	DF	Bologna
 Charles De Ketelaere	MF,FW	Atalanta
 Charlie Cresswell	DF	Toulouse
 Charlie Taylor	DF	Southampton
@@ -2716,10 +2716,10 @@ Wahbi Khazri	FW,MF	Montpellier
 Waldemar Anton	DF	Dortmund
 Walid Cheddira	FW	Espanyol
 Walid Cheddira	FW	Napoli
-Waren Kamanzi	DF,MF	Toulouse
 Warmed Omari	DF	Lyon
 Warren Bondo	MF	Milan
 Warren Bondo	MF	Monza
+Warren Kamanzi	DF,MF	Toulouse
 Warren Zaïre-Emery	MF,DF	Paris S-G
 Wataru Endo	MF,DF	Liverpool
 Welington	DF	Southampton

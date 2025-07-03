@@ -1,10 +1,10 @@
-
 from flask import Flask, request, Response
 import feedparser
 from collections import Counter
 from datetime import datetime, timedelta
 import time
 import re
+from rapidfuzz import fuzz
 
 app = Flask(__name__)
 
@@ -35,7 +35,7 @@ def home():
     <html>
     <head>
         <title>Transfer Tracker</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+        <link href="s.googleapis.com/css2?family=Inter:wght@300;400&display=swap
         <style>
             body {
                 margin: 0;
@@ -98,7 +98,7 @@ def get_transfer_mentions():
     if not team_name:
         return Response("Missing 'team' query parameter", status=400)
 
-    query = f"{team_name} transfer".replace(" ", "+")
+    query = team_name.replace(" ", "+")
     rss_url = f"https://news.google.com/rss/search?q={query}"
 
     try:
@@ -112,17 +112,16 @@ def get_transfer_mentions():
 
     frequency_counter = Counter()
     for player in KNOWN_PLAYERS:
-        pattern = r"\b" + re.escape(player.lower()) + r"\b"
-        matches = re.findall(pattern, combined_text, re.IGNORECASE)
-        if matches:
-            frequency_counter[player] = len(matches)
+        score = fuzz.partial_ratio(player.lower(), combined_text)
+        if score > 85:
+            frequency_counter[player] = score
 
     html_head = f"""
     <!DOCTYPE html>
     <html>
     <head>
         <title>Transfer Results</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter0&display=swap
         <style>
             body {{
                 margin: 0;
@@ -171,10 +170,10 @@ def get_transfer_mentions():
     if not frequency_counter:
         html_body += "<li>No players mentioned in the last 24 hours.</li>"
     else:
-        for name, count in frequency_counter.most_common():
+        for name, score in frequency_counter.most_common():
             search_name = name.replace(" ", "+")
             fbref_link = f"https://fbref.com/en/search/search.fcgi?search={search_name}"
-            html_body += f'<li><strong>{name}</strong> ({count} mentions): <a href="{fbref_link}" target="_blank">View stats</a></li>'
+            html_body += f'<li><strong>{name}</strong> (match score: {score}): <a href="{fbref_link}" target="_blank">View stats</a></li>'
 
     html_footer = """
     </ul>

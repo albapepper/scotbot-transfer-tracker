@@ -41,7 +41,7 @@ def home():
                 margin: 0;
                 padding: 0;
                 height: 100%;
-                background: linear-gradient(to bottom right, #eef6fb, #d7e9f7);
+                background-color: #fdf6e3;
                 font-family: 'Inter', sans-serif;
                 display: flex;
                 justify-content: center;
@@ -122,13 +122,12 @@ def get_transfer_mentions():
     <html>
     <head>
         <title>Transfer Results</title>
-        https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap
-        <style>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap"le>
             html, body {{
                 margin: 0;
                 padding: 0;
                 height: 100%;
-                background: linear-gradient(to bottom right, #eef6fb, #d7e9f7);
+                background-color: #fdf6e3;
                 font-family: 'Inter', sans-serif;
                 display: flex;
                 justify-content: center;

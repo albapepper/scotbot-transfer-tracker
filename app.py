@@ -35,16 +35,17 @@ def home():
     <html>
     <head>
         <title>Transfer Tracker</title>
-        <link href="s.googleapis.com/css2?family=Inter:wght@300;400&display=swap
+        https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap
         <style>
-            body {
+            html, body {
                 margin: 0;
-                padding: 2rem 0;
-                min-height: 100vh;
+                padding: 0;
+                height: 100%;
                 background: linear-gradient(to bottom right, #eef6fb, #d7e9f7);
                 font-family: 'Inter', sans-serif;
                 display: flex;
                 justify-content: center;
+                align-items: center;
             }
             .container {
                 text-align: center;
@@ -121,16 +122,17 @@ def get_transfer_mentions():
     <html>
     <head>
         <title>Transfer Results</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter0&display=swap
+        https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap
         <style>
-            body {{
+            html, body {{
                 margin: 0;
-                padding: 2rem 0;
-                min-height: 100vh;
+                padding: 0;
+                height: 100%;
                 background: linear-gradient(to bottom right, #eef6fb, #d7e9f7);
                 font-family: 'Inter', sans-serif;
                 display: flex;
                 justify-content: center;
+                align-items: center;
             }}
             .results-container {{
                 background-color: rgba(255,255,255,0.85);
@@ -139,13 +141,15 @@ def get_transfer_mentions():
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
                 max-width: 500px;
                 width: 100%;
+                text-align: center;
             }}
             h2 {{
                 color: #003366;
                 text-align: center;
             }}
             ul {{
-                padding-left: 1.2rem;
+                padding-left: 0;
+                list-style: none;
             }}
             li {{
                 margin-bottom: 0.8rem;
@@ -170,10 +174,10 @@ def get_transfer_mentions():
     if not frequency_counter:
         html_body += "<li>No players mentioned in the last 24 hours.</li>"
     else:
-        for name, score in frequency_counter.most_common():
+        for name in frequency_counter:
             search_name = name.replace(" ", "+")
             fbref_link = f"https://fbref.com/en/search/search.fcgi?search={search_name}"
-            html_body += f'<li><strong>{name}</strong> (match score: {score}): <a href="{fbref_link}" target="_blank">View stats</a></li>'
+            html_body += f'<li><strong>{name}</strong>: <a href="{fbref_link}" target="_blank">View stats</a></li>'
 
     html_footer = """
     </ul>

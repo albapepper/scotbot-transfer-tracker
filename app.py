@@ -3,30 +3,27 @@ import feedparser
 from collections import Counter
 from datetime import datetime, timedelta
 import time
-import re
 from rapidfuzz import fuzz
+import re
 
 app = Flask(__name__)
 
 # Load known player names from file
 try:
     with open("player_names.txt", "r", encoding="utf-8") as f:
-        KNOWN_PLAYERS = set(line.strip() for line in f if line.strip())
+        KNOWN_PLAYERS = [line.strip() for line in f if line.strip()]
     print(f"✅ Loaded {len(KNOWN_PLAYERS)} players from player_names.txt")
 except FileNotFoundError:
-    KNOWN_PLAYERS = set()
+    KNOWN_PLAYERS = []
     print("⚠️ player_names.txt not found — no players loaded.")
 
-# Filter articles published in the last 24 hours
 def filter_recent_articles(entries, hours=24):
     cutoff = datetime.utcnow() - timedelta(hours=hours)
-    recent_entries = []
-    for entry in entries:
-        if hasattr(entry, 'published_parsed'):
-            published = datetime.fromtimestamp(time.mktime(entry.published_parsed))
-            if published > cutoff:
-                recent_entries.append(entry)
-    return recent_entries
+    return [
+        entry for entry in entries
+        if hasattr(entry, 'published_parsed') and
+           datetime.fromtimestamp(time.mktime(entry.published_parsed)) > cutoff
+    ]
 
 @app.route("/", methods=["GET"])
 def home():
@@ -35,40 +32,42 @@ def home():
     <html>
     <head>
         <title>Transfer Tracker</title>
-        https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap
         <style>
             html, body {
                 margin: 0;
                 padding: 0;
                 height: 100%;
-                background-color: #fdf6e3;
-                font-family: 'Inter', sans-serif;
+                background-color: white;
+                font-family: 'Times New Roman', serif;
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
             .container {
                 text-align: center;
-                background-color: rgba(255, 255, 255, 0.85);
+                background-color: white;
                 padding: 2rem 3rem;
                 border-radius: 12px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             }
-            h2 {
-                margin-bottom: 1.2rem;
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
                 color: #003366;
             }
             input[type="text"] {
-                padding: 0.7rem;
-                width: 250px;
+                padding: 0.6rem;
+                width: 240px;
                 border: 1px solid #ccc;
                 border-radius: 6px;
                 font-size: 1rem;
-                margin-bottom: 1rem;
+                font-family: 'Times New Roman', serif;
             }
             button {
-                padding: 0.7rem 1.5rem;
+                margin-top: 1rem;
+                padding: 0.6rem 1.2rem;
                 font-size: 1rem;
+                font-family: 'Times New Roman', serif;
                 color: white;
                 background-color: #0077cc;
                 border: none;
@@ -82,11 +81,11 @@ def home():
     </head>
     <body>
         <div class="container">
-            <h2>Football Transfer Tracker</h2>
+            <h1>Transfer Tracker</h1>
             <form action="/transfers" method="get">
-                <input type="text" id="team" name="team" placeholder="e.g. Chelsea" required>
+                <input type="text" name="team" placeholder="e.g. Chelsea" required>
                 <br>
-                <button type="submit">Search Transfers</button>
+                <button type="submit">Search</button>
             </form>
         </div>
     </body>
@@ -99,46 +98,45 @@ def get_transfer_mentions():
     if not team_name:
         return Response("Missing 'team' query parameter", status=400)
 
-    query = team_name.replace(" ", "+")
-    rss_url = f"https://news.google.com/rss/search?q={query}"
-
+    rss_url = f"https://news.google.com/rss/search?q={team_name.replace(' ', '+')}+transfer"
     try:
         feed = feedparser.parse(rss_url)
         recent_articles = filter_recent_articles(feed.entries)
-        texts = [entry.title + " " + entry.get("description", "") for entry in recent_articles]
+        combined_text = " ".join(
+            (entry.title + " " + entry.get("description", "")).lower()
+            for entry in recent_articles
+        )
     except Exception as e:
         return Response(f"<p>Failed to fetch news: {str(e)}</p>", mimetype="text/html")
 
-    combined_text = " ".join(texts).lower()
-
     frequency_counter = Counter()
     for player in KNOWN_PLAYERS:
-        score = fuzz.partial_ratio(player.lower(), combined_text)
-        if score > 85:
-            frequency_counter[player] = score
+        matches = re.findall(rf"\b{re.escape(player.lower())}\b", combined_text)
+        if matches:
+            frequency_counter[player] = len(matches)
 
     html_head = f"""
     <!DOCTYPE html>
     <html>
     <head>
         <title>Transfer Results</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap"le>
+        <style>
             html, body {{
                 margin: 0;
                 padding: 0;
                 height: 100%;
-                background-color: #fdf6e3;
-                font-family: 'Inter', sans-serif;
+                background-color: white;
+                font-family: 'Times New Roman', serif;
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }}
             .results-container {{
-                background-color: rgba(255,255,255,0.85);
+                background-color: white;
                 padding: 2rem 3rem;
                 border-radius: 12px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                max-width: 500px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                max-width: 600px;
                 width: 100%;
                 text-align: center;
             }}
@@ -173,10 +171,10 @@ def get_transfer_mentions():
     if not frequency_counter:
         html_body += "<li>No players mentioned in the last 24 hours.</li>"
     else:
-        for name in frequency_counter:
+        for name, count in frequency_counter.most_common():
             search_name = name.replace(" ", "+")
             fbref_link = f"https://fbref.com/en/search/search.fcgi?search={search_name}"
-            html_body += f'<li><strong>{name}</strong>: <a href="{fbref_link}" target="_blank">View stats</a></li>'
+            html_body += f'<li><strong>{name}</strong> — mentioned {count} times within the past 24 hours: <a href="{fbref_link}" target="_blank">View stats</a></li>'
 
     html_footer = """
     </ul>

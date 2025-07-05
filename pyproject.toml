@@ -1,21 +1,15 @@
 [tool.poetry]
-name = "api-transfer-tracker"
+name = "transfer-tracker"
 version = "0.1.0"
-description = "A Flask app for tracking football transfer rumors"
-authors = ["albapepper <albapepper@gmail.com>"]
-readme = "README.md"
-package-mode = false
+description = ""
+authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.12"
-flask = ">=3.1.1,<4.0.0"
-requests = ">=2.32.4,<3.0.0"
-rapidfuzz = ">=3.13.0,<4.0.0"
-certifi = ">=2025.6.15,<2026.0.0"
-feedparser = "^6.0.11"
-gunicorn = "^23.0.0"
+python = "^3.10"
+Flask = "^3.0"
+feedparser = "^6.0"
 pyahocorasick = "^2.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

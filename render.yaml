@@ -4,10 +4,9 @@ services:
     env: python
     plan: free
     buildCommand: |
+      pip install --upgrade pip
       pip install poetry
       poetry config virtualenvs.create false
       poetry install --no-root
     startCommand: gunicorn app:app
-    envVars:
-      - key: NEWS_API_KEY
-        value: "df28d02564c64ca891c9e91da26e32fa"
+    envVars: []

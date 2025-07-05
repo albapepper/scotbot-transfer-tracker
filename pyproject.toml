@@ -9,6 +9,7 @@ python = "^3.10"
 Flask = "^3.0"
 feedparser = "^6.0"
 pyahocorasick = "^2.0"
+gunicorn = "^23.0.0"
 
 [build-system]
 requires = ["poetry-core"]

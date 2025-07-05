@@ -39,6 +39,7 @@ def home():
                 height: 100%;
                 background-color: white;
                 font-family: 'Times New Roman', serif;
+                color: #000;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -53,7 +54,7 @@ def home():
             h1 {
                 font-size: 2rem;
                 margin-bottom: 1.5rem;
-                color: #003366;
+                color: #000;
             }
             input[type="text"] {
                 padding: 0.6rem;
@@ -62,20 +63,21 @@ def home():
                 border-radius: 6px;
                 font-size: 1rem;
                 font-family: 'Times New Roman', serif;
+                color: #000;
             }
             button {
                 margin-top: 1rem;
                 padding: 0.6rem 1.2rem;
                 font-size: 1rem;
                 font-family: 'Times New Roman', serif;
-                color: white;
-                background-color: #0077cc;
+                color: #fff;
+                background-color: #000;
                 border: none;
                 border-radius: 6px;
                 cursor: pointer;
             }
             button:hover {
-                background-color: #005fa3;
+                background-color: #333;
             }
         </style>
     </head>
@@ -128,6 +130,7 @@ def get_transfer_mentions():
                 height: 100%;
                 background-color: white;
                 font-family: 'Times New Roman', serif;
+                color: #000;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -141,7 +144,7 @@ def get_transfer_mentions():
                 max-width: 600px;
             }}
             h2 {{
-                color: #003366;
+                color: #000;
             }}
             ul {{
                 list-style: none;
@@ -150,29 +153,15 @@ def get_transfer_mentions():
             li {{
                 margin-bottom: 1rem;
                 font-size: 1.1rem;
+                color: #000;
             }}
             a {{
-                color: #0077cc;
+                color: #000;
                 text-decoration: none;
             }}
             a:hover {{
                 text-decoration: underline;
-            }}
-            .back-button {{
-                margin-top: 2rem;
-            }}
-            .btn {{
-                display: inline-block;
-                padding: 0.5rem 1rem;
-                font-family: 'Times New Roman', serif;
-                font-size: 1rem;
-                color: white;
-                background-color: #0077cc;
-                border-radius: 6px;
-                text-decoration: none;
-            }}
-            .btn:hover {{
-                background-color: #005fa3;
+                color: #333;
             }}
         </style>
     </head>
@@ -191,9 +180,6 @@ def get_transfer_mentions():
 
     html += """
             </ul>
-            <div class="back-button">
-                <a href="/" class="btn">← Back to Search</a>
-            </div>
         </div>
     </body>
     </html>
@@ -224,6 +210,7 @@ def player_detail():
                 height: 100%;
                 background-color: white;
                 font-family: 'Times New Roman', serif;
+                color: #000;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -237,7 +224,7 @@ def player_detail():
                 max-width: 700px;
             }}
             h2 {{
-                color: #003366;
+                color: #000;
             }}
             ul {{
                 list-style: none;
@@ -246,36 +233,25 @@ def player_detail():
             }}
             li {{
                 margin-bottom: 1.5rem;
+                color: #000;
             }}
             a {{
-                color: #0077cc;
+                color: #000;
                 text-decoration: none;
             }}
-            a:hover {{
+            a.link-special, a.link-special:visited {{
+                color: #0645AD;
                 text-decoration: underline;
+                text-transform: capitalize;
             }}
-            .back-button {{
-                margin-top: 2rem;
-                text-align: center;
-            }}
-            .btn {{
-                display: inline-block;
-                padding: 0.5rem 1rem;
-                font-family: 'Times New Roman', serif;
-                font-size: 1rem;
-                color: white;
-                background-color: #0077cc;
-                border-radius: 6px;
-                text-decoration: none;
-            }}
-            .btn:hover {{
-                background-color: #005fa3;
+            a.link-special:hover {{
+                color: #0b0080;
             }}
         </style>
     </head>
     <body>
         <div class="results-container">
-            <h2>{decoded_name}: <a href="{fbref_link}" target="_blank">stats</a></h2>
+            <h2>{decoded_name}: <a href="{fbref_link}" class="link-special" target="_blank">Stats</a></h2>
             <ul>
     """
     if not articles:
@@ -284,16 +260,12 @@ def player_detail():
         for title, link, desc in sorted(articles):
             html += f"""
             <li>
-                <a href="{link}" target="_blank"><strong>{title}</strong></a><br>
-                {desc}
+                {title}: <a href="{link}" class="link-special" target="_blank">Link</a>
             </li>
             """
 
     html += """
             </ul>
-            <div class="back-button">
-                <a href="/" class="btn">← Back to Search</a>
-            </div>
         </div>
     </body>
     </html>

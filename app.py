@@ -421,6 +421,7 @@ def get_transfer_mentions():
     return Response(html, mimetype="text/html")
 
 @app.route("/entity", methods=["GET"])
+@app.route("/entity", methods=["GET"])
 def entity_detail():
     entity_name = request.args.get("name")
     entity_type = request.args.get("type")
@@ -436,7 +437,8 @@ def entity_detail():
             if info else
             f"<div style='margin-bottom:1em;'><b>Club:</b> Unknown<br><b>Position:</b> Unknown</div>"
         )
-        header = f"{decoded_name.title()} (Player)"
+        fbref_url = f"https://fbref.com/search/search.fcgi?search={urllib.parse.quote(decoded_name)}"
+        header = f'''{decoded_name.title()} (<a href="{fbref_url}" class="stats-link" target="_blank">Stats</a>)'''
     else:
         club_str = ""
         header = f"{decoded_name.title()} (Team)"
@@ -488,6 +490,14 @@ def entity_detail():
                 text-transform: capitalize;
             }}
             a.link-special:hover {{
+                color: #0b0080;
+            }}
+            a.stats-link {{
+                color: #0645AD;
+                text-decoration: underline;
+                text-transform: capitalize;
+            }}
+            a.stats-link:hover {{
                 color: #0b0080;
             }}
         </style>

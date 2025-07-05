@@ -1,3 +1,3 @@
-# ⚽ Player Transfer API
+# ⚽ Player Transfer Search
 
-A lightweight Flask service to retrieve football player transfer rumors a news API.
+A lightweight Flask service to retrieve football player transfer rumors

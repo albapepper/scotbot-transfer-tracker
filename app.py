@@ -20,12 +20,6 @@ def normalize_name(s):
     )
 
 def load_entities(filename, col_name, col_aliases=None):
-    """
-    Load entities (players or clubs) from a tab-separated file.
-    col_name: index of the column with canonical name.
-    col_aliases: optional, index of column(s) with aliases. Can be a list.
-    Returns: set of canonical names, dict of {normalized name: [canonical, ...aliases]}
-    """
     entities = set()
     aliases_dict = {}
     with open(filename, encoding="utf-8") as f:
@@ -49,16 +43,13 @@ def load_entities(filename, col_name, col_aliases=None):
     return entities, aliases_dict
 
 def add_united_aliases(aliases_dict):
-    """For each alias with 'utd', add a 'united' version and vice versa."""
     new_aliases = {}
     for norm_alias, canon_list in list(aliases_dict.items()):
         if 'utd' in norm_alias:
-            # Add "united" alias
             united_alias = norm_alias.replace('utd', 'united')
             if united_alias not in aliases_dict:
                 new_aliases[united_alias] = canon_list
         if 'united' in norm_alias:
-            # Add "utd" alias
             utd_alias = norm_alias.replace('united', 'utd')
             if utd_alias not in aliases_dict:
                 new_aliases[utd_alias] = canon_list
@@ -66,9 +57,6 @@ def add_united_aliases(aliases_dict):
     return aliases_dict
 
 def build_automaton(aliases_dict):
-    """
-    Build an Aho-Corasick automaton for entity aliases.
-    """
     A = ahocorasick.Automaton()
     for norm_alias in aliases_dict:
         A.add_word(norm_alias, aliases_dict[norm_alias][0])  # Store canonical
@@ -91,7 +79,6 @@ def filter_recent_articles(entries, hours=24):
     ]
 
 def get_canonical_club(user_input, club_aliases):
-    # Returns the canonical club name for a user query, or None if not found
     norm_input = normalize_name(user_input)
     return club_aliases.get(norm_input, [None])[0]  # returns canonical name or None
 
@@ -103,7 +90,6 @@ club_aliases = add_united_aliases(club_aliases)  # Add dynamic "utd"/"united" al
 player_automaton = build_automaton(player_aliases)
 club_automaton = build_automaton(club_aliases)
 
-# For player info lookup
 def build_player_lookup(filename):
     lookup = {}
     with open(filename, encoding="utf-8") as f:
@@ -125,74 +111,117 @@ def home():
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Transfer Tracker</title>
+        <title>The Scotbot Transfer Tracker</title>
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
         <style>
             html, body {
+                height: 100%;
+                min-height: 100vh;
                 margin: 0;
                 padding: 0;
-                height: 100%;
-                background-color: white;
-                font-family: 'Times New Roman', serif;
-                color: #000;
+                width: 100vw;
+                background: #ffe3b3;
+                font-family: 'Share Tech Mono', monospace;
+                color: #4c2785;
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
             }
-            .container {
+            .header {
+                margin-top: 3rem;
+                margin-bottom: 2.5rem;
+                font-size: 2.1rem;
+                letter-spacing: 2px;
+                color: #fff;
+                background: linear-gradient(90deg, #7c31ff 30%, #a968e2 100%);
+                padding: 1.5rem 2.5rem;
                 text-align: center;
-                background-color: white;
-                padding: 2rem 3rem;
-                border-radius: 12px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                border-radius: 0.18em;
+                box-shadow: none;
+                text-shadow: 0 2px 0 #4c2785, 0 4px 8px #0001;
+                border: 0;
+                font-family: 'Share Tech Mono', monospace;
             }
-            h1 {
-                font-size: 2rem;
-                margin-bottom: 1.5rem;
-                color: #000;
+            .search-box {
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: none;
             }
             input[type="text"] {
-                padding: 0.6rem;
-                width: 240px;
-                border: 1px solid #ccc;
-                border-radius: 6px;
-                font-size: 1rem;
-                font-family: 'Times New Roman', serif;
-                color: #000;
-            }
-            button {
-                margin-top: 1rem;
-                padding: 0.6rem 1.2rem;
-                font-size: 1rem;
-                font-family: 'Times New Roman', serif;
-                color: #fff;
-                background-color: #000;
+                margin-bottom: 1.5rem;
+                padding: 1.2rem 1rem;
+                width: 350px;
+                font-size: 1.1rem;
+                font-family: 'Share Tech Mono', monospace;
+                color: #32214a;
+                background: #fffde4;
                 border: none;
-                border-radius: 6px;
-                cursor: pointer;
+                border-radius: 0;
+                outline: none;
+                text-align: center;
             }
-            button:hover {
-                background-color: #333;
-            }
-            .search-type {
-                margin: 1em 0;
+            .search-type, .date-range {
+                margin: 1.2em 0 0.5em 0;
+                color: #4c2785;
+                font-size: 0.9rem;
             }
             label {
-                font-size: 1.05rem;
+                font-size: 0.98rem;
+                margin-right: 1.5em;
+                cursor: pointer;
+                font-family: 'Share Tech Mono', monospace;
+            }
+            button {
+                font-family: 'Share Tech Mono', monospace;
+                font-size: 1rem;
+                padding: 0.8rem 2.5rem;
+                background: #7c31ff;
+                color: #fff;
+                border: none;
+                border-radius: 0;
+                cursor: pointer;
+                margin-top: 1rem;
+                transition: background 0.2s;
+            }
+            button:hover {
+                background: #a968e2;
+            }
+            .date-range select {
+                font-family: 'Share Tech Mono', monospace;
+                font-size: 0.85rem;
+                color: #4c2785;
+                background: #fffde4;
+                border: none;
+                border-radius: 0;
+                padding: 0.3em 1em;
+                margin-left: 0.5em;
+                outline: none;
             }
         </style>
     </head>
     <body>
-        <div class="container">
-            <h1>Transfer Tracker</h1>
-            <form action="/transfers" method="get">
-                <input type="text" name="query" placeholder="e.g. Chelsea or Lionel Messi" required>
-                <div class="search-type">
-                    <label><input type="radio" name="type" value="team" checked> Team</label>
-                    <label><input type="radio" name="type" value="player"> Player</label>
-                </div>
-                <button type="submit">Search</button>
-            </form>
-        </div>
+        <div class="header">The Scotbot Transfer Tracker</div>
+        <form class="search-box" action="/transfers" method="get">
+            <input type="text" name="query" placeholder="e.g. Chelsea or Lionel Messi" required>
+            <div class="search-type">
+                <label><input type="radio" name="type" value="team" checked> Team</label>
+                <label><input type="radio" name="type" value="player"> Player</label>
+            </div>
+            <div class="date-range">
+                <label>Time Window:
+                    <select name="window">
+                        <option value="24" selected>Last 24 hours</option>
+                        <option value="72">Last 3 days</option>
+                        <option value="168">Last 7 days</option>
+                    </select>
+                </label>
+            </div>
+            <button type="submit">Search</button>
+        </form>
     </body>
     </html>
     """, mimetype="text/html")
@@ -201,16 +230,18 @@ def home():
 def get_transfer_mentions():
     query = request.args.get("query")
     search_type = request.args.get("type", "team")
+    window = int(request.args.get("window", 24))
     if not query:
         return Response("Missing 'query' parameter", status=400)
 
     rss_url = f"https://news.google.com/rss/search?q={query.replace(' ', '+')}"
     try:
         feed = feedparser.parse(rss_url)
-        recent_articles = filter_recent_articles(feed.entries)
+        recent_articles = filter_recent_articles(feed.entries, hours=window)
     except Exception as e:
         return Response(f"<p>Failed to fetch news: {str(e)}</p>", mimetype="text/html")
 
+    # Team search
     if search_type == "team":
         canonical_query = get_canonical_club(query, club_aliases)
         if not canonical_query:
@@ -228,7 +259,6 @@ def get_transfer_mentions():
                 team_found = True
                 found_players = find_entities(text, player_automaton)
                 for player in found_players:
-                    # Look up player's club
                     info = PLAYER_LOOKUP.get(player.lower())
                     if info:
                         if info.club == canonical_query:
@@ -240,68 +270,101 @@ def get_transfer_mentions():
         if not team_found:
             return Response(f"No articles found for team: {query}", status=404)
 
-        # Render two columns: Incoming and Outgoing
         html = f"""
         <!DOCTYPE html>
         <html>
         <head>
             <title>Transfer Results</title>
+            <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
             <style>
                 html, body {{
                     margin: 0;
                     padding: 0;
-                    height: 100%;
-                    background-color: white;
-                    font-family: 'Times New Roman', serif;
-                    color: #000;
+                    min-height: 100vh;
+                    width: 100vw;
+                    background: #ffe3b3;
+                    font-family: 'Share Tech Mono', monospace;
+                    color: #4c2785;
                     display: flex;
-                    justify-content: center;
-                    align-items: flex-start;
+                    flex-direction: column;
+                    align-items: center;
+                }}
+                .results-header {{
+                    margin-top: 2.5rem;
+                    margin-bottom: 1.5rem;
+                    font-size: 1.6rem;
+                    color: #fff;
+                    background: linear-gradient(90deg, #7c31ff 30%, #a968e2 100%);
+                    padding: 1rem 2.5rem;
+                    text-align: center;
+                    border-radius: 0.18em;
+                    text-shadow: 0 2px 0 #4c2785, 0 4px 8px #0001;
                 }}
                 .results-container {{
                     display: flex;
-                    gap: 3rem;
-                    background-color: white;
-                    padding: 2rem 3rem;
-                    border-radius: 12px;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-                    max-width: 900px;
-                    margin: 2rem auto;
+                    flex-direction: row;
+                    gap: 4vw;
+                    justify-content: center;
+                    align-items: flex-start;
+                    background: none;
+                    margin-bottom: 2rem;
+                    width: 100vw;
                 }}
                 .column {{
-                    flex: 1 1 50%;
+                    flex: 1 1 45%;
+                    min-width: 270px;
+                    text-align: center;
                 }}
                 h2 {{
-                    color: #000;
-                    text-align: center;
+                    color: #a968e2;
+                    font-size: 1.1rem;
+                    margin-bottom: 1.5rem;
+                    margin-top: 0;
+                    letter-spacing: 1px;
                 }}
                 ul {{
                     list-style: none;
                     padding-left: 0;
+                    text-align: center;
                 }}
                 li {{
-                    margin-bottom: 1rem;
-                    font-size: 1.1rem;
-                    color: #000;
+                    margin-bottom: 1.1rem;
+                    font-size: 0.98rem;
+                    color: #4c2785;
                 }}
                 a {{
-                    color: #000;
-                    text-decoration: none;
+                    color: #7c31ff;
+                    text-decoration: underline;
+                    transition: color 0.15s;
                 }}
                 a:hover {{
-                    text-decoration: underline;
-                    color: #333;
+                    color: #a968e2;
+                }}
+                @media (max-width: 800px) {{
+                    .results-container {{
+                        flex-direction: column;
+                        align-items: center;
+                    }}
+                    .column {{
+                        min-width: 0;
+                        width: 90vw;
+                    }}
+                    .results-header {{
+                        font-size: 1.1rem;
+                        padding: 0.6rem 1.1rem;
+                    }}
                 }}
             </style>
         </head>
         <body>
+            <div class="results-header">Transfer Results</div>
             <div class="results-container">
                 <div class="column">
                     <h2>Incoming</h2>
                     <ul>
         """
         if not incoming_mentions:
-            html += "<li>No incoming players mentioned in the last 24 hours.</li>"
+            html += "<li>No incoming players mentioned in the selected window.</li>"
         else:
             for player, count in incoming_mentions.most_common():
                 encoded_name = urllib.parse.quote(player)
@@ -314,7 +377,7 @@ def get_transfer_mentions():
                     <ul>
         """
         if not outgoing_mentions:
-            html += "<li>No outgoing players mentioned in the last 24 hours.</li>"
+            html += "<li>No outgoing players mentioned in the selected window.</li>"
         else:
             for player, count in outgoing_mentions.most_common():
                 encoded_name = urllib.parse.quote(player)
@@ -331,7 +394,7 @@ def get_transfer_mentions():
         app.config["ENTITY_TYPE"] = "players"
         return Response(html, mimetype="text/html")
 
-    # Player search remains unchanged (shows co-mentioned teams)
+    # Player search (co-mentioned teams)
     player_found = False
     norm_query = normalize_name(query)
     co_mentions = Counter()
@@ -354,56 +417,74 @@ def get_transfer_mentions():
     <html>
     <head>
         <title>Transfer Results</title>
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
         <style>
             html, body {{
                 margin: 0;
                 padding: 0;
-                height: 100%;
-                background-color: white;
-                font-family: 'Times New Roman', serif;
-                color: #000;
+                min-height: 100vh;
+                width: 100vw;
+                background: #ffe3b3;
+                font-family: 'Share Tech Mono', monospace;
+                color: #4c2785;
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
                 align-items: center;
+            }}
+            .results-header {{
+                margin-top: 2.5rem;
+                margin-bottom: 1.5rem;
+                font-size: 1.6rem;
+                color: #fff;
+                background: linear-gradient(90deg, #7c31ff 30%, #a968e2 100%);
+                padding: 1rem 2.5rem;
+                text-align: center;
+                border-radius: 0.18em;
+                text-shadow: 0 2px 0 #4c2785, 0 4px 8px #0001;
             }}
             .results-container {{
                 text-align: center;
-                background-color: white;
-                padding: 2rem 3rem;
-                border-radius: 12px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-                max-width: 600px;
+                background: none;
+                padding: 0;
+                margin-bottom: 2rem;
+                max-width: 700px;
+                width: 96vw;
             }}
             h2 {{
-                color: #000;
+                color: #a968e2;
+                font-size: 1.1rem;
+                margin-bottom: 1.2rem;
+                margin-top: 0;
+                letter-spacing: 1px;
             }}
             ul {{
                 list-style: none;
                 padding-left: 0;
+                text-align: center;
             }}
             li {{
-                margin-bottom: 1rem;
-                font-size: 1.1rem;
-                color: #000;
+                margin-bottom: 1.2rem;
+                font-size: 0.95rem;
+                color: #4c2785;
             }}
             a {{
-                color: #000;
-                text-decoration: none;
+                color: #7c31ff;
+                text-decoration: underline;
+                transition: color 0.15s;
             }}
             a:hover {{
-                text-decoration: underline;
-                color: #333;
+                color: #a968e2;
             }}
         </style>
     </head>
     <body>
+        <div class="results-header">{list_type} mentioned with {query.title()}</div>
         <div class="results-container">
-            <h2>{list_type} mentioned with {query.title()}</h2>
             <ul>
     """
 
     if not co_mentions:
-        html += f"<li>No {list_type.lower()} mentioned in the last 24 hours.</li>"
+        html += f"<li>No {list_type.lower()} mentioned in the selected window.</li>"
     else:
         for entity, count in co_mentions.most_common():
             encoded_name = urllib.parse.quote(entity)
@@ -421,7 +502,6 @@ def get_transfer_mentions():
     return Response(html, mimetype="text/html")
 
 @app.route("/entity", methods=["GET"])
-@app.route("/entity", methods=["GET"])
 def entity_detail():
     entity_name = request.args.get("name")
     entity_type = request.args.get("type")
@@ -433,9 +513,9 @@ def entity_detail():
     if entity_type == "players":
         info = PLAYER_LOOKUP.get(decoded_name.lower())
         club_str = (
-            f"<div style='margin-bottom:1em;'><b>Club:</b> {info.club}<br><b>Position:</b> {info.position}</div>"
+            f"<div class='club-info'><b>Club:</b> {info.club}<br><b>Position:</b> {info.position}</div>"
             if info else
-            f"<div style='margin-bottom:1em;'><b>Club:</b> Unknown<br><b>Position:</b> Unknown</div>"
+            f"<div class='club-info'><b>Club:</b> Unknown<br><b>Position:</b> Unknown</div>"
         )
         fbref_url = f"https://fbref.com/search/search.fcgi?search={urllib.parse.quote(decoded_name)}"
         header = f'''{decoded_name.title()} (<a href="{fbref_url}" class="stats-link" target="_blank">Stats</a>)'''
@@ -448,63 +528,74 @@ def entity_detail():
     <html>
     <head>
         <title>{decoded_name} Mentions</title>
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
         <style>
             html, body {{
                 margin: 0;
                 padding: 0;
-                height: 100%;
-                background-color: white;
-                font-family: 'Times New Roman', serif;
-                color: #000;
+                min-height: 100vh;
+                width: 100vw;
+                background: #ffe3b3;
+                font-family: 'Share Tech Mono', monospace;
+                color: #4c2785;
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
                 align-items: center;
+            }}
+            .results-header {{
+                margin-top: 2.5rem;
+                margin-bottom: 1.2rem;
+                font-size: 1.1rem;
+                color: #fff;
+                background: linear-gradient(90deg, #7c31ff 30%, #a968e2 100%);
+                padding: 0.7rem 2rem;
+                text-align: center;
+                border-radius: 0.18em;
+                text-shadow: 0 2px 0 #4c2785, 0 4px 8px #0001;
             }}
             .results-container {{
                 text-align: center;
-                background-color: white;
-                padding: 2rem 3rem;
-                border-radius: 12px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                background: none;
+                padding: 0;
+                margin-bottom: 2rem;
                 max-width: 700px;
+                width: 96vw;
             }}
             h2 {{
-                color: #000;
+                color: #a968e2;
+                font-size: 1.1rem;
+                margin-bottom: 1.2rem;
+                margin-top: 0;
+                letter-spacing: 1px;
             }}
             ul {{
                 list-style: none;
                 padding-left: 0;
-                text-align: left;
+                text-align: center;
             }}
             li {{
-                margin-bottom: 1.5rem;
-                color: #000;
+                margin-bottom: 1.2rem;
+                font-size: 0.95rem;
+                color: #4c2785;
             }}
             a {{
-                color: #000;
-                text-decoration: none;
-            }}
-            a.link-special, a.link-special:visited {{
-                color: #0645AD;
+                color: #7c31ff;
                 text-decoration: underline;
-                text-transform: capitalize;
+                transition: color 0.15s;
             }}
-            a.link-special:hover {{
-                color: #0b0080;
+            a:hover {{
+                color: #a968e2;
             }}
-            a.stats-link {{
-                color: #0645AD;
-                text-decoration: underline;
-                text-transform: capitalize;
-            }}
-            a.stats-link:hover {{
-                color: #0b0080;
+            .club-info {{
+                margin-bottom: 1em;
+                color: #4c2785;
+                font-size: 0.9rem;
             }}
         </style>
     </head>
     <body>
+        <div class="results-header">{header}</div>
         <div class="results-container">
-            <h2>{header}</h2>
             {club_str}
             <ul>
     """
@@ -514,7 +605,7 @@ def entity_detail():
         for title, link, desc in sorted(articles):
             html += f"""
             <li>
-                {title}: <a href="{link}" class="link-special" target="_blank">Link</a>
+                {title}: <a href="{link}" target="_blank">Link</a>
             </li>
             """
 

@@ -42,13 +42,15 @@ def scrape_player_data(stats_url, league):
     players = []
     for row in table.find_all("tr"):
         player_cell = row.find("td", {"data-stat": "player"})
+        age_cell = row.find("td", {"data-stat": "age"})
         position_cell = row.find("td", {"data-stat": "position"})
         team_cell = row.find("td", {"data-stat": "team"})
-        if player_cell and position_cell and team_cell:
+        if player_cell and age_cell and position_cell and team_cell:
             player_name = player_cell.text.strip()
+            age = age_cell.text.strip()
             position = position_cell.text.strip()
             team = team_cell.text.strip()
-            players.append((player_name, position, team))
+            players.append((player_name, age, position, team))
     print(f"✅ {league}: {len(players)} players")
     league_summary[league] = len(players)
     return players
@@ -65,12 +67,12 @@ print(f"\nSample entries: {all_players[:5]}")
 # Write to file
 output_file = "player-position-club.txt"
 
-
 with open(output_file, "w", encoding="utf-8") as f:
-    f.write("Player Name\tPosition\tCurrent Club\n")
+    f.write("Player Name\tAge\tPosition\tCurrent Club\n")
     written = 0
     for player in sorted(all_players):
-        if isinstance(player, tuple) and len(player) == 3 and all(isinstance(field, str) for field in player):
+        if (isinstance(player, tuple) and len(player) == 4 and 
+                all(isinstance(field, str) for field in player)):
             f.write("\t".join(player) + "\n")
             written += 1
         else:

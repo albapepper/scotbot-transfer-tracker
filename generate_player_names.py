@@ -64,8 +64,9 @@ for league, overview in LEAGUE_OVERVIEWS.items():
 # Debugging: Print sample entries
 print(f"\nSample entries: {all_players[:5]}")
 
-# Write to file
-output_file = "player-position-club.txt"
+
+# Write to file in the script's directory
+output_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "player-position-club.txt")
 
 with open(output_file, "w", encoding="utf-8") as f:
     f.write("Player Name\tAge\tPosition\tCurrent Club\n")
@@ -77,7 +78,7 @@ with open(output_file, "w", encoding="utf-8") as f:
             written += 1
         else:
             print(f"⚠️ Skipping malformed entry: {player}")
-    print(f"✅ Wrote {written} players to file.")
+    print(f"✅ Wrote {written} players to file at {output_file}.")
 
 print("\n📊 Player count by league:")
 for league, count in league_summary.items():

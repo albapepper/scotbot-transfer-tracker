@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ decoded_name }} Mentions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main-header">The Scotbot Transfer Tracker</div>
+    <div class="main-title">{{ header|safe }}</div>
+    <div class="info-block">{{ club_str|safe }}</div>
+    <ul>
+    {% if not articles %}
+        {% if entity_type == 'players' %}
+            <li>No articles found for this player.</li>
+        {% else %}
+            <li>No articles found for this entity.</li>
+        {% endif %}
+    {% else %}
+        {% for title, link, desc in articles|sort %}
+            <li>{{ title }}: <a href="{{ link }}" target="_blank">Link</a></li>
+        {% endfor %}
+    {% endif %}
+    </ul>
+</body>
+</html>

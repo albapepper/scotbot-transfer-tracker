@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Scotbot Transfer Tracker</title>
+    <link href='https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main-header">The Scotbot Transfer Tracker</div>
+    <div class="center-container" style="min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <form class="search-box" action="/transfers" method="get" style="display: flex; flex-direction: column; align-items: center; gap: 1.2rem; width: 100%; max-width: 430px;">
+            <div style="font-size: 1.32rem; color: #4c2785; margin-bottom: 0.5em; text-align: center; font-family: 'Share Tech Mono', monospace; font-weight: bold;">Enter club or player name</div>
+            <input type="text" name="query" placeholder="e.g. Chelsea or Lionel Messi" required style="margin-bottom: 0; font-size: 1.15rem; padding: 1.05rem 0.9rem; width: 100%; max-width: 410px;">
+            <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 0.7rem;">
+                <div class="search-type" style="display: flex; justify-content: center; gap: 2em; width: 100%; font-size: 1.07rem;">
+                    <label style="font-size: 1.07rem;"><input type="radio" name="type" value="team" checked> Team</label>
+                    <label style="font-size: 1.07rem;"><input type="radio" name="type" value="player"> Player</label>
+                </div>
+                <div class="date-range" style="display: flex; justify-content: center; width: 100%; font-size: 1.03rem;">
+                    <label style="font-size: 1.03rem;">Time Window:
+                        <select name="window" style="font-size: 1.03rem; padding: 0.32em 1em;">
+                            <option value="24" selected>Last 24 hours</option>
+                            <option value="72">Last 3 days</option>
+                            <option value="168">Last 7 days</option>
+                        </select>
+                    </label>
+                </div>
+                <button type="submit" style="margin-top: 0.7em; font-size: 1.07rem; padding: 0.9rem 2.1rem;">Search</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ header }}</title>
+    <link href='https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main-header">The Scotbot Transfer Tracker</div>
+    <div class="main-title">{{ header|safe }}</div>
+    <div class="results-container" style="flex-direction: column; align-items: center;">
+        <div class="column" style="max-width: 500px; margin: 0 auto;">
+            <h2>Incoming</h2>
+            <ul>
+            {% if not incoming_mentions %}
+                <li>No incoming players mentioned in the selected window.</li>
+            {% else %}
+                {% for player, count in incoming_mentions %}
+                    <li><a href="/player?name={{ player|urlencode }}&type=players">{{ player.title() }}</a> — {{ count }} mentions</li>
+                {% endfor %}
+            {% endif %}
+            </ul>
+        </div>
+        <div class="column" style="max-width: 500px; margin: 0 auto;">
+            <h2>Outgoing</h2>
+            <ul>
+            {% if not outgoing_mentions %}
+                <li>No outgoing players mentioned in the selected window.</li>
+            {% else %}
+                {% for player, count in outgoing_mentions %}
+                    <li><a href="/player?name={{ player|urlencode }}&type=players">{{ player.title() }}</a> — {{ count }} mentions</li>
+                {% endfor %}
+            {% endif %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

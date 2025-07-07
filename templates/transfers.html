@@ -2,37 +2,50 @@
 <html>
 <head>
     <title>{{ header }}</title>
-    <link href='https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap' rel='stylesheet'>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="main-header">The Scotbot Transfer Tracker</div>
+    <div class="main-header"><a href="/" style="text-decoration: none; color: inherit;">The Scotbot Transfer Tracker</a></div>
     <div class="main-title">{{ header|safe }}</div>
     <div class="results-container" style="flex-direction: column; align-items: center;">
-        <div class="column" style="max-width: 500px; margin: 0 auto;">
-            <h2>Incoming</h2>
-            <ul>
-            {% if not incoming_mentions %}
-                <li>No incoming players mentioned in the selected window.</li>
-            {% else %}
+        {% if incoming_mentions %}
+            <!-- Team search results -->
+            <div class="column" style="max-width: 500px; margin: 0 auto;">
+                <h2>Incoming</h2>
+                <ul>
                 {% for player, count in incoming_mentions %}
                     <li><a href="/player?name={{ player|urlencode }}&type=players">{{ player.title() }}</a> — {{ count }} mentions</li>
                 {% endfor %}
-            {% endif %}
-            </ul>
-        </div>
-        <div class="column" style="max-width: 500px; margin: 0 auto;">
-            <h2>Outgoing</h2>
-            <ul>
-            {% if not outgoing_mentions %}
-                <li>No outgoing players mentioned in the selected window.</li>
-            {% else %}
-                {% for player, count in outgoing_mentions %}
-                    <li><a href="/player?name={{ player|urlencode }}&type=players">{{ player.title() }}</a> — {{ count }} mentions</li>
-                {% endfor %}
-            {% endif %}
-            </ul>
-        </div>
+                </ul>
+            </div>
+            <div class="column" style="max-width: 500px; margin: 0 auto;">
+                <h2>Outgoing</h2>
+                <ul>
+                {% if not outgoing_mentions %}
+                    <li>No outgoing players mentioned in the selected window.</li>
+                {% else %}
+                    {% for player, count in outgoing_mentions %}
+                        <li><a href="/player?name={{ player|urlencode }}&type=players">{{ player.title() }}</a> — {{ count }} mentions</li>
+                    {% endfor %}
+                {% endif %}
+                </ul>
+            </div>
+        {% else %}
+            <!-- Player search results -->
+            <div class="column" style="max-width: 500px; margin: 0 auto;">
+                <h2>Clubs Mentioned</h2>
+                <ul>
+                {% if not outgoing_mentions %}
+                    <li>No club mentions found in the selected window.</li>
+                {% else %}
+                    {% for club, count in outgoing_mentions %}
+                        <li><a href="/player-club?player={{ player_name|urlencode }}&club={{ club|urlencode }}&window={{ request.args.get('window', 24) }}">{{ club.title() }}</a> — {{ count }} mentions</li>
+                    {% endfor %}
+                {% endif %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
 </body>
 </html>

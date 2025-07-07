@@ -5,7 +5,7 @@ html, body {
     width: 100vw;
     background: #ffe3b3;
     font-family: 'Share Tech Mono', monospace;
-    color: #4c2785;
+    color: #333333;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +14,7 @@ html, body {
     width: 100vw;
     background: linear-gradient(90deg, #7c31ff 30%, #a968e2 100%);
     color: #fff;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'VT323', monospace;
     font-size: 1.3rem;
     letter-spacing: 2px;
     text-align: center;
@@ -28,7 +28,7 @@ html, body {
 }
 .main-title {
     font-size: 2.1rem;
-    color: #4c2785;
+    color: #333333;
     font-family: 'Share Tech Mono', monospace;
     font-weight: bold;
     margin-top: 3.5rem;
@@ -38,7 +38,7 @@ html, body {
 }
 .info-block {
     font-size: 1.1rem;
-    color: #4c2785;
+    color: #333333;
     margin-bottom: 1.5rem;
     text-align: center;
 }
@@ -50,7 +50,7 @@ ul {
 li {
     margin-bottom: 1.1rem;
     font-size: 1.05rem;
-    color: #4c2785;
+    color: #333333;
 }
 a {
     color: #7c31ff;
@@ -89,12 +89,12 @@ a:hover {
     color: #a968e2;
 }
 .player-meta {
-    color: #4c2785;
+    color: #333333;
     font-size: 1.05rem;
 }
 .no-players {
     font-size: 1.05rem;
-    color: #4c2785;
+    color: #333333;
     text-align: center;
 }
 .results-container {

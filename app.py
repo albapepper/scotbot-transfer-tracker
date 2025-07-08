@@ -1,6 +1,6 @@
 from flask import Flask, request, Response, render_template
 import feedparser
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import datetime, timedelta, timezone
 import time
 import urllib.parse
@@ -59,7 +59,11 @@ def load_player_data(filename: str) -> Tuple[Dict[str, List[str]], Dict[str, Lis
     
     return player_aliases, club_aliases, player_lookup
 
+
 def add_united_aliases(aliases_dict: Dict[str, List[str]]) -> Dict[str, List[str]]:
+    """
+    Add 'utd' <-> 'united' aliases for all clubs, e.g. 'man utd' <-> 'man united'.
+    """
     new_aliases: Dict[str, List[str]] = {}
     for norm_alias, canon_list in list(aliases_dict.items()):
         if 'utd' in norm_alias:
@@ -70,6 +74,33 @@ def add_united_aliases(aliases_dict: Dict[str, List[str]]) -> Dict[str, List[str
             utd_alias = norm_alias.replace('united', 'utd')
             if utd_alias not in aliases_dict:
                 new_aliases[utd_alias] = canon_list
+    aliases_dict.update(new_aliases)
+    return aliases_dict
+
+def add_manchester_aliases(aliases_dict: Dict[str, List[str]]) -> Dict[str, List[str]]:
+    """
+    Add 'man united' <-> 'manchester united' and 'man city' <-> 'manchester city' aliases for all relevant clubs.
+    """
+    new_aliases: Dict[str, List[str]] = {}
+    for norm_alias, canon_list in list(aliases_dict.items()):
+        # Manchester United
+        if 'manchester united' in norm_alias:
+            man_united_alias = norm_alias.replace('manchester united', 'man united')
+            if man_united_alias not in aliases_dict:
+                new_aliases[man_united_alias] = canon_list
+        if 'man united' in norm_alias:
+            manchester_united_alias = norm_alias.replace('man united', 'manchester united')
+            if manchester_united_alias not in aliases_dict:
+                new_aliases[manchester_united_alias] = canon_list
+        # Manchester City
+        if 'manchester city' in norm_alias:
+            man_city_alias = norm_alias.replace('manchester city', 'man city')
+            if man_city_alias not in aliases_dict:
+                new_aliases[man_city_alias] = canon_list
+        if 'man city' in norm_alias:
+            manchester_city_alias = norm_alias.replace('man city', 'manchester city')
+            if manchester_city_alias not in aliases_dict:
+                new_aliases[manchester_city_alias] = canon_list
     aliases_dict.update(new_aliases)
     return aliases_dict
 
@@ -103,7 +134,8 @@ def get_canonical_entity(user_input: str, aliases: Dict[str, List[str]]) -> Opti
 # Load all data once
 PLAYER_FILE = "player-position-club.txt"
 player_aliases, club_aliases, PLAYER_LOOKUP = load_player_data(PLAYER_FILE)
-club_aliases = add_united_aliases(club_aliases)  # Add dynamic "utd"/"united" aliases
+club_aliases = add_united_aliases(club_aliases)
+club_aliases = add_manchester_aliases(club_aliases)
 player_automaton = build_automaton(player_aliases)
 club_automaton = build_automaton(club_aliases)
 @app.route("/", methods=["GET"])
@@ -134,7 +166,6 @@ def get_transfer_mentions():
     if search_type == "team" and canonical_team:
         # Team search: list only players not currently on the team
         mention_counter = Counter()
-        mention_articles = defaultdict(set)
         team_found = False
         for entry in recent_articles:
             text = (entry.title or "") + " " + (entry.get("description") or "")
@@ -146,15 +177,11 @@ def get_transfer_mentions():
                     info = PLAYER_LOOKUP.get(player.lower())
                     if info and info.club != canonical_team:
                         mention_counter[player] += 1
-                        mention_articles[player].add((entry.title, entry.link, entry.get("description", "")))
         if not team_found:
             return render_template("home.html", error="No articles found for this team.")
         team_display = canonical_team.title()
         header = f'{team_display} transfer mentions'
         current_roster_link = f'<a href="/teams?name={urllib.parse.quote(canonical_team)}" class="results-header-link">Current Roster</a>'
-        app.config["ENTITY_ARTICLES"] = mention_articles
-        app.config["ENTITY_TYPE"] = "players"
-        # Each mention: (player, count), add link to /transfers/link?player={player}&team={canonical_team}
         mentions_list = [
             (player, count, f"/transfers/link?player={urllib.parse.quote(player)}&team={urllib.parse.quote(canonical_team)}")
             for player, count in mention_counter.most_common()
@@ -164,7 +191,6 @@ def get_transfer_mentions():
             header=header,
             current_roster_link=current_roster_link,
             outgoing_mentions=mentions_list,
-            player_name=None
         )
     elif canonical_player:
         # Player search: show player info and all linked teams (like /players page)
@@ -251,7 +277,7 @@ def transfers_link():
         if canonical_player in found_players and canonical_team in found_teams:
             matching_articles.append((entry.title, entry.link, entry.get("description", "")))
     # Create header with links
-    player_link = f'<a href="/players?name={urllib.parse.quote(canonical_player)}&type=players" class="results-header-link">{canonical_player.title()}</a>'
+    player_link = f'<a href="/transfers?query={urllib.parse.quote(canonical_player)}&type=player" class="results-header-link">{canonical_player.title()}</a>'
     # Team link should go to /transfers?query=team&type=team
     team_link = f'<a href="/transfers?query={urllib.parse.quote(canonical_team)}&type=team" class="results-header-link">{canonical_team.title()}</a>'
     header = f'{player_link} × {team_link} Transfer Articles'

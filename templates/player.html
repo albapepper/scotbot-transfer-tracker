@@ -9,17 +9,25 @@
     <div class="main-header"><a href="/" style="text-decoration: none; color: inherit;">The Scotbot Transfer Tracker</a></div>
     <div class="main-title">{{ header|safe }}</div>
     <div class="info-block">{{ club_str|safe }}</div>
+    {% if linked_teams is defined and linked_teams %}
+    <div class="linked-teams-block">
+        <h3>Teams linked in recent news</h3>
+        <ul>
+        {% for club, count, link in linked_teams %}
+            <li><a href="{{ link }}">{{ club.title() }}</a> — {{ count }} mentions</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
     <ul>
-    {% if not articles %}
-        {% if entity_type == 'players' %}
+    {% if articles is not none %}
+        {% if not articles %}
             <li>No articles found for this player.</li>
         {% else %}
-            <li>No articles found for this entity.</li>
+            {% for title, link, desc in articles|sort %}
+                <li>{{ title }}: <a href="{{ link }}" target="_blank">Link</a></li>
+            {% endfor %}
         {% endif %}
-    {% else %}
-        {% for title, link, desc in articles|sort %}
-            <li>{{ title }}: <a href="{{ link }}" target="_blank">Link</a></li>
-        {% endfor %}
     {% endif %}
     </ul>
 </body>

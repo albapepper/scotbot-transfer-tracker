@@ -22,8 +22,8 @@
     {% if not players %}
         <div class='no-players'>No players found for this team.</div>
     {% else %}
-        {% for name, age, position, height, weight in players %}
-            <div class="player-row"><a href="#" onclick="searchPlayer('{{ name|escape }}')">{{ name }}</a> <span class="player-meta">({{ position }}, Age: {{ age }}, {{ height }}, {{ weight }})</span></div>
+        {% for player in players %}
+            <div class="player-row"><a href="{{ player.link }}">{{ player.name }}</a> <span class="player-meta">({{ player.position }}, Age: {{ player.age }}, {{ player.height }}, {{ player.weight }})</span></div>
         {% endfor %}
     {% endif %}
     </div>

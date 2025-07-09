@@ -15,13 +15,17 @@
         <div class="column" style="max-width: 500px; margin: 0 auto;">
             <ul>
             {% if not outgoing_mentions %}
-                <li>No mentions found in the selected window.</li>
+                {% if no_mentions_message %}
+                    <li class="no-mentions-message" style="color: #7c31ff; font-weight: bold; margin: 1em 0;">{{ no_mentions_message }}</li>
+                {% else %}
+                    <li>No mentions found in the selected window.</li>
+                {% endif %}
             {% else %}
                 {% for entity, count, link in outgoing_mentions %}
                     {% if request.args.get('type') == 'player' %}
-                        <li><a href="/transfers?query={{ entity|urlencode }}&type=team">{{ entity.title() }}</a> — {{ count }} mentions</li>
+                        <li><a href="/transfers?query={{ entity|urlencode }}&type=team">{{ entity.title() }}</a> - {{ '1 mention' if count == 1 else count ~ ' mentions' }}</li>
                     {% else %}
-                        <li><a href="{{ link }}">{{ entity.title() }}</a> — {{ count }} mentions</li>
+                        <li><a href="{{ link }}">{{ entity.title() }}</a> - {{ '1 mention' if count == 1 else count ~ ' mentions' }}</li>
                     {% endif %}
                 {% endfor %}
             {% endif %}

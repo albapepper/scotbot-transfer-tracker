@@ -164,28 +164,33 @@ def get_transfer_mentions():
     canonical_player = get_canonical_entity(query, player_aliases)
 
     if search_type == "team" and canonical_team:
-        # Team search: list only players not currently on the team
-        mention_counter = Counter()
-        team_found = False
+        # For each player, count the number of unique articles (by link) where BOTH player and team are mentioned (deduplicated per player)
+        player_article_links = {}
         for entry in recent_articles:
             text = (entry.title or "") + " " + (entry.get("description") or "")
+            found_players = find_entities(text, player_automaton)
             found_teams = find_entities(text, club_automaton)
             if canonical_team in found_teams:
-                team_found = True
-                found_players = find_entities(text, player_automaton)
                 for player in found_players:
-                    info = PLAYER_LOOKUP.get(player.lower())
-                    if info and info.club != canonical_team:
-                        mention_counter[player] += 1
-        if not team_found:
-            return render_template("home.html", error="No articles found for this team.")
-        team_display = canonical_team.title()
-        header = f'{team_display} transfer mentions'
-        current_roster_link = f'<a href="/teams?name={urllib.parse.quote(canonical_team)}" class="results-header-link">Current Roster</a>'
+                    if player != canonical_team:
+                        if player not in player_article_links:
+                            player_article_links[player] = set()
+                        player_article_links[player].add(entry.link)
         mentions_list = [
-            (player, count, f"/transfers/link?player={urllib.parse.quote(player)}&team={urllib.parse.quote(canonical_team)}")
-            for player, count in mention_counter.most_common()
+            (player, len(links), f"/transfers/link?player={urllib.parse.quote(player)}&team={urllib.parse.quote(canonical_team)}")
+            for player, links in sorted(player_article_links.items(), key=lambda x: len(x[1]), reverse=True)
         ]
+        team_display = canonical_team.title()
+        header = f'{team_display} trending mentions'
+        current_roster_link = f'<a href="/teams?name={urllib.parse.quote(canonical_team)}" class="results-header-link">Current Roster</a>'
+        if not mentions_list:
+            return render_template(
+                "transfers.html",
+                header=header,
+                current_roster_link=current_roster_link,
+                outgoing_mentions=[],
+                no_mentions_message="No recent mentions."
+            )
         return render_template(
             "transfers.html",
             header=header,
@@ -195,20 +200,20 @@ def get_transfer_mentions():
     elif canonical_player:
         # Player search: show player info and all linked teams (like /players page)
         mention_counter = Counter()
-        player_found = False
         player_info = PLAYER_LOOKUP.get(canonical_player.lower())
         current_club = player_info.club if player_info else None
+        # For each club, count the number of unique articles where both player and club are present
+        club_article_map = {}
         for entry in recent_articles:
             text = (entry.title or "") + " " + (entry.get("description") or "")
             found_players = find_entities(text, player_automaton)
             if canonical_player in found_players:
-                player_found = True
                 found_clubs = find_entities(text, club_automaton)
                 for club in found_clubs:
                     if current_club is None or club != current_club:
-                        mention_counter[club] += 1
-        if not player_found:
-            return render_template("home.html", error="No articles found for this player.")
+                        club_article_map.setdefault(club, set()).add(entry.link)
+        for club, articles in club_article_map.items():
+            mention_counter[club] = len(articles)
         # Prepare linked teams list (sorted by frequency)
         linked_teams = [
             (club, count, f"/transfers/link?player={urllib.parse.quote(canonical_player)}&team={urllib.parse.quote(club)}")
@@ -236,6 +241,18 @@ def get_transfer_mentions():
                 f"<b>Weight:</b> Unknown"
             )
         header = f"{canonical_player.title()}"
+        # If no linked teams, show a message on the page
+        if not linked_teams:
+            return render_template(
+                "player.html",
+                decoded_name=canonical_player,
+                header=header,
+                club_str=club_str,
+                articles=None,
+                entity_type="players",
+                linked_teams=[],
+                no_mentions_message="No recent mentions."
+            )
         return render_template(
             "player.html",
             decoded_name=canonical_player,
@@ -246,6 +263,7 @@ def get_transfer_mentions():
             linked_teams=linked_teams
         )
     else:
+        # If neither a valid team nor player, show home with error
         return render_template("home.html", error="No articles found for this player or team.")
 @app.route("/transfers/link", methods=["GET"])
 def transfers_link():
@@ -270,12 +288,15 @@ def transfers_link():
         return render_template("home.html", error=f"Failed to fetch news: {str(e)}")
     # Find articles that mention both player and team
     matching_articles = []
+    seen_links = set()
     for entry in recent_articles:
         text = (entry.title or "") + " " + (entry.get("description") or "")
         found_players = find_entities(text, player_automaton)
         found_teams = find_entities(text, club_automaton)
         if canonical_player in found_players and canonical_team in found_teams:
-            matching_articles.append((entry.title, entry.link, entry.get("description", "")))
+            if entry.link not in seen_links:
+                matching_articles.append((entry.title, entry.link, entry.get("description", "")))
+                seen_links.add(entry.link)
     # Create header with links
     player_link = f'<a href="/transfers?query={urllib.parse.quote(canonical_player)}&type=player" class="results-header-link">{canonical_player.title()}</a>'
     # Team link should go to /transfers?query=team&type=team

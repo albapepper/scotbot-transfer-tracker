@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ header|safe }}</title>
+    <link href='https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main-header"><a href="/" style="text-decoration: none; color: inherit;">The Scotbot Transfer Tracker</a></div>
+    <div class="main-title">{{ header|safe }}</div>
+    <div class="results-container" style="flex-direction: column; align-items: center;">
+        <div class="column" style="max-width: 700px; margin: 0 auto;">
+            {% if articles and articles|length > 0 %}
+                <ul style="list-style: none; padding: 0; text-align: center;">
+                {% for title, link, description in articles %}
+                    <li style="margin-bottom: 0.7em; font-size: 1.25em;">
+                        <span>{{ title }}{% if description %} - {{ description }}{% endif %}: </span>
+                        <a href="{{ link }}" target="_blank" style="color:#7c31ff; text-decoration:underline;">Link</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <div style="color: #7c31ff; font-weight: bold; margin: 2em 0;">No recent articles found linking this player and team.</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ decoded_team.title() }} Squad</title>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% extends "base.html" %}
+{% block title %}{{ decoded_team.title() }} Squad{% endblock %}
+{% block content %}
     <script>
         function searchPlayer(playerName) {
             const params = new URLSearchParams({
@@ -14,9 +11,6 @@
             window.location.href = '/transfers?' + params.toString();
         }
     </script>
-</head>
-<body>
-    <div class="main-header"><a href="/" style="text-decoration: none; color: inherit;">The Scotbot Transfer Tracker</a></div>
     <div class="main-title">{{ decoded_team.title() }} Squad</div>
     <div class="player-list">
     {% if not players %}
@@ -27,5 +21,4 @@
         {% endfor %}
     {% endif %}
     </div>
-</body>
-</html>
+{% endblock %}

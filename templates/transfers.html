@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ header }}</title>
-    <link href='https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap' rel='stylesheet'>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="main-header"><a href="/" style="text-decoration: none; color: inherit;">The Scotbot Transfer Tracker</a></div>
-    <div class="main-title">{{ header|safe }}</div>
+{% extends "base.html" %}
+{% block title %}{{ header }}{% endblock %}
+{% block content %}
+    <div class="main-title" style="text-align:center;">{{ header|safe }}</div>
     {% if current_roster_link %}
         <div style="text-align:center; margin-bottom: 1.5em;">{{ current_roster_link|safe }}</div>
     {% endif %}
@@ -32,5 +26,4 @@
             </ul>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Football Transfer Tracker{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="main-header">
+            <a href="/" style="text-decoration: none; color: inherit; font-size: 2rem; font-family: 'VT323', monospace;">The Scotbot Transfer Tracker</a>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p style="text-align:center; color:#888; font-size:0.9em;">&copy; 2025 Football Transfer Tracker</p>
+    </footer>
+</body>
+</html>

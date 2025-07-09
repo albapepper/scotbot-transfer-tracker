@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ decoded_name }} Mentions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="main-header"><a href="/" style="text-decoration: none; color: inherit;">The Scotbot Transfer Tracker</a></div>
+{% extends "base.html" %}
+{% block title %}{{ decoded_name }} Mentions{% endblock %}
+{% block content %}
     <div class="main-title">{{ header|safe }}</div>
     <div class="info-block">{{ club_str|safe }}</div>
     {% if linked_teams is defined %}
         <div class="linked-teams-block">
-            <h3 style="font-family: inherit; font-size: 1.4em; font-weight: bold; color: inherit;">Trending teams</h3>
+            <h3 style="font-family: inherit; font-size: 1.4em; font-weight: bold; color: inherit; text-align: center;">Trending teams:</h3>
             {% if linked_teams %}
                 <ul>
                 {% for club, count, link in linked_teams %}
@@ -26,7 +20,7 @@
     <ul>
     {% if articles is not none %}
         {% if not articles %}
-            <li>No articles found for this player.</li>
+            <li>No mentions found for this player.</li>
         {% else %}
             {% for title, link, desc in articles|sort %}
                 <li>{{ title }}: <a href="{{ link }}" target="_blank">Link</a></li>
@@ -34,5 +28,4 @@
         {% endif %}
     {% endif %}
     </ul>
-</body>
-</html>
+{% endblock %}

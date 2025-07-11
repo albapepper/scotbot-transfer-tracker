@@ -20,7 +20,7 @@
     <ul>
     {% if articles is not none %}
         {% if not articles %}
-            <li>No mentions found for this player.</li>
+            <li style="text-align:center; color:black; font-weight:bold; margin:2em 0;">No recent mentions found</li>
         {% else %}
             {% for title, link, desc in articles|sort %}
                 <li>{{ title }}: <a href="{{ link }}" target="_blank">Link</a></li>

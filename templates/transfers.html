@@ -9,11 +9,7 @@
         <div class="column" style="max-width: 500px; margin: 0 auto;">
             <ul>
             {% if not outgoing_mentions %}
-                {% if no_mentions_message %}
-                    <li class="no-mentions-message" style="color: #7c31ff; font-weight: bold; margin: 1em 0;">{{ no_mentions_message }}</li>
-                {% else %}
-                    <li>No mentions found in the selected window.</li>
-                {% endif %}
+                <li style="text-align:center; color:black; font-weight:bold; margin:2em 0;">No recent mentions found</li>
             {% else %}
                 {% for entity, count, link in outgoing_mentions %}
                     {% if request.args.get('type') == 'player' %}

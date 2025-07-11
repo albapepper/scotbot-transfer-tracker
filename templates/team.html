@@ -14,7 +14,7 @@
     <div class="main-title">{{ decoded_team.title() }} Squad</div>
     <div class="player-list">
     {% if not players %}
-        <div class='no-players'>No players found for this team.</div>
+        <div style="text-align:center; color:black; font-weight:bold; margin:2em 0;">No recent mentions found</div>
     {% else %}
         {% for player in players %}
             <div class="player-row"><a href="{{ player.link }}">{{ player.name }}</a> <span class="player-meta">({{ player.position }}, Age: {{ player.age }}, {{ player.height }}, {{ player.weight }})</span></div>

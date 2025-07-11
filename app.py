@@ -137,7 +137,25 @@ from pathlib import Path
 
 
 # --- Flask App ---
+
+from flask import jsonify
 app = Flask(__name__)
+@app.route("/autocomplete", methods=["GET"])
+def autocomplete():
+    query = request.args.get("query", "").strip().lower()
+    suggestions = set()
+    if query:
+        # Search both players and clubs (case-insensitive, substring match)
+        for norm_name, names in player_aliases.items():
+            for name in names:
+                if query in name.lower():
+                    suggestions.add(name)
+        for norm_name, names in club_aliases.items():
+            for name in names:
+                if query in name.lower():
+                    suggestions.add(name)
+    # Return up to 10 suggestions, sorted alphabetically
+    return jsonify(sorted(suggestions)[:10])
 
 
 

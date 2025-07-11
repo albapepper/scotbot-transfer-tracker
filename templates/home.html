@@ -5,7 +5,10 @@
     <div class="center-container" style="min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <form class="search-box" action="/transfers" method="get" style="display: flex; flex-direction: column; align-items: center; gap: 1.2rem; width: 100%; max-width: 430px;">
             <div style="font-size: 1.32rem; color: #333333; margin-bottom: 0.5em; text-align: center; font-family: 'Share Tech Mono', monospace; font-weight: bold;">Enter club or player name</div>
-            <input type="text" name="query" placeholder="e.g. Chelsea or Cole Palmer" required style="margin-bottom: 0; font-size: 1.15rem; padding: 1.05rem 0.9rem; width: 100%; max-width: 410px;">
+            <div style="position: relative; width: 100%; max-width: 410px;">
+                <input type="text" id="autocomplete-input" name="query" autocomplete="off" placeholder="e.g. Chelsea or Cole Palmer" required style="margin-bottom: 0; font-size: 1.15rem; padding: 1.05rem 0.9rem; width: 100%; max-width: 410px; background: #fffde4; border: none; border-radius: 0; outline: none; text-align: center; box-sizing: border-box;">
+                <div id="autocomplete-list" style="position: absolute; left: 0; right: 0; top: 100%; z-index: 1000; background: #fffde4; border: 1px solid #e6d7b3; border-top: none; width: 100%; max-width: 410px; display: none; box-shadow: 0 2px 8px #0001;"></div>
+            </div>
             <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 0.7rem;">
                 <!-- Removed search-type selector: now auto-detected -->
                 <div class="date-range" style="display: flex; justify-content: center; width: 100%; font-size: 1.03rem;">
@@ -21,4 +24,76 @@
             </div>
         </form>
     </div>
+    <script>
+    // --- Autocomplete logic ---
+    const input = document.getElementById('autocomplete-input');
+    const list = document.getElementById('autocomplete-list');
+    let currentFocus = -1;
+
+    input.addEventListener('input', function() {
+        const val = this.value;
+        if (!val) {
+            list.style.display = 'none';
+            list.innerHTML = '';
+            return;
+        }
+        fetch(`/autocomplete?query=${encodeURIComponent(val)}`)
+            .then(r => r.json())
+            .then(suggestions => {
+                list.innerHTML = '';
+                if (suggestions.length === 0) {
+                    list.style.display = 'none';
+                    return;
+                }
+                suggestions.forEach(s => {
+                    const item = document.createElement('div');
+                    item.textContent = s;
+                    item.style.padding = '0.5em 1em';
+                    item.style.cursor = 'pointer';
+                    item.style.background = '#fffde4';
+                    item.style.borderBottom = '1px solid #e6d7b3';
+                    item.addEventListener('mousedown', function(e) {
+                        input.value = s;
+                        list.style.display = 'none';
+                        list.innerHTML = '';
+                    });
+                    list.appendChild(item);
+                });
+                list.style.display = 'block';
+            });
+    });
+
+    // Hide suggestions on blur (with slight delay for click)
+    input.addEventListener('blur', function() {
+        setTimeout(() => {
+            list.style.display = 'none';
+        }, 100);
+    });
+
+    // Keyboard navigation
+    input.addEventListener('keydown', function(e) {
+        const items = list.querySelectorAll('div');
+        if (!items.length) return;
+        if (e.key === 'ArrowDown') {
+            currentFocus = (currentFocus + 1) % items.length;
+            setActive(items);
+        } else if (e.key === 'ArrowUp') {
+            currentFocus = (currentFocus - 1 + items.length) % items.length;
+            setActive(items);
+        } else if (e.key === 'Enter') {
+            if (currentFocus > -1) {
+                e.preventDefault();
+                items[currentFocus].dispatchEvent(new Event('mousedown'));
+            }
+        } else {
+            currentFocus = -1;
+        }
+    });
+
+    function setActive(items) {
+        items.forEach((item, idx) => {
+            item.style.background = idx === currentFocus ? '#e6e6ff' : '#fffde4';
+        });
+    }
+    </script>
 {% endblock %}

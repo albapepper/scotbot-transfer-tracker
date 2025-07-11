@@ -1,3 +1,25 @@
+# Utility: Render error page with message and status
+def render_error(message, status=400):
+    return render_template("home.html", error=message), status
+# Utility: Get PlayerInfo for a canonical player name
+def get_player_info(canonical_player: str) -> 'PlayerInfo|None':
+    if not canonical_player:
+        return None
+    return PLAYER_LOOKUP.get(canonical_player.lower())
+# Utility: Get all players for a given team name
+def get_players_for_team(team_name: str) -> list[dict]:
+    players = []
+    for player_info in PLAYER_LOOKUP.values():
+        if player_info.club.lower() == team_name.lower():
+            players.append({
+                'name': player_info.name,
+                'age': player_info.age,
+                'position': player_info.position,
+                'height': player_info.height,
+                'weight': player_info.weight,
+                'link': f"/transfers?query={urllib.parse.quote(player_info.name)}&type=player"
+            })
+    return players
 def filter_articles_with_entities(articles, required_players=None, required_teams=None, player_automaton=None, club_automaton=None):
     """Return articles mentioning all required players and/or teams (by canonical name)."""
     if required_players is not None:
@@ -46,7 +68,7 @@ def build_transfer_link_context(canonical_player, canonical_team, matching_artic
     """Context for /transfers/link results."""
     player_link = f'<a href="/transfers?query={urllib.parse.quote(canonical_player)}&type=player" class="results-header-link">{canonical_player.title()}</a>'
     team_link = f'<a href="/transfers?query={urllib.parse.quote(canonical_team)}&type=team" class="results-header-link">{canonical_team.title()}</a>'
-    header = f'{player_link} × {team_link} Transfer Articles'
+    header = f'{player_link} × {team_link} Articles'
     context = dict(
         decoded_name=f"{canonical_player} × {canonical_team}",
         header=header,
@@ -111,34 +133,27 @@ def build_player_context(canonical_player, player_info, linked_teams):
     """Context for player search results."""
     club_str = build_player_info_block(player_info, canonical_player)
     header = f"{canonical_player.title()}"
+    # Always set all keys expected by player.html
     context = dict(
         decoded_name=canonical_player,
         header=header,
         club_str=club_str,
         articles=None,
         entity_type="players",
-        linked_teams=linked_teams
+        linked_teams=linked_teams if linked_teams else [],
+        no_mentions_message="No recent mentions." if not linked_teams else None
     )
-    if not linked_teams:
-        context["linked_teams"] = []
-        context["no_mentions_message"] = "No recent mentions."
     return context
-# --- Imports ---
 import feedparser
 from datetime import datetime, timedelta, timezone
+from flask import Flask, request, Response, render_template, jsonify
 import urllib.parse
 import unicodedata
 import ahocorasick
-
 import pandas as pd
 from typing import Any, Dict, List, Optional, Set, Tuple
 import time
 from pathlib import Path
-
-
-# --- Flask App ---
-
-from flask import jsonify
 app = Flask(__name__)
 @app.route("/autocomplete", methods=["GET"])
 def autocomplete():
@@ -206,47 +221,19 @@ def load_player_data(filename: str) -> Tuple[Dict[str, List[str]], Dict[str, Lis
     return player_aliases, club_aliases, player_lookup
 
 
-def add_united_aliases(aliases_dict: Dict[str, List[str]]) -> Dict[str, List[str]]:
-    """
-    Add 'utd' <-> 'united' aliases for all clubs, e.g. 'man utd' <-> 'man united'.
-    """
-    new_aliases: Dict[str, List[str]] = {}
-    for norm_alias, canon_list in list(aliases_dict.items()):
-        if 'utd' in norm_alias:
-            united_alias = norm_alias.replace('utd', 'united')
-            if united_alias not in aliases_dict:
-                new_aliases[united_alias] = canon_list
-        if 'united' in norm_alias:
-            utd_alias = norm_alias.replace('united', 'utd')
-            if utd_alias not in aliases_dict:
-                new_aliases[utd_alias] = canon_list
-    aliases_dict.update(new_aliases)
-    return aliases_dict
 
-def add_manchester_aliases(aliases_dict: Dict[str, List[str]]) -> Dict[str, List[str]]:
+# Generic alias adder for club names
+def add_aliases(aliases_dict: Dict[str, List[str]], replacements: list[tuple[str, str]]) -> Dict[str, List[str]]:
     """
-    Add 'man united' <-> 'manchester united' and 'man city' <-> 'manchester city' aliases for all relevant clubs.
+    Add aliases for all clubs based on a list of (old, new) substring replacements.
     """
     new_aliases: Dict[str, List[str]] = {}
     for norm_alias, canon_list in list(aliases_dict.items()):
-        # Manchester United
-        if 'manchester united' in norm_alias:
-            man_united_alias = norm_alias.replace('manchester united', 'man united')
-            if man_united_alias not in aliases_dict:
-                new_aliases[man_united_alias] = canon_list
-        if 'man united' in norm_alias:
-            manchester_united_alias = norm_alias.replace('man united', 'manchester united')
-            if manchester_united_alias not in aliases_dict:
-                new_aliases[manchester_united_alias] = canon_list
-        # Manchester City
-        if 'manchester city' in norm_alias:
-            man_city_alias = norm_alias.replace('manchester city', 'man city')
-            if man_city_alias not in aliases_dict:
-                new_aliases[man_city_alias] = canon_list
-        if 'man city' in norm_alias:
-            manchester_city_alias = norm_alias.replace('man city', 'manchester city')
-            if manchester_city_alias not in aliases_dict:
-                new_aliases[manchester_city_alias] = canon_list
+        for old, new in replacements:
+            if old in norm_alias:
+                alt_alias = norm_alias.replace(old, new)
+                if alt_alias not in aliases_dict:
+                    new_aliases[alt_alias] = canon_list
     aliases_dict.update(new_aliases)
     return aliases_dict
 
@@ -281,8 +268,14 @@ def get_canonical_entity(user_input: str, aliases: Dict[str, List[str]]) -> Opti
 DATA_DIR = Path(__file__).parent
 PLAYER_FILE = DATA_DIR / "player-position-club.txt"
 player_aliases, club_aliases, PLAYER_LOOKUP = load_player_data(str(PLAYER_FILE))
-club_aliases = add_united_aliases(club_aliases)
-club_aliases = add_manchester_aliases(club_aliases)
+# Add all relevant club aliases in one go
+club_aliases = add_aliases(club_aliases, [
+    ("utd", "united"), ("united", "utd"),
+    ("manchester united", "man united"), ("man united", "manchester united"),
+    ("manchester city", "man city"), ("man city", "manchester city"),
+    ("man united", "man u"), ("man u", "man united"), ("manchester united", "man u"), ("man u", "manchester united"),
+    ("nott'ham forest", "nottingham forest"), ("nottingham forest", "nott'ham forest")
+])
 player_automaton = build_automaton(player_aliases)
 club_automaton = build_automaton(club_aliases)
 @app.route("/", methods=["GET"])
@@ -296,7 +289,7 @@ def get_transfer_mentions():
     window = int(request.args.get("window", 24))
 
     if not query:
-        return render_template("home.html", error="Missing 'query' parameter")
+        return render_error("Missing 'query' parameter")
 
     # Fetch RSS feed
     try:
@@ -325,7 +318,7 @@ def get_transfer_mentions():
             return render_template("home.html", error=f"Internal error: {str(e)}")
     elif canonical_player:
         try:
-            player_info = PLAYER_LOOKUP.get(canonical_player.lower())
+            player_info = get_player_info(canonical_player)
             current_club = player_info.club if player_info else None
             club_article_map = get_entity_mentions(
                 recent_articles, canonical_player, 'player', player_automaton, club_automaton, exclude=current_club
@@ -334,38 +327,34 @@ def get_transfer_mentions():
                 (club, len(links), f"/transfers/link?player={urllib.parse.quote(canonical_player)}&team={urllib.parse.quote(club)}")
                 for club, links in sorted(club_article_map.items(), key=lambda x: len(x[1]), reverse=True)
             ]
-            # Ensure all required context keys are present
             context = build_player_context(canonical_player, player_info, linked_teams)
-            # Defensive: ensure all keys expected by player.html are present
-            for key in ["decoded_name", "header", "club_str", "articles", "entity_type", "linked_teams", "no_mentions_message"]:
-                if key not in context:
-                    context[key] = None if key != "linked_teams" else []
             return render_template("player.html", **context)
         except Exception as e:
             import traceback
             print("[ERROR] /transfers player block:", traceback.format_exc())
             return render_template("home.html", error=f"Internal error: {str(e)}")
-    return render_template("home.html", error="No articles found for this player or team.")
+    return render_error("No articles found for this player or team.")
 @app.route("/transfers/link", methods=["GET"])
 def transfers_link():
     player = request.args.get("player")
     team = request.args.get("team")
     window = int(request.args.get("window", 24))
     if not player or not team:
-        return render_template("home.html", error="Missing player or team parameter")
+        return render_error("Missing player or team parameter")
     decoded_player = urllib.parse.unquote(player)
     decoded_team = urllib.parse.unquote(team)
     canonical_player = get_canonical_entity(decoded_player, player_aliases)
     canonical_team = get_canonical_entity(decoded_team, club_aliases)
     if not canonical_player or not canonical_team:
-        return render_template("home.html", error="Player or team not found")
+        return render_error("Player or team not found")
     # Fetch RSS feed for both player and team
     try:
         search_query = f"{decoded_player} {decoded_team}"
         recent_articles = fetch_recent_articles(search_query, hours=window)
     except Exception as e:
-        return render_template("home.html", error=f"Failed to fetch news: {str(e)}")
+        return render_error(f"Failed to fetch news: {str(e)}")
     # Find articles that mention both player and team
+    # (No direct PLAYER_LOOKUP access here, but if you add it, use get_player_info)
     matching_articles = filter_articles_with_entities(
         recent_articles,
         required_players=[canonical_player],
@@ -379,21 +368,10 @@ def transfers_link():
 def teams_page():
     team_name = request.args.get("name")
     if not team_name:
-        return Response("Missing team name", status=400)
+        return render_error("Missing team name")
     
     decoded_team = urllib.parse.unquote(team_name)
-    team_players = []
-    # Use cached player data instead of reading file
-    for player_info in PLAYER_LOOKUP.values():
-        if player_info.club.lower() == decoded_team.lower():
-            team_players.append({
-                'name': player_info.name,
-                'age': player_info.age,
-                'position': player_info.position,
-                'height': player_info.height,
-                'weight': player_info.weight,
-                'link': f"/transfers?query={urllib.parse.quote(player_info.name)}&type=player"
-            })
+    team_players = get_players_for_team(decoded_team)
     context = build_team_roster_context(decoded_team, team_players)
     return render_template("team.html", **context)
 

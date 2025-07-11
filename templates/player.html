@@ -3,19 +3,17 @@
 {% block content %}
     <div class="main-title">{{ header|safe }}</div>
     <div class="info-block">{{ club_str|safe }}</div>
-    {% if linked_teams is defined %}
+    {% if linked_teams is defined and linked_teams %}
         <div class="linked-teams-block">
             <h3 style="font-family: inherit; font-size: 1.4em; font-weight: bold; color: inherit; text-align: center;">Trending teams:</h3>
-            {% if linked_teams %}
-                <ul>
-                {% for club, count, link in linked_teams %}
-                    <li><a href="{{ link }}">{{ club.title() }}</a> - {{ count }} mentions</li>
-                {% endfor %}
-                </ul>
-            {% elif no_mentions_message %}
-                <div class="no-mentions-message" style="font-family: inherit; font-size: 1.4em; font-weight: bold; color: inherit; margin: 1em 0; text-align: center;">{{ no_mentions_message }}</div>
-            {% endif %}
+            <ul>
+            {% for club, count, link in linked_teams %}
+                <li><a href="{{ link }}">{{ club.title() }}</a> - {{ count }} mentions</li>
+            {% endfor %}
+            </ul>
         </div>
+    {% elif no_mentions_message %}
+        <div class="no-mentions-message" style="font-family: inherit; font-size: 1.4em; font-weight: bold; color: inherit; margin: 1em 0; text-align: center;">{{ no_mentions_message }}</div>
     {% endif %}
     <ul>
     {% if articles is not none %}

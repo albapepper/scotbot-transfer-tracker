@@ -39,12 +39,22 @@ league_summary = {}
 
 def find_latest_stats_url(overview_url):
     full_url = BASE_URL + overview_url
-    res = scraper.get(full_url, verify=certifi.where())  # <-- Add verify
+    res = scraper.get(full_url, verify=certifi.where())
     soup = BeautifulSoup(res.text, "html.parser")
-    link_tag = soup.find("a", string="Standard Stats")
-    if link_tag:
-        return BASE_URL + link_tag["href"]
-    print(f"⚠️  Could not find Standard Stats link for {overview_url}")
+    # Try multiple possible link texts
+    link_texts = [
+        "Standard Stats",
+        "Stats",
+        "Player Stats",
+        "Squad Stats",
+        "Player Standard Stats",
+        "Players"
+    ]
+    for text in link_texts:
+        link_tag = soup.find("a", string=text)
+        if link_tag:
+            return BASE_URL + link_tag["href"]
+    print(f"⚠️  Could not find a stats link for {overview_url} (tried: {', '.join(link_texts)})")
     return None
 
 def scrape_player_data(stats_url, league):

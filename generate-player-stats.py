@@ -12,7 +12,22 @@ LEAGUE_OVERVIEWS = {
     "La Liga": "/en/comps/12/La-Liga-Stats",
     "Serie A": "/en/comps/11/Serie-A-Stats",
     "Bundesliga": "/en/comps/20/Bundesliga-Stats",
-    "Ligue 1": "/en/comps/13/Ligue-1-Stats"
+    "Ligue 1": "/en/comps/13/Ligue-1-Stats",
+    "Primeira Liga": "/en/comps/32/Primeira-Liga-Stats",
+    "Eredivisie": "/en/comps/23/Eredivisie-Stats",
+    "Russian Premier League": "/en/comps/30/Russian-Premier-League-Stats",
+    "Scottish Premiership": "/en/comps/40/Scottish-Premiership-Stats",
+    "Belgian Pro League": "/en/comps/37/Belgian-Pro-League-Stats",
+    "Süper Lig": "/en/comps/26/Super-Lig-Stats",
+    "Super League Greece": "/en/comps/27/Super-League-Greece-Stats",
+    "Swiss Super League": "/en/comps/57/Swiss-Super-League-Stats",
+    "Ukrainian Premier League": "/en/comps/39/Ukrainian-Premier-League-Stats",
+    "Austrian Bundesliga": "/en/comps/56/Austrian-Bundesliga-Stats",
+    "Danish Superliga": "/en/comps/50/Danish-Superliga-Stats",
+    "Major League Soccer": "/en/comps/22/Major-League-Soccer-Stats",
+    "Liga Profesional Argentina": "/en/comps/21/Liga-Profesional-Argentina-Stats",
+    "Campeonato Brasileiro Série A": "/en/comps/24/Serie-A-Stats",
+    "Liga MX": "/en/comps/31/Liga-MX-Stats"
 }
 
 # Step 1: Set REQUESTS_CA_BUNDLE to certifi's CA bundle

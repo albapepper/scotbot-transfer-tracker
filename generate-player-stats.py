@@ -41,19 +41,14 @@ def find_latest_stats_url(overview_url):
     full_url = BASE_URL + overview_url
     res = scraper.get(full_url, verify=certifi.where())
     soup = BeautifulSoup(res.text, "html.parser")
-    # Try multiple possible link texts
     link_texts = [
-        "Standard Stats",
-        "Stats",
-        "Player Stats",
-        "Squad Stats",
-        "Player Standard Stats",
-        "Players"
+        "Standard Stats", "Shooting", "Passing", "Goalkeeping", "Defensive Actions", "Possession", "Playing Time"
     ]
-    for text in link_texts:
-        link_tag = soup.find("a", string=text)
-        if link_tag:
-            return BASE_URL + link_tag["href"]
+    for link_tag in soup.find_all("a"):
+        link_label = link_tag.get_text(strip=True)
+        for text in link_texts:
+            if text in link_label:
+                return BASE_URL + link_tag["href"]
     print(f"⚠️  Could not find a stats link for {overview_url} (tried: {', '.join(link_texts)})")
     return None
 
@@ -102,14 +97,32 @@ for league, overview in LEAGUE_OVERVIEWS.items():
             all_headers = headers
         all_data.extend(players)
 
-# Write to Excel file
-output_xlsx = os.path.join(os.path.dirname(os.path.abspath(__file__)), "player-stats.xlsx")
+
+# Write to SQL file
+output_sql = os.path.join(os.path.dirname(os.path.abspath(__file__)), "player-stats.sql")
 if all_headers and all_data:
-    df = pd.DataFrame(all_data, columns=all_headers)
-    df.to_excel(output_xlsx, index=False)
-    print(f"✅ Wrote {len(all_data)} players to Excel file at {output_xlsx}.")
+    table_name = "player_stats"
+    # Create table statement
+    col_defs = ',\n    '.join([f'`{col}` TEXT' for col in all_headers])
+    create_stmt = f"CREATE TABLE IF NOT EXISTS {table_name} (\n    {col_defs}\n);\n"
+    # Insert statements
+    insert_stmts = []
+    for row in all_data:
+        values = []
+        for val in row:
+            # Escape single quotes for SQL
+            if val is None:
+                values.append('NULL')
+            else:
+                values.append("'" + str(val).replace("'", "''") + "'")
+        insert_stmts.append(f"INSERT INTO {table_name} VALUES (" + ', '.join(values) + ");")
+    with open(output_sql, 'w', encoding='utf-8') as f:
+        f.write(create_stmt)
+        for stmt in insert_stmts:
+            f.write(stmt + '\n')
+    print(f"✅ Wrote {len(all_data)} players to SQL file at {output_sql}.")
 else:
-    print("⚠️ No data to write to Excel.")
+    print("⚠️ No data to write to SQL.")
 
 print("\n📊 Player count by league:")
 for league, count in league_summary.items():

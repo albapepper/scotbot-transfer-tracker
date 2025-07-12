@@ -1,3 +1,10 @@
+# ...existing code...
+    # ...existing code...
+
+# ...existing code...
+
+# Place this route after app = Flask(__name__)
+
 # Utility: Render error page with message and status
 def render_error(message, status=400):
     return render_template("home.html", error=message), status
@@ -15,8 +22,7 @@ def get_players_for_team(team_name: str) -> list[dict]:
                 'name': player_info.name,
                 'age': player_info.age,
                 'position': player_info.position,
-                'height': player_info.height,
-                'weight': player_info.weight,
+                'nationality': player_info.nationality,
                 'link': f"/transfers?query={urllib.parse.quote(player_info.name)}&type=player"
             })
     return players
@@ -80,27 +86,30 @@ def build_transfer_link_context(canonical_player, canonical_team, matching_artic
         context["articles"] = set()
         context["no_mentions_message"] = "No recent articles found."
     return context
-def build_player_info_block(player_info, canonical_player):
+def build_player_info_block(player_info, canonical_player, show_stats_link=True):
     """Return HTML for the player info block."""
     if player_info:
         club_link = f"/transfers?query={urllib.parse.quote(player_info.club)}&type=team"
-        fbref_url = f"https://fbref.com/search/search.fcgi?search={urllib.parse.quote(canonical_player)}"
-        return (
+        stats_url = f"/player-stats?player={urllib.parse.quote(canonical_player)}"
+        
+        base_info = (
             f"<b>Club:</b> "
             f"<a href='{club_link}' class='results-header-link' style='color:#7c31ff;text-decoration:underline;font-weight:bold;font-size:1.1rem'>{player_info.club}</a><br>"
             f"<b>Position:</b> {player_info.position}<br>"
             f"<b>Age:</b> {player_info.age}<br>"
-            f"<b>Height:</b> {player_info.height}<br>"
-            f"<b>Weight:</b> {player_info.weight}<br>"
-            f"<a href='{fbref_url}' class='results-header-link' target='_blank' style='color:#7c31ff;text-decoration:underline;font-weight:bold;font-size:1.1rem'>Stats</a>"
+            f"<b>Nationality:</b> {player_info.nationality}"
         )
+        
+        if show_stats_link:
+            base_info += f"<br><a href='{stats_url}' class='results-header-link' style='color:#7c31ff;text-decoration:underline;font-weight:bold;font-size:1.1rem'>Stats</a>"
+        
+        return base_info
     else:
         return (
             f"<b>Club:</b> Unknown<br>"
             f"<b>Position:</b> Unknown<br>"
             f"<b>Age:</b> Unknown<br>"
-            f"<b>Height:</b> Unknown<br>"
-            f"<b>Weight:</b> Unknown"
+            f"<b>Nationality:</b> Unknown"
         )
 def extract_entities(entry, player_automaton, club_automaton):
     """Return (players, teams) found in an article entry."""
@@ -129,9 +138,9 @@ def build_team_context(canonical_team, mentions_list):
         context["no_mentions_message"] = "No recent mentions."
     return context
 
-def build_player_context(canonical_player, player_info, linked_teams):
+def build_player_context(canonical_player, player_info, linked_teams, show_stats_link=True):
     """Context for player search results."""
-    club_str = build_player_info_block(player_info, canonical_player)
+    club_str = build_player_info_block(player_info, canonical_player, show_stats_link)
     header = f"{canonical_player.title()}"
     # Always set all keys expected by player.html
     context = dict(
@@ -151,6 +160,7 @@ import urllib.parse
 import unicodedata
 import ahocorasick
 import pandas as pd
+import re
 from typing import Any, Dict, List, Optional, Set, Tuple
 import time
 from pathlib import Path
@@ -183,8 +193,7 @@ class PlayerInfo:
     age: str
     position: str
     club: str
-    height: str = "Unknown"
-    weight: str = "Unknown"
+    nationality: str = "Unknown"
 
 
 # --- Utility Functions ---
@@ -196,28 +205,32 @@ def normalize_name(s: str) -> str:
     )
 
 def load_player_data(filename: str) -> Tuple[Dict[str, List[str]], Dict[str, List[str]], Dict[str, PlayerInfo]]:
-    """Load all player data in a single pass for efficiency."""
-    df = pd.read_csv(filename, sep='\t', dtype=str)
     player_aliases: Dict[str, List[str]] = {}
     club_aliases: Dict[str, List[str]] = {}
     player_lookup: Dict[str, PlayerInfo] = {}
-    for _, row in df.iterrows():
-        if pd.isna(row.iloc[0]):
-            continue
-        name = row.iloc[0]
-        age = row.iloc[1] if len(row) > 1 and not pd.isna(row.iloc[1]) else "Unknown"
-        position = row.iloc[2] if len(row) > 2 and not pd.isna(row.iloc[2]) else "Unknown"
-        club = row.iloc[3] if len(row) > 3 and not pd.isna(row.iloc[3]) else "Unknown"
-        height = row.iloc[4] if len(row) > 4 and not pd.isna(row.iloc[4]) else "Unknown"
-        weight = row.iloc[5] if len(row) > 5 and not pd.isna(row.iloc[5]) else "Unknown"
-        # Player data
-        norm_name = normalize_name(name)
-        player_aliases.setdefault(norm_name, []).append(name)
-        player_lookup[name.lower()] = PlayerInfo(name, age, position, club, height, weight)
-        # Club data
-        if club != "Unknown":
-            norm_club = normalize_name(club)
-            club_aliases.setdefault(norm_club, []).append(club)
+    insert_re = re.compile(r"INSERT INTO player_stats VALUES \((.*?)\);", re.IGNORECASE)
+    with open(filename, encoding="utf-8") as f:
+        for line in f:
+            match = insert_re.match(line.strip())
+            if not match:
+                continue
+            # Split values, handling quoted strings and commas
+            raw = match.group(1)
+            # Remove surrounding single quotes and split on ", '"
+            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
+            if len(values) < 6:
+                continue
+            name = values[1]
+            nationality = values[2] if len(values) > 2 and values[2] else "Unknown"
+            position = values[3] if values[3] else "Unknown"
+            club = values[4] if values[4] else "Unknown"
+            age = values[5] if values[5] else "Unknown"
+            norm_name = normalize_name(name)
+            player_aliases.setdefault(norm_name, []).append(name)
+            player_lookup[name.lower()] = PlayerInfo(name, age, position, club, nationality)
+            if club != "Unknown":
+                norm_club = normalize_name(club)
+                club_aliases.setdefault(norm_club, []).append(club)
     return player_aliases, club_aliases, player_lookup
 
 
@@ -266,7 +279,7 @@ def get_canonical_entity(user_input: str, aliases: Dict[str, List[str]]) -> Opti
 
 # Load all data once
 DATA_DIR = Path(__file__).parent
-PLAYER_FILE = DATA_DIR / "player-position-club.txt"
+PLAYER_FILE = DATA_DIR / "player-stats.sql"
 player_aliases, club_aliases, PLAYER_LOOKUP = load_player_data(str(PLAYER_FILE))
 # Add all relevant club aliases in one go
 club_aliases = add_aliases(club_aliases, [
@@ -374,6 +387,60 @@ def teams_page():
     team_players = get_players_for_team(decoded_team)
     context = build_team_roster_context(decoded_team, team_players)
     return render_template("team.html", **context)
+
+@app.route("/player-stats", methods=["GET"])
+def player_stats_page():
+    player_name = request.args.get("player", "").strip()
+    if not player_name:
+        return render_error("Missing player parameter")
+    decoded_player = urllib.parse.unquote(player_name)
+    canonical_player = get_canonical_entity(decoded_player, player_aliases)
+    if not canonical_player:
+        return render_error("Player not found")
+    # Find the full stats row for this player from the SQL file
+    stats_row = None
+    stat_keys = []
+    sql_file = str(PLAYER_FILE)
+    insert_re = re.compile(r"INSERT INTO player_stats VALUES \((.*?)\);", re.IGNORECASE)
+    
+    # First, get the column names from the CREATE TABLE statement
+    with open(sql_file, encoding="utf-8") as f:
+        content = f.read()
+        # Find the CREATE TABLE statement
+        create_match = re.search(r"CREATE TABLE.*?player_stats\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
+        if create_match:
+            columns_text = create_match.group(1)
+            # Extract column names (everything between backticks)
+            column_matches = re.findall(r"`([^`]+)`", columns_text)
+            stat_keys = column_matches
+    
+    # Now find the player's data row
+    with open(sql_file, encoding="utf-8") as f:
+        for line in f:
+            match = insert_re.match(line.strip())
+            if not match:
+                continue
+            raw = match.group(1)
+            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
+            if len(values) < 2:
+                continue
+            if values[1].lower() == canonical_player.lower():
+                stats_row = values
+                break
+    
+    # Create the stats dictionary, excluding internal fields
+    player_stats = {}
+    if stats_row and stat_keys and len(stats_row) == len(stat_keys):
+        for i, (key, value) in enumerate(zip(stat_keys, stats_row)):
+            # Skip internal/less meaningful columns
+            if key not in ['Rk', 'Player', 'Nation', 'Pos', 'Squad', 'Born', 'Matches']:
+                player_stats[key] = value
+    
+    player_info = get_player_info(canonical_player)
+    linked_teams = []
+    context = build_player_context(canonical_player, player_info, linked_teams, show_stats_link=False)
+    context["player_stats"] = player_stats
+    return render_template("player-stats.html", **context)
 
 
 if __name__ == "__main__":

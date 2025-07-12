@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ decoded_name }} Stats{% endblock %}
+{% block content %}
+    <div class="main-title">{{ header|safe }}</div>
+    <div class="info-block">{{ club_str|safe }}</div>
+    {% if player_stats is defined and player_stats %}
+        <div class="player-stats-block">
+            <h3 style="font-family: inherit; font-size: 1.4em; font-weight: bold; color: inherit; text-align: center; margin-bottom: 20px;">Full Player Stats</h3>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <table class="player-stats-table" style="width: 100%; border-collapse: collapse; margin: 0 auto;">
+                    <tbody>
+                    {% for stat, value in player_stats.items() %}
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 8px 12px; font-weight: bold; background-color: #f5f5f5; text-align: left; width: 40%;">{{ stat }}</td>
+                            <td style="border: 1px solid #ccc; padding: 8px 12px; text-align: left; width: 60%;">{{ value }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,9 +1,3 @@
-# ...existing code...
-    # ...existing code...
-
-# ...existing code...
-
-# Place this route after app = Flask(__name__)
 
 # Utility: Render error page with message and status
 def render_error(message, status=400):

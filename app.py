@@ -1,3 +1,14 @@
+import feedparser
+from datetime import datetime, timedelta, timezone
+from flask import Flask, request, Response, render_template, jsonify
+import urllib.parse
+import unicodedata
+import ahocorasick
+import pandas as pd
+import re
+from typing import Any, Dict, List, Optional, Set, Tuple
+import time
+from pathlib import Path
 
 # Utility: Render error page with message and status
 def render_error(message, status=400):
@@ -147,17 +158,7 @@ def build_player_context(canonical_player, player_info, linked_teams, show_stats
         no_mentions_message="No recent mentions." if not linked_teams else None
     )
     return context
-import feedparser
-from datetime import datetime, timedelta, timezone
-from flask import Flask, request, Response, render_template, jsonify
-import urllib.parse
-import unicodedata
-import ahocorasick
-import pandas as pd
-import re
-from typing import Any, Dict, List, Optional, Set, Tuple
-import time
-from pathlib import Path
+
 app = Flask(__name__)
 @app.route("/autocomplete", methods=["GET"])
 def autocomplete():

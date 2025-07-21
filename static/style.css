@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
-body, .main-title, .results-container, .column, .no-mentions-message, ul, li, p, div, a {
-    font-family: 'PT Serif', 'Times New Roman', Times, 'Aptos Semibold', serif;
-    font-weight: 700;
-}
+
 .main-header a {
     font-family: 'VT323', monospace !important;
     font-weight: normal !important;
@@ -14,7 +11,7 @@ html, body {
     padding: 0;
     width: 100vw;
     background: #ffe3b3;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: Arial, Helvetica, sans-serif;
     color: #333333;
     display: flex;
     flex-direction: column;
@@ -39,7 +36,7 @@ html, body {
 .main-title {
     font-size: 2.1rem;
     color: #333333;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     margin-top: 3.5rem;
     margin-bottom: 1.2rem;
@@ -51,6 +48,7 @@ html, body {
     color: #333333;
     margin-bottom: 1.5rem;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 ul {
     list-style: none;
@@ -75,7 +73,7 @@ a:hover {
     width: 90vw;
     max-width: 600px;
     border-radius: 0.18em;
-    padding: 1.5rem 2rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .player-row {
     display: flex;
@@ -94,6 +92,7 @@ a:hover {
     transition: color 0.15s;
     font-size: 1.1rem;
     letter-spacing: 1px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .player-link:hover {
     color: #a968e2;
@@ -101,11 +100,13 @@ a:hover {
 .player-meta {
     color: #333333;
     font-size: 1.05rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .no-players {
     font-size: 1.05rem;
     color: #333333;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .results-container {
     display: flex;
@@ -154,7 +155,7 @@ input[type="text"] {
     width: 100%;
     max-width: 410px;
     font-size: 1.15rem;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: Arial, Helvetica, sans-serif;
     color: #32214a;
     background: #fffde4;
     border: none;

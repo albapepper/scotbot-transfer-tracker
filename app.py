@@ -13,13 +13,60 @@ from dataclasses import dataclass
 
 # --- Utility Functions & Data Model ---
 
+# --- Nation Mapping ---
+NATION_MAP = {
+    "ENG": ("English", "🏴"),
+    "SCO": ("Scottish", "🏴"),
+    "WAL": ("Welsh", "🏴"),
+    "NIR": ("Northern Irish", "🇬🇧"),
+    "IRL": ("Irish", "🇮🇪"),
+    "FRA": ("French", "🇫🇷"),
+    "ESP": ("Spanish", "🇪🇸"),
+    "GER": ("German", "🇩🇪"),
+    "ITA": ("Italian", "🇮🇹"),
+    "POR": ("Portuguese", "🇵🇹"),
+    "NED": ("Dutch", "🇳🇱"),
+    "BEL": ("Belgian", "🇧🇪"),
+    "SUI": ("Swiss", "🇨🇭"),
+    "SWE": ("Swedish", "🇸🇪"),
+    "NOR": ("Norwegian", "🇳🇴"),
+    "DEN": ("Danish", "🇩🇰"),
+    "CRO": ("Croatian", "🇭🇷"),
+    "SRB": ("Serbian", "🇷🇸"),
+    "USA": ("American", "🇺🇸"),
+    "BRA": ("Brazilian", "🇧🇷"),
+    "ARG": ("Argentinian", "🇦🇷"),
+    "URU": ("Uruguayan", "🇺🇾"),
+    "COL": ("Colombian", "🇨🇴"),
+    "MEX": ("Mexican", "🇲🇽"),
+    "JPN": ("Japanese", "🇯🇵"),
+    "KOR": ("South Korean", "🇰🇷"),
+    "AUS": ("Australian", "🇦🇺"),
+    # ...add more as needed
+}
+
+def get_nation_display(nation_field):
+    if not nation_field or len(nation_field) < 3:
+        return nation_field or "Unknown"
+    code = nation_field[-3:].upper()
+    name, flag = NATION_MAP.get(code, (nation_field, ""))
+    return f"{name} {flag}".strip()
+
 @dataclass
 class PlayerInfo:
     name: str
-    age: str
+    born: str
     position: str
     club: str
-    nationality: str = "Unknown"
+    nationality: str
+
+# Dataclass for team info, building this out for future use with a separate SQL table
+@dataclass
+class TeamInfo:
+    name: str
+    league: str
+    country: str
+    current_roster: str = ""
 
 def render_error(message, status=400):
     return render_template("home.html", error=message), status
@@ -35,7 +82,7 @@ def get_players_for_team(team_name: str) -> list[dict]:
         if player_info.club.lower() == team_name.lower():
             players.append({
                 'name': player_info.name,
-                'age': player_info.age,
+                'born': player_info.born,
                 'position': player_info.position,
                 'nationality': player_info.nationality,
                 'link': f"/transfers?query={urllib.parse.quote(player_info.name)}&type=player"
@@ -99,7 +146,6 @@ def build_transfer_link_context(canonical_player, canonical_team, matching_artic
     )
     if not matching_articles:
         context["articles"] = set()
-        context["no_mentions_message"] = "No recent articles found."
     return context
 
 def build_player_info_block(player_info, canonical_player, show_stats_link=True):
@@ -110,7 +156,7 @@ def build_player_info_block(player_info, canonical_player, show_stats_link=True)
             f"<b>Club:</b> "
             f"<a href='{club_link}' class='results-header-link' style='color:#7c31ff;text-decoration:underline;font-weight:bold;font-size:1.1rem'>{player_info.club}</a><br>"
             f"<b>Position:</b> {player_info.position}<br>"
-            f"<b>Age:</b> {player_info.age}<br>"
+            f"<b>Born:</b> {player_info.born}<br>"
             f"<b>Nationality:</b> {player_info.nationality}"
         )
         if show_stats_link:
@@ -120,7 +166,7 @@ def build_player_info_block(player_info, canonical_player, show_stats_link=True)
         return (
             f"<b>Club:</b> Unknown<br>"
             f"<b>Position:</b> Unknown<br>"
-            f"<b>Age:</b> Unknown<br>"
+            f"<b>Born:</b> Unknown<br>"
             f"<b>Nationality:</b> Unknown"
         )
 
@@ -139,15 +185,53 @@ def build_team_context(canonical_team, mentions_list):
     team_display = canonical_team.title()
     header = f'{team_display} trending mentions'
     current_roster_link = f'<a href="/teams?name={urllib.parse.quote(canonical_team)}" class="results-header-link">Current Roster</a>'
+    # Get TeamInfo
+    team_info = get_team_info(canonical_team)
     context = dict(
         header=header,
         current_roster_link=current_roster_link,
         outgoing_mentions=mentions_list,
+        team_info=team_info,
     )
     if not mentions_list:
         context["outgoing_mentions"] = []
         context["no_mentions_message"] = "No recent mentions."
     return context
+def get_team_info(canonical_team: str) -> 'TeamInfo|None':
+    # Load from team-stats.sql (simple parse, not efficient for large files)
+    DATA_DIR = Path(__file__).parent
+    TEAM_FILE = DATA_DIR / "team-stats.sql"
+    insert_re = re.compile(r"INSERT INTO team_stats VALUES \((.*?)\);", re.IGNORECASE)
+    # Try to get columns
+    stat_keys = []
+    def normalize(s):
+        return ''.join(c for c in unicodedata.normalize('NFD', s.lower()) if unicodedata.category(c) != 'Mn').replace(' fc','').replace(' afc','').replace('.','').replace(',','').replace('-',' ').strip()
+    norm_canonical = normalize(canonical_team)
+    with open(TEAM_FILE, encoding="utf-8") as f:
+        content = f.read()
+        create_match = re.search(r"CREATE TABLE.*?team_stats\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
+        if create_match:
+            columns_text = create_match.group(1)
+            column_matches = re.findall(r"`([^`]+)`", columns_text)
+            stat_keys = column_matches
+    # Now find the row (allow partial/normalized match)
+    with open(TEAM_FILE, encoding="utf-8") as f:
+        for line in f:
+            match = insert_re.match(line.strip())
+            if not match:
+                continue
+            raw = match.group(1)
+            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
+            if len(values) >= 3:
+                norm_sql_name = normalize(values[2])
+                # Allow exact or partial match
+                if norm_canonical == norm_sql_name or norm_canonical in norm_sql_name or norm_sql_name in norm_canonical:
+                    league = values[0] if len(values) > 0 else "Unknown"
+                    country = values[1] if len(values) > 1 else "Unknown"
+                    name = values[2]
+                    current_roster = f"/teams?name={urllib.parse.quote(name)}"
+                    return TeamInfo(name=name, league=league, country=country, current_roster=current_roster)
+    return None
 
 def build_player_context(canonical_player, player_info, linked_teams, show_stats_link=True):
     club_str = build_player_info_block(player_info, canonical_player, show_stats_link)
@@ -159,7 +243,7 @@ def build_player_context(canonical_player, player_info, linked_teams, show_stats
         articles=None,
         entity_type="players",
         linked_teams=linked_teams if linked_teams else [],
-        no_mentions_message="No recent mentions." if not linked_teams else None
+        no_mentions_message="No recent mentions" if not linked_teams else None
     )
     return context
 
@@ -184,13 +268,13 @@ def load_player_data(filename: str) -> Tuple[Dict[str, List[str]], Dict[str, Lis
             if len(values) < 6:
                 continue
             name = values[1]
-            nationality = values[2] if len(values) > 2 and values[2] else "Unknown"
+            nationality = get_nation_display(values[2]) if len(values) > 2 and values[2] else "Unknown"
             position = values[3] if values[3] else "Unknown"
             club = values[4] if values[4] else "Unknown"
-            age = values[5] if values[5] else "Unknown"
+            born = values[6] if len(values) > 6 and values[6] else "Unknown"
             norm_name = normalize_name(name)
             player_aliases.setdefault(norm_name, []).append(name)
-            player_lookup[name.lower()] = PlayerInfo(name, age, position, club, nationality)
+            player_lookup[name.lower()] = PlayerInfo(name, born, position, club, nationality)
             if club != "Unknown":
                 norm_club = normalize_name(club)
                 club_aliases.setdefault(norm_club, []).append(club)
@@ -274,7 +358,7 @@ def autocomplete():
 def get_transfer_mentions():
     query = request.args.get("query", "").rstrip()
     search_type = request.args.get("type", "team")
-    window = int(request.args.get("window", 24))
+    window = 48  # Standardized 48 hour window
 
     if not query:
         return render_error("Missing 'query' parameter")
@@ -325,7 +409,7 @@ def get_transfer_mentions():
 def transfers_link():
     player = request.args.get("player")
     team = request.args.get("team")
-    window = int(request.args.get("window", 24))
+    window = 48  # Standardized 48 hour window
     if not player or not team:
         return render_error("Missing player or team parameter")
     decoded_player = urllib.parse.unquote(player)
@@ -356,7 +440,45 @@ def teams_page():
         return render_error("Missing team name")
     decoded_team = urllib.parse.unquote(team_name)
     team_players = get_players_for_team(decoded_team)
+    # --- TeamInfo ---
+    team_info = get_team_info(decoded_team)
+    # --- Team Stats ---
+    DATA_DIR = Path(__file__).parent
+    TEAM_FILE = DATA_DIR / "team-stats.sql"
+    insert_re = re.compile(r"INSERT INTO team_stats VALUES \((.*?)\);", re.IGNORECASE)
+    stat_keys = []
+    stats_row = None
+    # Get columns
+    with open(TEAM_FILE, encoding="utf-8") as f:
+        content = f.read()
+        create_match = re.search(r"CREATE TABLE.*?team_stats\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
+        if create_match:
+            columns_text = create_match.group(1)
+            column_matches = re.findall(r"`([^`]+)`", columns_text)
+            stat_keys = column_matches
+    # Find row for this team (normalize for partial match)
+    def normalize(s):
+        return ''.join(c for c in unicodedata.normalize('NFD', s.lower()) if unicodedata.category(c) != 'Mn').replace(' fc','').replace(' afc','').replace('.','').replace(',','').replace('-',' ').strip()
+    norm_decoded = normalize(decoded_team)
+    with open(TEAM_FILE, encoding="utf-8") as f:
+        for line in f:
+            match = insert_re.match(line.strip())
+            if not match:
+                continue
+            raw = match.group(1)
+            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
+            if len(values) >= 3:
+                norm_sql_name = normalize(values[2])
+                if norm_decoded == norm_sql_name or norm_decoded in norm_sql_name or norm_sql_name in norm_decoded:
+                    stats_row = values
+                    break
+    team_stats = {}
+    if stats_row and stat_keys and len(stats_row) == len(stat_keys):
+        for i, (key, value) in enumerate(zip(stat_keys, stats_row)):
+            team_stats[key] = value
     context = build_team_roster_context(decoded_team, team_players)
+    context["team_info"] = team_info
+    context["team_stats"] = team_stats if team_stats else None
     return render_template("team.html", **context)
 
 @app.route("/player-stats", methods=["GET"])

@@ -1,103 +1,32 @@
 Player Name	Age	Position	Current Club
 Aaron Ciammaglichella	19	MF	Torino
-Aaron Cresswell	34	DF	West Ham
-Aaron Malouda	18	FW	Lille
-Aaron Ramsdale	26	GK	Southampton
-Aaron Wan-Bissaka	26	DF	West Ham
 Aarón Martín	27	DF	Genoa
-Abakar Sylla	21	DF	Strasbourg
-Abdallah Sima	23	FW,MF	Brest
-Abde Ezzalzouli	22	FW,MF	Betis
-Abdel Abqar	25	DF	Alavés
-Abderrahman Rebbach	25	FW,MF	Alavés
 Abdou Harroui	26	MF,FW	Hellas Verona
-Abdoul Koné	19	DF	Reims
-Abdoulaye Bamba	34	DF	Angers
-Abdoulaye Doucouré	31	MF	Everton
-Abdoulaye Keita	21	FW,MF	Getafe
-Abdoulaye Niakhate Ndiaye	22	DF	Brest
-Abdoulaye Touré	30	MF	Le Havre
 Abdoulie Ceesay	20	FW	St. Pauli
-Abdukodir Khusanov	20	DF	Lens
-Abdukodir Khusanov	20	DF	Manchester City
-Abdul Fatawu Issahaku	20	FW	Leicester City
-Abdul Mumin	26	DF	Rayo Vallecano
-Abdón Prats	31	FW,MF	Mallorca
-Abel	23	DF	Osasuna
-Abel Ruiz	24	FW	Girona
-Abner	24	DF	Lyon
-Aboubacar Bassinga	19	MF	Las Palmas
-Achraf Hakimi	25	DF	Paris S-G
-Adam Armstrong	27	FW,MF	Southampton
 Adam Aznou	18	DF	Bayern Munich
-Adam Aznou	18	DF	Valladolid
 Adam Dźwigała	28	DF,MF	St. Pauli
 Adam Hložek	22	FW,MF	Hoffenheim
-Adam Lallana	36	MF	Southampton
 Adam Marušić	31	DF	Lazio
 Adam Masina	30	DF	Torino
 Adam Obert	21	DF	Cagliari
-Adam Smith	33	DF	Bournemouth
-Adam Webster	29	DF	Brighton
-Adam Wharton	20	MF	Crystal Palace
-Adama Boiro	22	DF,FW	Athletic Club
-Adama Traoré	28	FW,MF	Fulham
 Ademola Lookman	26	MF,FW	Atalanta
-Adnan Januzaj	29	MF,FW	Las Palmas
-Ado Onaiwu	28	MF,FW	Auxerre
-Adri Embarba	32	FW,MF	Rayo Vallecano
-Adrian Baquerin	17	FW	Valladolid
 Adrian Beck	27	MF,FW	Heidenheim
 Adrian Benedyczak	23	FW,MF	Parma
 Adrian Bernabe	23	MF	Parma
-Adrian Niño	20	FW	Atlético Madrid
-Adrian Rodriguez	23	GK	Alavés
-Adrien Rabiot	29	MF	Marseille
 Adrien Tameze	30	MF,DF	Torino
-Adrien Thomasson	30	MF	Lens
-Adrien Truffert	22	DF,MF	Rennes
-Adrià Altimira	23	DF,FW	Leganés
-Adrià Pedrosa	26	DF	Sevilla
-Adrián	37	GK	Betis
-Adryelson	26	DF	Lyon
-Adu Ares	22	FW	Athletic Club
-Aihen Muñoz	26	DF	Real Sociedad
-Aimar Oroz	22	MF	Osasuna
-Aimen Moueffek	23	MF	Saint-Étienne
-Aingeru Olabarrieta	18	FW	Athletic Club
-Ainsley Maitland-Niles	26	DF	Lyon
-Aitor Fernández	33	GK	Osasuna
-Aitor Paredes	24	DF	Athletic Club
-Aitor Ruibal	28	DF,FW	Betis
-Akor Adams	24	FW	Montpellier
-Akor Adams	24	FW	Sevilla
 Alan Matturro	19	DF	Genoa
 Alassane Pléa	31	MF,FW	Gladbach
-Alban Lafont	25	GK	Nantes
-Albert Grønbaek	23	FW,MF	Southampton
-Albert Grønbaek	23	MF,FW	Rennes
 Albert Guðmundsson	27	FW,MF	Fiorentina
-Albert Sambi Lokonga	24	MF	Sevilla
 Alberto Cerri	28	FW	Como
 Alberto Dossena	25	DF	Como
 Alberto Grassi	29	MF	Empoli
 Alberto Manzoni	19	MF	Atalanta
-Alberto Marí	23	FW	Valencia
-Alberto Moleiro	20	FW,MF	Las Palmas
 Alberto Moreno	32	DF	Como
 Alberto Paleari	31	GK	Torino
-Alberto Risco	18	MF,FW	Getafe
 Alberto costa	20	DF	Juventus
 Aleix García	27	MF	Leverkusen
-Alejandro Balde	20	DF	Barcelona
-Alejandro Francés	21	DF	Girona
-Alejandro Garnacho	20	MF,FW	Manchester Utd
 Alejandro Jiménez	19	DF,FW	Milan
-Alejandro Rodriguez	16	MF	Lyon
-Alejo Véliz	20	FW	Espanyol
 Aleksandar Pavlovic	20	MF	Bayern Munich
-Aleksandar Sedlar	32	DF	Alavés
-Aleksandr Golovin	28	MF,FW	Monaco
 Alen Sherri	26	GK	Cagliari
 Alessandro Bastoni	25	DF	Inter
 Alessandro Bianco	21	MF	Fiorentina
@@ -117,77 +46,34 @@ Alessio Iovine	33	DF,FW	Como
 Alessio Romagnoli	29	DF	Lazio
 Alessio Zerbin	25	DF	Venezia
 Alessio Zerbin	25	FW,DF	Napoli
-Alex Baena	23	MF,FW	Villarreal
-Alex Iwobi	28	FW,MF	Fulham
-Alex Král	26	MF	Espanyol
-Alex McCarthy	34	GK	Southampton
 Alex Meret	27	GK	Napoli
-Alex Padilla	20	GK	Athletic Club
-Alex Palmer	27	GK	Ipswich Town
-Alex Scott	20	MF	Bournemouth
-Alex Sola	25	MF,FW	Getafe
 Alexander Bernhardsson	25	FW,MF	Holstein Kiel
-Alexander Isak	24	FW	Newcastle Utd
 Alexander Meyer	33	GK	Dortmund
 Alexander Nübel	27	GK	Stuttgart
 Alexander Prass	23	DF	Hoffenheim
 Alexander Schwolow	32	GK	Union Berlin
-Alexander Sørloth	28	FW	Atlético Madrid
-Alexandre Lacazette	33	FW	Lyon
 Alexis Claude-Maurice	26	MF,FW	Augsburg
-Alexis Mac Allister	25	MF	Liverpool
 Alexis Saelemaekers	25	DF,FW	Milan
 Alexis Saelemaekers	25	DF,FW	Roma
 Alexis Sánchez	35	FW	Udinese
-Alexsandro Ribeiro	24	DF	Lille
-Alfie Dorrington	19	DF	Tottenham
-Alfie Pond	20	DF	Wolves
-Alfon	25	FW,MF	Celta Vigo
-Alfonso Espino	32	DF	Rayo Vallecano
-Alfonso Pedraza	28	DF,MF	Villarreal
 Alfred Duncan	31	MF	Venezia
-Ali Abdi	30	DF,MF	Nice
-Ali Al Hamadi	22	FW	Ipswich Town
 Ali Dembélé	20	DF	Torino
 Ali Jasim	20	FW,DF	Como
-Alidu Seidu	24	DF	Rennes
 Alieu Fadera	22	FW,DF	Como
 Aliou Badara Baldé	21	MF,FW	Bochum
-Alisson	31	GK	Liverpool
 Aljoscha Kemlein	19	MF	Union Berlin
-Allan Nyom	36	DF,MF	Getafe
-Almoatasem Al Musrati	28	MF	Monaco
 Almugera Kabar	18	DF	Dortmund
-Alois Confais	27	MF	Le Havre
 Alphadjo Cissè	17	FW,MF	Hellas Verona
-Alphonse Areola	31	GK	West Ham
 Alphonso Davies	23	DF	Bayern Munich
-Altay Bayındır	26	GK	Manchester Utd
-Amad Diallo	22	MF,FW	Manchester Utd
 Amadou Haidara	26	MF	RB Leipzig
-Amadou Koné	19	MF	Reims
-Amadou Onana	22	MF	Aston Villa
-Amar Dedić	21	DF	Marseille
-Amath	28	FW,DF	Valladolid
 Ameen Al-Dakhil	22	DF	Stuttgart
-Amidou Doumbouya	16	DF	Nice
 Amin Sarr	23	FW	Hellas Verona
 Amine Adli	24	MF,FW	Leverkusen
-Amine Gouiri	24	FW,MF	Marseille
-Amine Gouiri	24	MF,FW	Rennes
-Amine Harit	27	MF	Marseille
-Amine Salama	24	FW	Reims
 Amir Richardson	22	MF	Fiorentina
 Amir Rrahmani	30	DF	Napoli
 Amos Pieper	26	DF	Werder Bremen
 Anass Salah-Eddine	22	DF	Roma
-Anass Zaroury	23	FW,MF	Lens
-Anastasios Douvikas	24	FW	Celta Vigo
 Anastasios Douvikas	24	FW	Como
-Ander Barrenetxea	22	MF,FW	Real Sociedad
-Ander Guevara	27	MF	Alavés
-Ander Herrera	34	MF	Athletic Club
-Andoni Gorosabel	27	DF	Athletic Club
 Andre-Frank Zambo Anguissa	28	MF	Napoli
 Andrea Belotti	30	FW	Como
 Andrea Cambiaso	24	DF,FW	Juventus
@@ -197,438 +83,152 @@ Andrea Mazza	20	GK	Monza
 Andrea Petagna	29	FW	Monza
 Andrea Pinamonti	25	FW	Genoa
 Andreas Albers	34	FW	St. Pauli
-Andreas Christensen	28	DF	Barcelona
 Andreas Hanche-Olsen	27	DF	Mainz 05
-Andreas Pereira	28	MF	Fulham
 Andreas Skov Olsen	24	FW,MF	Wolfsburg
-Andrei Ratiu	26	DF	Rayo Vallecano
 Andrej Ilic	24	FW	Union Berlin
 Andrej Kramarić	33	MF,FW	Hoffenheim
-Andrew Omobamidele	22	DF	Strasbourg
-Andrew Robertson	30	DF	Liverpool
-Andrey Santos	20	MF	Strasbourg
-Andriy Lunin	25	GK	Real Madrid
 András Schäfer	25	MF	Union Berlin
-André	23	MF	Wolves
-André Ayew	34	FW	Le Havre
-André Ferreira	28	GK	Valladolid
-André Gomes	31	MF	Lille
-André Onana	28	GK	Manchester Utd
 André Silva	28	FW	Werder Bremen
 André Silva	28	FW,MF	RB Leipzig
-Andrés García	21	DF,MF	Aston Villa
 Andu Kelati	21	MF,DF	Holstein Kiel
-Andy Delort	32	FW	Montpellier
-Andy Diouf	21	MF	Lens
-Andy Irving	24	MF	West Ham
-Andy Pelmard	24	DF	Las Palmas
 Andy Pelmard	24	DF	Lecce
-Ange Martial Tia	17	MF,DF	Reims
 Ange-Yoan Bonny	20	FW	Parma
-Angel Gomes	23	MF	Lille
 Angeliño	27	DF	Roma
-Angelo Fulgini	27	MF,FW	Lens
 Angelo Stiller	23	MF	Stuttgart
 Anrie Chase	20	DF	Stuttgart
 Ansgar Knauff	22	MF,DF	Eint Frankfurt
-Ansu Fati	21	FW	Barcelona
-Ante Budimir	33	FW	Osasuna
 Ante Rebić	30	FW,MF	Lecce
-Anthony Briançon	29	DF	Saint-Étienne
 Anthony Caci	27	DF	Mainz 05
-Anthony Elanga	22	FW,MF	Nott'ham Forest
-Anthony Gordon	23	FW,MF	Newcastle Utd
 Anthony Jung	32	DF	Werder Bremen
-Anthony Lopes	33	GK	Nantes
 Anthony Losilla	38	MF	Bochum
-Anthony Rouault	23	DF	Rennes
 Anthony Rouault	23	DF	Stuttgart
 Antoine Bernede	25	MF	Hellas Verona
-Antoine Griezmann	33	FW,MF	Atlético Madrid
 Antoine Hainaut	22	DF,FW	Parma
-Antoine Joujou	21	MF,FW	Le Havre
 Antoine Makoumbou	26	MF	Cagliari
-Antoine Mendy	20	DF	Nice
-Antoine Semenyo	24	FW	Bournemouth
 Anton Stach	25	MF,DF	Hoffenheim
-Antonee Robinson	26	DF	Fulham
 Antonino Gallo	24	DF	Lecce
-Antonio Blanco	24	MF	Alavés
-Antonio Candela	24	DF	Valladolid
 Antonio Candela	24	DF	Venezia
 Antonio Nusa	19	MF,DF	RB Leipzig
-Antonio Raillo	32	DF	Mallorca
 Antonio Raimondo	20	FW,DF	Venezia
-Antonio Rüdiger	31	DF	Real Madrid
 Antonio Sanabria	28	FW	Torino
-Antonio Sivera	27	GK	Alavés
-Antonio Sánchez	27	MF,DF	Mallorca
-Antoniu	21	FW,MF	Espanyol
-Antony	24	DF,MF	Manchester Utd
-Antony	24	FW	Betis
 Antonín Barák	29	MF	Fiorentina
-Antonín Kinský	21	GK	Tottenham
-Anuar	29	MF,FW	Valladolid
-Archie Gray	18	DF,MF	Tottenham
-Arda Güler	19	MF,FW	Real Madrid
 Ardian Ismajli	27	DF	Empoli
-Aridane Hernández	35	DF	Rayo Vallecano
-Arijanet Muric	25	GK	Ipswich Town
 Arijon Ibrahimović	18	FW	Bayern Munich
 Arijon Ibrahimović	18	MF	Lazio
-Aristide Zossou	19	MF	Auxerre
-Aritz Arambarri	26	DF	Leganés
-Aritz Elustondo	30	DF	Real Sociedad
-Arkaitz Mariezkurrena	19	FW,MF	Real Sociedad
-Armando Broja	22	FW	Everton
 Armando Izzo	32	DF	Monza
-Armel Bella Kotchap	22	DF	Southampton
 Armin Gigovic	22	MF	Holstein Kiel
 Armindo Sieb	21	FW,MF	Mainz 05
-Arnau Martinez	21	DF,MF	Girona
-Arnau Rafús	21	GK	Valladolid
-Arnau Solà	21	MF	Villarreal
-Arnau Tenas	23	GK	Paris S-G
-Arnaud Kalimuendo	22	FW,MF	Rennes
 Arnaud Nordin	26	DF,MF	Mainz 05
-Arnaud Nordin	26	FW	Montpellier
-Arnaut Danjuma	27	FW	Villarreal
-Arnaut Danjuma	27	FW,MF	Girona
 Arne Engels	20	MF,FW	Augsburg
 Arne Maier	25	MF	Augsburg
-Aron Dønnum	26	DF,MF	Toulouse
-Arouna Sangante	22	DF	Le Havre
-Arsen Zakharyan	21	MF,FW	Real Sociedad
 Artem Dovbyk	27	FW	Roma
 Arthur	21	DF	Leverkusen
 Arthur Atta	21	MF,FW	Udinese
 Arthur Chaves	23	DF	Hoffenheim
-Arthur Desmas	30	GK	Le Havre
-Arthur Melo	27	MF	Girona
 Arthur Theate	24	DF	Eint Frankfurt
 Arthur Vermeeren	19	MF	RB Leipzig
-Arturo Rodríguez	17	FW	Las Palmas
 Arvid Brorsson	25	DF	Monza
-Asher Agbinone	18	MF	Crystal Palace
-Ashley Young	39	DF	Everton
-Asier Villalibre	26	FW	Alavés
 Assan Ouedraogo	18	MF	RB Leipzig
-Assane Diao	18	FW	Betis
 Assane Diao	18	FW,MF	Como
-Assane Dioussé	26	MF	Auxerre
 Aster Vranckx	21	MF	Wolfsburg
 Atakan Karazor	27	MF	Stuttgart
-Augustine Boakye	23	FW,MF	Saint-Étienne
-Augusto Batalla	28	GK	Rayo Vallecano
 Aurele Amenda	21	DF	Eint Frankfurt
-Aurélien Tchouaméni	24	DF,MF	Real Madrid
-Aurélio Buta	27	DF	Reims
-Axel Camblan	20	MF,FW	Brest
-Axel Disasi	26	DF	Aston Villa
-Axel Disasi	26	DF	Chelsea
-Axel Gueguin	19	FW	Montpellier
-Axel Tapé	16	DF,MF	Paris S-G
-Axel Tuanzebe	26	DF	Ipswich Town
-Axel Witsel	35	DF	Atlético Madrid
-Ayanda Sishuba	19	FW	Rennes
-Ayden Heaven	17	DF	Manchester Utd
-Ayman Aiki	19	FW,MF	Saint-Étienne
 Ayman Azhil	23	MF	Dortmund
 Aymen Barkok	26	MF	Mainz 05
-Ayoze Pérez	31	FW	Villarreal
-Ayyoub Bouaddi	16	MF	Lille
-Azor Matusiwa	26	MF	Rennes
-Aïssa Mandi	32	DF	Lille
-Badredine Bouanani	19	MF,FW	Nice
-Bafodé Diakité	23	DF	Lille
-Bahereba Guirassy	17	FW,MF	Nantes
 Balthazar Pierret	24	MF	Lecce
-Bamba Dieng	24	FW	Angers
-Bamo Meïté	22	DF	Marseille
-Bamo Meïté	22	DF	Montpellier
-Baptiste Santamaria	29	MF	Nice
-Baptiste Santamaria	29	MF	Rennes
-Bart Verbruggen	21	GK	Brighton
 Bazoumana Touré	18	FW,MF	Hoffenheim
-Becir Omeragic	22	DF	Montpellier
 Ben Alexander Voll	23	GK	St. Pauli
-Ben Brereton	25	FW	Southampton
-Ben Chilwell	27	DF	Crystal Palace
-Ben Davies	31	DF	Tottenham
 Ben Godfrey	26	DF	Atalanta
-Ben Godfrey	26	DF	Ipswich Town
-Ben Johnson	24	DF,FW	Ipswich Town
 Ben Lhassine Kone	24	MF	Como
-Ben Mee	34	DF	Brentford
-Ben Old	21	FW,MF	Saint-Étienne
-Ben Viadere	18	MF	Auxerre
-Ben White	26	DF	Arsenal
-Ben Winterburn	19	MF,FW	Bournemouth
 Bence Dárdai	18	MF	Wolfsburg
 Benedict Hollerbach	23	FW,MF	Union Berlin
 Benedikt Gimber	27	DF	Heidenheim
 Benedikt Pichler	27	FW	Holstein Kiel
-Benito Ramírez	29	DF,FW	Las Palmas
-Benjamin André	33	MF	Lille
-Benjamin Bouchouari	22	MF	Saint-Étienne
-Benjamin Bourigeaud	30	MF	Rennes
 Benjamin Henrichs	27	DF	RB Leipzig
-Benjamin Lecomte	33	GK	Montpellier
 Benjamin Pavard	28	DF	Inter
 Benjamin Siegrist	32	GK	Genoa
 Benjamin Šeško	21	FW,MF	RB Leipzig
 Benjamín Domínguez	20	FW	Bologna
-Benoît Badiashile	23	DF	Chelsea
 Berat Djimsiti	31	DF	Atalanta
-Beres Owusu	20	DF	Saint-Étienne
-Bernard Nguene	17	FW	Nice
 Bernardo	29	DF	Bochum
-Bernardo Silva	29	MF,FW	Manchester City
-Bernd Leno	32	GK	Fulham
-Bertuğ Yıldırım	22	FW	Getafe
-Beto	26	FW	Everton
-Beñat Prados	23	MF	Athletic Club
-Beñat Turrientes	22	MF	Real Sociedad
-Bilal Brahimi	24	MF	Nice
-Bilal El Khannouss	20	MF,FW	Leicester City
-Bilal Nadir	20	MF	Marseille
-Billy Gilmour	23	MF	Brighton
 Billy Gilmour	23	MF	Napoli
-Birama Touré	32	MF,DF	Montpellier
 Bjarki Bjarkason	24	DF,MF	Venezia
 Bob Murphy Omoregbe	20	MF	Milan
-Bobby De Cordova-Reid	31	FW	Leicester City
-Bojan Miovski	25	FW	Girona
-Borja Iglesias	31	FW	Celta Vigo
-Borja Mayoral	27	FW	Getafe
-Borna Barišić	31	DF	Leganés
 Borna Sosa	26	DF	Torino
 Botond Balogh	22	DF	Parma
-Boubacar Kamara	24	MF	Aston Villa
-Boubacar Traoré	22	MF	Wolves
-Boubakar Kouyaté	27	DF	Montpellier
-Boubakary Soumaré	25	MF	Leicester City
 Boulaye Dia	27	MF,FW	Lazio
-Bradley Barcola	21	FW	Paris S-G
-Bradley Locko	22	DF	Brest
-Brahim Díaz	24	FW,MF	Real Madrid
-Brais Méndez	27	MF	Real Sociedad
-Brajan Gruda	20	MF,FW	Brighton
-Brandon Austin	25	GK	Tottenham
-Breel Embolo	27	FW,MF	Monaco
-Brendan Chardonnet	29	DF	Brest
-Brennan Johnson	23	FW	Tottenham
 Brenner	24	MF,FW	Udinese
-Brian Oliván	30	DF	Espanyol
-Brice Samba	30	GK	Lens
-Brice Samba	30	GK	Rennes
 Brooke Norton-Cuffy	20	DF,FW	Genoa
-Bruno Fernandes	29	MF	Manchester Utd
-Bruno Guimarães	26	MF	Newcastle Utd
 Bryan Cristante	29	MF	Roma
-Bryan Gil	23	FW,MF	Girona
-Bryan Mbeumo	24	FW	Brentford
-Bryan Zaragoza	23	FW,MF	Osasuna
 Budu Zivzivadze	30	FW	Heidenheim
-Bukayo Saka	22	FW,MF	Arsenal
-Caio Henrique Oliveira Silva	27	DF	Monaco
 Caleb Ekuban	30	FW	Genoa
-Caleb Kporha	18	DF	Crystal Palace
-Caleb Okoli	23	DF	Leicester City
-Caleb Wiley	19	DF,MF	Strasbourg
-Callum Hudson-Odoi	23	FW,MF	Nott'ham Forest
-Callum Wilson	32	FW	Newcastle Utd
-Calvin Bassey	24	DF	Fulham
-Cameron Archer	23	FW	Southampton
-Cameron Burgess	28	DF	Ipswich Town
 Can Uzun	18	MF,FW	Eint Frankfurt
-Caoimhín Kelleher	25	GK	Liverpool
 Carl Johansson	30	DF	Holstein Kiel
-Carl Starfelt	29	DF	Celta Vigo
-Carlens Arcus	28	DF	Angers
-Carles Aleñá	26	MF,FW	Alavés
-Carles Aleñá	26	MF,FW	Getafe
-Carles Pérez	26	MF,FW	Getafe
 Carlo Boukhalfa	25	MF	St. Pauli
-Carlos Alcaraz	21	FW,MF	Everton
-Carlos Alcaraz	21	MF	Southampton
 Carlos Augusto	25	DF	Inter
-Carlos Baleba	20	MF	Brighton
-Carlos Benavídez	26	MF	Alavés
-Carlos Dominguez	23	DF	Celta Vigo
-Carlos Forbs	20	MF,FW	Wolves
-Carlos Guirao	21	MF	Betis
-Carlos Gómez	21	MF,DF	Rennes
-Carlos Martín	22	FW,MF	Alavés
-Carlos Romero	22	DF	Espanyol
-Carlos Soler	27	MF,FW	West Ham
-Carlos Vicente	25	FW,MF	Alavés
-Carlos Vinícius	29	MF,FW	Fulham
-Carmona	22	DF	Sevilla
 Carney Chukwuemeka	20	MF	Dortmund
-Casemiro	32	MF	Manchester Utd
 Casper Tengstedt	24	FW	Hellas Verona
 Castello Lukeba	21	DF	RB Leipzig
-Catena	29	DF	Osasuna
 Cedric Zesiger	26	DF	Augsburg
 Cedric Zesiger	26	DF	Wolfsburg
-Cenk Özkacar	23	DF	Valladolid
 Cesare Casadei	21	MF	Torino
-Chadi Riad	21	DF	Crystal Palace
 Charalampos Lykogiannis	30	DF	Bologna
 Charles De Ketelaere	23	MF,FW	Atalanta
-Charlie Cresswell	21	DF	Toulouse
-Charlie Taylor	30	DF	Southampton
 Che Adams	28	FW	Torino
-Cheick Doucouré	24	MF	Crystal Palace
 Cheick Oumar Conde	24	MF	Venezia
 Cheikh Tidiane Niasse	24	MF	Hellas Verona
-Chema	19	MF	Real Madrid
 Cher Ndour	20	MF,DF	Fiorentina
-Chidera Ejuke	26	FW	Sevilla
-Chidozie Obi-Martin	16	FW	Manchester Utd
-Chiedozie Ogbene	27	FW	Ipswich Town
-Chiquinho	24	MF	Wolves
-Chiquinho	24	MF,FW	Mallorca
 Chris Führich	26	MF,FW	Stuttgart
-Chris Richards	24	DF	Crystal Palace
-Chris Wood	32	FW	Nott'ham Forest
 Chrislain Matsima	22	DF	Augsburg
-Christantus Uche	21	FW,MF	Getafe
-Christian Eriksen	32	MF	Manchester Utd
 Christian Gytkjær	34	FW	Venezia
 Christian Günter	31	DF	Freiburg
 Christian Kabasele	33	DF	Udinese
 Christian Kouamé	26	FW,MF	Empoli
 Christian Kouamé	26	FW,MF	Fiorentina
-Christian Mawissa	19	DF	Monaco
-Christian Nørgaard	30	MF	Brentford
 Christian Pulisic	25	FW,MF	Milan
-Christian Walton	28	GK	Ipswich Town
 Christoph Baumgartner	24	MF	RB Leipzig
-Christopher Nkunku	26	FW	Chelsea
-Christopher Operi	27	DF,FW	Le Havre
 Christopher Trimmel	37	DF,MF	Union Berlin
-Christopher Wooh	22	DF	Rennes
 Christos Mandas	22	GK	Lazio
-Chuba Akpom	28	FW	Lille
-Chuky san jose	20	MF	Valladolid
-Claudio Echeverri	18	FW	Manchester City
-Clinton Mata	31	DF	Lyon
-Clément Akpa	22	DF	Auxerre
-Clément Lenglet	29	DF	Atlético Madrid
-Coba da Costa	22	MF,FW	Getafe
-Cody Gakpo	25	FW	Liverpool
 Cole Campbell	18	MF,FW	Dortmund
-Cole Palmer	22	MF,FW	Chelsea
 Connor Metcalfe	24	MF,FW	St. Pauli
-Conor Bradley	21	DF	Liverpool
-Conor Chaplin	27	MF,FW	Ipswich Town
-Conor Coady	31	DF	Leicester City
-Conor Gallagher	24	MF	Atlético Madrid
-Conor Townsend	31	DF	Ipswich Town
-Copete	24	DF	Mallorca
-Corentin Tolisso	29	MF	Lyon
-Craig Dawson	34	DF	Wolves
-Cristhian Mosquera	20	DF	Valencia
-Cristhian Stuani	37	FW	Girona
-Cristian Cásseres Jr.	24	MF	Toulouse
 Cristian Gamboa	34	DF	Bochum
-Cristian Romero	26	DF	Tottenham
 Cristiano Biraghi	31	DF	Fiorentina
 Cristiano Biraghi	31	DF	Torino
-Crysencio Summerville	22	FW,MF	West Ham
-Cucho	25	FW	Betis
-Curtis Jones	23	MF,DF	Liverpool
-Cyle Larin	29	FW	Mallorca
 Cyril Ngonge	24	FW	Napoli
-Cédric Bakambu	33	FW	Betis
-Cédric Hountondji	30	DF	Angers
-Cédric Kipré	27	DF	Reims
-César Azpilicueta	34	DF	Atlético Madrid
-César Tárrega	22	DF	Valencia
-Daichi Kamada	27	MF	Crystal Palace
 Dailon Livramento	23	FW,MF	Hellas Verona
-Daler Kuzyaev	31	MF	Le Havre
-Daley Blind	34	DF	Girona
-Daley Sinkgraven	29	DF	Las Palmas
 Damián Pizarro	19	FW,MF	Udinese
-Damián Rodríguez	21	MF	Celta Vigo
-Dan Burn	32	DF	Newcastle Utd
 Dan Ndoye	23	FW	Bologna
 Dan-Axel Zagadou	25	DF,MF	Stuttgart
-Dane Scarlett	20	FW,MF	Tottenham
 Danel Sinani	27	FW,MF	St. Pauli
-Dango Ouattara	22	FW	Bournemouth
-Dani Carvajal	32	DF	Real Madrid
-Dani Ceballos	27	MF	Real Madrid
-Dani Cárdenas	27	GK	Rayo Vallecano
-Dani Gómez	26	FW	Valencia
-Dani Olmo	26	MF,FW	Barcelona
-Dani Raba	28	FW,MF	Leganés
-Dani Rodríguez	36	MF,FW	Mallorca
 Dani de Wit	26	MF,FW	Bochum
 Daniel Bandeira	24	MF	Hellas Verona
-Daniel Bentley	31	GK	Wolves
-Daniel Díaz	18	MF	Real Sociedad
 Daniel Fila	21	FW	Venezia
-Daniel Jebbison	20	FW	Bournemouth
-Daniel Luna	21	MF	Mallorca
 Daniel Maldini	22	FW,MF	Atalanta
 Daniel Maldini	22	MF,FW	Monza
 Daniel Mosquera	24	FW	Hellas Verona
-Daniel Muñoz	28	DF	Crystal Palace
 Daniel Oyegoke	21	DF	Hellas Verona
-Daniel Parejo	35	MF	Villarreal
 Daniel Peretz	24	GK	Bayern Munich
-Daniel Podence	28	MF,FW	Wolves
-Daniel Requena	20	MF	Villarreal
-Daniel Rodriguez	18	FW	Barcelona
 Daniel Svensson	22	DF,FW	Dortmund
-Daniel Vivian	25	DF	Athletic Club
-Daniel Yáñez	17	FW	Real Madrid
 Daniele Baselli	32	MF	Como
 Daniele Ghilardi	21	DF	Hellas Verona
 Daniele Padelli	38	GK	Udinese
 Daniele Sommariva	27	GK	Genoa
 Danilho Doekhi	26	DF	Union Berlin
-Danilo	23	MF,FW	Nott'ham Forest
 Danilo	33	DF	Juventus
 Danilo Cataldi	29	MF	Fiorentina
 Danilo D'Ambrosio	35	DF	Monza
 Danilo Veiga	21	DF	Lecce
-Danny Ings	32	FW,MF	West Ham
-Danny Ward	31	GK	Leicester City
-Danny Welbeck	33	FW	Brighton
 Danny da Costa	31	DF	Mainz 05
-Dante	40	DF	Nice
 Dany Mota	26	FW,MF	Monza
-Dara O'Shea	25	DF	Ipswich Town
-Dario Essugo	19	MF	Las Palmas
-Darko Brašanac	32	MF	Leganés
 Darko Lazović	33	DF,MF	Hellas Verona
-Darryl Bakola	16	DF,MF	Marseille
-Darwin Machís	31	MF,FW	Valladolid
-Darwin Núñez	25	FW	Liverpool
-Darío Fuentes	21	DF	Sevilla
 David Akpan Ankeye	22	FW,MF	Genoa
-David Alaba	32	DF	Real Madrid
-David Argüelles	22	MF	Getafe
-David Brooks	27	FW,MF	Bournemouth
-David Costa	23	MF,FW	Lens
 David Jurásek	23	DF	Hoffenheim
-David López	21	DF	Mallorca
-David López	34	DF	Girona
 David Mokwa	20	DF,FW	Hoffenheim
 David Nemeth	23	DF	St. Pauli
 David Neres	27	FW	Napoli
 David Odogu	18	DF	Wolfsburg
-David Otorbi	16	MF	Valencia
 David Preu	19	MF,DF	Union Berlin
 David Raum	26	DF	RB Leipzig
-David Raya	28	GK	Arsenal
-David Soria	31	GK	Getafe
-David Torres	21	DF	Valladolid
 David Zec	24	DF	Holstein Kiel
 David de Gea	33	GK	Fiorentina
 Davide Bartesaghi	18	DF	Milan
@@ -638,223 +238,90 @@ Davide Faraoni	32	DF	Hellas Verona
 Davide Frattesi	24	MF	Inter
 Davide Zappacosta	32	DF	Atalanta
 Dayot Upamecano	25	DF	Bayern Munich
-Dean Henderson	27	GK	Crystal Palace
-Dean Huijsen	19	DF	Bournemouth
-Declan Rice	25	MF	Arsenal
-Dehmaine Assoumani	19	MF,FW	Nantes
-Deiver Machado	30	DF,MF	Lens
-Dejan Kulusevski	24	MF,FW	Tottenham
 Dele Alli	28	MF	Como
-Denis Genreau	25	MF	Toulouse
-Denis Suárez	30	MF	Villarreal
 Denis Thomalla	31	MF	Heidenheim
 Denis Vavro	28	DF	Wolfsburg
-Denis Zakaria	27	MF	Monaco
 Deniz Undav	28	FW,MF	Stuttgart
-Dennis Appiah	32	DF	Saint-Étienne
 Dennis Geiger	26	MF,FW	Hoffenheim
 Dennis Man	25	FW,MF	Parma
 Denzel Dumfries	28	DF,FW	Inter
-Derek Cornelius	26	DF	Marseille
 Derrick Köhn	25	DF,FW	Werder Bremen
-Destiny Udogie	21	DF	Tottenham
 Devis Vásquez	26	GK	Empoli
 Devyne Rensch	21	DF	Roma
 Diadie Samassékou	28	MF	Hoffenheim
-Diego	24	FW	Leganés
-Diego Carlos	31	DF	Aston Villa
-Diego Conde	25	GK	Villarreal
 Diego Coppola	20	DF	Hellas Verona
-Diego Gómez	21	MF	Brighton
-Diego Iturralde	21	FW	Sevilla
-Diego Llorente	30	DF	Betis
-Diego López	22	MF,FW	Valencia
-Diego Martín	20	FW	Las Palmas
-Diego Moreira	19	DF,MF	Strasbourg
 Diego Pugno	18	FW	Juventus
-Diego Rico	31	DF	Getafe
-Dilane Bakwa	21	MF,DF	Strasbourg
-Dimitri Foulquier	31	DF	Valencia
 Dimitris Giannoulis	28	DF	Augsburg
-Dimitry Bertaud	26	GK	Montpellier
-Dinko Horkaš	25	GK	Las Palmas
-Diogo Dalot	25	DF	Manchester Utd
-Diogo Jota	27	FW	Liverpool
 Diogo Leite	25	DF	Union Berlin
-Divin Mubama	19	FW	Manchester City
-Djaoui Cissé	20	MF	Rennes
-Djed Spence	23	DF	Tottenham
-Djené	32	DF,MF	Getafe
-Djibril Sidibé	32	DF	Toulouse
-Djibril Sow	27	MF	Sevilla
-Djylian N'Guessan	15	FW	Saint-Étienne
-Dodi Lukebakio	26	FW	Sevilla
 Dodô	25	DF	Fiorentina
 Domagoj Bradarić	24	DF	Hellas Verona
 Domen Črnigoj	28	MF	Venezia
-Domingos André Ribeiro Almeida	24	MF,FW	Valencia
-Domingos Duarte	29	DF	Getafe
-Dominic Calvert-Lewin	27	FW	Everton
-Dominic Solanke	26	FW	Tottenham
-Dominik Greif	27	GK	Mallorca
 Dominik Javorček	21	DF,MF	Holstein Kiel
 Dominik Kohr	30	DF,MF	Mainz 05
-Dominik Szoboszlai	23	MF	Liverpool
-Donny van de Beek	27	MF	Girona
-Donovan Léon	31	GK	Auxerre
-Donyell Malen	25	FW	Aston Villa
 Donyell Malen	25	FW,MF	Dortmund
-Douglas	27	MF	Nantes
 Douglas Luiz	26	MF	Juventus
 Drissa Camara	22	MF,FW	Parma
-Duje Ćaleta-Car	27	DF	Lyon
-Duk	24	MF,FW	Leganés
 Duván Zapata	33	FW	Torino
 Dušan Vlahović	24	FW	Juventus
-Dwight McNeil	24	MF,FW	Everton
-Dylan Batubinsika	28	DF	Saint-Étienne
-Désiré Doué	19	FW,MF	Paris S-G
-Eberechi Eze	26	MF,FW	Crystal Palace
-Eddie Nketiah	25	FW,MF	Crystal Palace
-Ederson	30	GK	Manchester City
-Edhy Zuliani	19	DF	Toulouse
-Edimilson Fernandes	28	MF,DF	Brest
 Edmond Tapsoba	25	DF	Leverkusen
-Edmond-Paris Maghoma	23	MF,FW	Brentford
 Edoardo Bove	22	MF,FW	Fiorentina
 Edoardo Goldaniga	30	DF	Como
-Edon Zhegrova	25	FW,MF	Lille
-Edson Álvarez	26	MF	West Ham
-Edu Expósito	27	MF	Espanyol
-Eduard Sobol	29	DF	Strasbourg
-Eduardo Camavinga	21	MF,DF	Real Madrid
-Eiran Cashin	22	DF	Brighton
 El Bilal Touré	22	FW,MF	Stuttgart
 El Chadaille Bitshiabu	19	DF	RB Leipzig
 Eldor Shomurodov	29	FW,MF	Roma
 Elia Caprile	22	GK	Cagliari
 Elia Caprile	22	GK	Napoli
 Elias Saad	24	FW,MF	St. Pauli
-Eliesse Ben Seghir	19	MF,FW	Monaco
 Elif Elmas	24	FW,MF	Torino
 Elif Elmas	24	MF	RB Leipzig
-Eliot Matazo	22	MF	Monaco
-Elisha Owusu	26	MF	Auxerre
-Elliot Anderson	21	MF	Nott'ham Forest
 Ellyes Skhiri	29	MF	Eint Frankfurt
-Eloge Zabi	17	DF,MF	Reims
 Elseid Hysaj	30	DF	Lazio
 Elvis Rexhbeçaj	26	MF	Augsburg
-Elye Wahi	21	FW	Marseille
 Elye Wahi	21	FW,MF	Eint Frankfurt
-Elysée Logbo	20	FW	Le Havre
-Emanuel Emegha	21	FW	Strasbourg
 Emanuele Valeri	25	DF	Parma
 Emerson	25	DF	Milan
-Emerson Palmieri	29	DF	West Ham
 Emi Buendía	27	MF	Leverkusen
-Emi Buendía	27	MF,FW	Aston Villa
 Emil Audero	27	GK	Como
 Emil Bohinen	25	MF	Genoa
 Emil Holm	24	DF	Bologna
-Emil Krafth	29	DF	Newcastle Utd
-Emile Smith Rowe	24	MF	Fulham
-Emiliano Martínez	31	GK	Aston Villa
-Emmanuel Agbadou	27	DF	Reims
-Emmanuel Agbadou	27	DF	Wolves
-Emmanuel Biumla	19	DF	Angers
 Emmanuel Ekong	22	MF,FW	Empoli
 Emmanuel Gyasi	30	DF,FW	Empoli
-Emmanuel Koum Mbondo	18	DF	Marseille
-Emmanuel Sabbi	26	FW,MF	Le Havre
 Emre Can	30	DF,MF	Dortmund
-Endika Buján	21	FW	Athletic Club
-Endrick	18	FW	Real Madrid
-Enes Ünal	27	FW,MF	Bournemouth
-Enric Franquesa	27	DF,FW	Leganés
 Enrico Del Prato	24	DF	Parma
-Enzo Barrenechea	23	MF	Valencia
-Enzo Boyomo	22	DF	Osasuna
-Enzo Boyomo	22	DF	Valladolid
-Enzo Caumont	20	MF	Angers
 Enzo Ebosse	25	DF	Udinese
-Enzo Fernández	23	MF	Chelsea
 Enzo Le Fée	24	MF	Roma
-Enzo Loiodice	23	MF	Las Palmas
 Enzo Millot	22	MF,FW	Stuttgart
-Enzo Sternal	17	FW,MF	Marseille
-Enzo Tchato	21	DF	Montpellier
-Eray Cömert	26	DF,MF	Valladolid
 Eren Dinkçi	22	MF,FW	Freiburg
 Erencan Yardimci	22	FW,MF	Hoffenheim
 Erhan Mašović	25	DF	Bochum
-Eric Bailly	30	DF	Villarreal
 Eric Dier	30	DF	Bayern Munich
-Eric García	23	DF,MF	Barcelona
 Eric Smith	27	DF,MF	St. Pauli
-Eric da Silva Moreira	18	MF,DF	Nott'ham Forest
 Erik Ahlstrand	22	FW,MF	St. Pauli
-Erling Haaland	24	FW	Manchester City
 Ermedin Demirović	26	FW	Stuttgart
-Ernest Nuamah	20	FW,MF	Lyon
-Eros Maddy	23	DF	Auxerre
 Estanis	20	FW	Bologna
-Esteban Lepaul	24	FW	Angers
-Ethan Mbappé	17	MF,FW	Lille
-Ethan Nwaneri	17	FW,MF	Arsenal
-Ethan Pinnock	31	DF	Brentford
-Etienne Eto'o	21	FW	Rayo Vallecano
-Etienne Youte Kinkoue	22	DF	Le Havre
-Evan Ferguson	19	FW	Brighton
-Evan Ferguson	19	FW	West Ham
-Evanilson	24	FW	Bournemouth
-Evann Guessand	23	FW,MF	Nice
 Exequiel Palacios	25	MF	Leverkusen
 Eybi Nije	19	FW,MF	Torino
-Ezequiel Ávila	30	FW	Betis
-Ezri Konsa	26	DF	Aston Villa
 Fabian Rieder	22	MF,FW	Stuttgart
-Fabian Schär	32	DF	Newcastle Utd
 Fabiano Parisi	23	DF,MF	Fiorentina
-Fabien Centonze	28	DF	Nantes
-Fabio Carvalho	21	FW,MF	Brentford
 Fabio Chiarodia	19	DF	Gladbach
-Fabio González	27	MF	Las Palmas
 Fabio Miretti	20	MF,FW	Genoa
-Fabián Ruiz Peña	28	MF	Paris S-G
-Facundo Buonanotte	19	FW,MF	Leicester City
-Facundo Garcés	24	DF	Alavés
-Facundo Medina	25	DF	Lens
 Faik Sakar	16	MF	RB Leipzig
-Falaye Sacko	29	DF	Montpellier
 Fali Candé	26	DF	Venezia
 Fares Chaïbi	21	MF,FW	Eint Frankfurt
-Farid El Melali	27	FW	Angers
 Faride Alidou	23	FW,MF	Hellas Verona
-Faris Pemi Moumbagna	24	FW	Marseille
 Faustino Anjorin	22	MF	Empoli
 Federico Accornero	20	MF	Genoa
 Federico Barba	30	DF	Como
 Federico Baschirotto	27	DF	Lecce
 Federico Cassa	18	MF,FW	Atalanta
-Federico Chiesa	26	FW	Liverpool
 Federico Dimarco	26	DF,FW	Inter
 Federico Gatti	26	DF	Juventus
 Federico Ravaglia	24	GK	Bologna
-Federico Valverde	26	MF,DF	Real Madrid
 Felix Agu	24	DF	Werder Bremen
 Felix Nmecha	23	MF	Dortmund
 Felix Passlack	26	DF,MF	Bochum
 Fellipe Jack	18	DF	Como
-Fer López		FW,MF	Celta Vigo
-Ferdi Kadioglu	24	DF,MF	Brighton
-Ferland Mendy	29	DF	Real Madrid
-Fermin López	21	MF,FW	Barcelona
-Fernando Calero	28	DF,MF	Espanyol
-Ferrán Ruiz	21	MF	Girona
-Ferrán Torres	24	FW,MF	Barcelona
 Fikayo Tomori	26	DF	Milan
-Filip Jørgensen	22	GK	Chelsea
 Filip Marchwiński	22	MF	Lecce
 Filip Stankovic	22	GK	Venezia
 Filippo Melegoni	25	MF,FW	Genoa
@@ -866,64 +333,30 @@ Finn Ole Becker	24	MF	Hoffenheim
 Finn Porath	27	DF,MF	Holstein Kiel
 Fisayo Dele-Bashiru	23	MF,FW	Lazio
 Flavius Daniliuc	23	DF	Hellas Verona
-Florent Hanin	34	DF	Angers
-Florent Mollet	32	MF,FW	Nantes
 Florent Muslija	26	FW,MF	Freiburg
-Florian Ayé	27	FW	Auxerre
 Florian Grillitsch	28	MF	Hoffenheim
-Florian Grillitsch	28	MF	Valladolid
-Florian Lejeune	33	DF	Rayo Vallecano
 Florian Micheler	19	MF	Hoffenheim
 Florian Müller	26	GK	Freiburg
 Florian Neuhaus	27	MF	Gladbach
-Florian Sotoca	33	FW,MF	Lens
-Florian Tardieu	32	MF	Saint-Étienne
 Florian Thauvin	31	FW,MF	Udinese
 Florian Wirtz	21	MF,FW	Leverkusen
 Florinel Coman	26	FW,MF	Cagliari
-Flynn Downes	25	MF	Southampton
-Fodé Ballo-Touré	27	DF,MF	Le Havre
-Folarin Balogun	23	FW	Monaco
-Fran	19	GK	Real Madrid
-Fran Beltrán	25	MF	Celta Vigo
-Fran Garcia	24	DF	Real Madrid
-Fran Vieites	25	GK	Betis
 Francesco Acerbi	36	DF	Inter
 Francesco Camarda	16	FW,MF	Milan
 Francesco Caputo	36	FW	Empoli
 Francesco Zampano	30	DF	Venezia
-Francis Coquelin	33	MF	Nantes
 Francisco Conceição	21	FW,MF	Juventus
-Francisco Perez	21	FW,MF	Valencia
 Franck Honorat	27	FW	Gladbach
 Franco Carboni	21	DF	Venezia
-Franco Cervi	30	FW,MF	Celta Vigo
 Frank Feller	20	GK	Heidenheim
-Frank Magri	24	FW,MF	Toulouse
 Frank Onyeka	26	MF	Augsburg
-Frank Onyeka	26	MF	Brentford
 Frans Krätzig	21	DF	Stuttgart
 Frans Krätzig	21	DF,MF	Heidenheim
-Fraser Forster	36	GK	Tottenham
 Frederic Guilbert	29	DF	Lecce
 Frederik Rønnow	31	GK	Union Berlin
 Fredrik Jensen	26	MF	Augsburg
-Fredrik Oppegard	21	DF	Auxerre
-Frenkie de Jong	27	MF	Barcelona
-Fábio Silva	22	FW	Las Palmas
-Félix Lemaréchal	20	MF,FW	Strasbourg
-Gabin Capuano	18	FW	Lens
-Gabriel Bares	23	MF,DF	Montpellier
 Gabriel Charpentier	25	FW	Parma
-Gabriel Gudmundsson	25	DF	Lille
-Gabriel Jesus	27	FW	Arsenal
-Gabriel Magalhães	26	DF	Arsenal
-Gabriel Martinelli	23	FW,MF	Arsenal
-Gabriel Moscardo	18	MF,DF	Reims
-Gabriel Osei Misehouy	19	FW,MF	Girona
-Gabriel Osho	25	DF	Auxerre
 Gabriel Strefezza	27	FW,MF	Como
-Gabriel Suazo	26	DF	Toulouse
 Gabriel Vidovic	20	MF	Bayern Munich
 Gabriel Vidovic	20	MF	Mainz 05
 Gabriele Zappa	24	DF	Cagliari
@@ -932,24 +365,7 @@ Gaetano Castrovilli	27	MF	Monza
 Gaetano Castrovilli	27	MF,FW	Lazio
 Gaetano Oristanio	21	FW,MF	Venezia
 Gastón Pereiro	29	MF	Genoa
-Gauthier Gallon	31	GK	Rennes
-Gautier Larsonneur	27	GK	Saint-Étienne
-Gautier Lloris	29	DF	Le Havre
-Gavi	19	MF,FW	Barcelona
-Gaëtan Laborde	30	FW	Nice
-Gaëtan Perrin	28	MF,FW	Auxerre
-Geoffrey Kondogbia	31	DF,MF	Marseille
-George Edmundson	26	DF	Ipswich Town
-George Hirst	25	FW	Ipswich Town
-George Ilenikhena	17	FW	Monaco
-Georges Mikautadze	23	FW	Lyon
-Georginio Rutter	22	MF,FW	Brighton
-Gerard Gumbau	29	MF	Rayo Vallecano
-Gerard Martín	22	DF	Barcelona
-Gerard Moreno	32	FW	Villarreal
-Germán Valera	22	MF	Valencia
 Gerrit Holtmann	29	DF,FW	Bochum
-Gerónimo Rulli	32	GK	Marseille
 Giacomo Raspadori	24	FW,MF	Napoli
 Giangiacomo Magnani	28	DF	Hellas Verona
 Gianluca Busio	22	MF	Venezia
@@ -958,645 +374,230 @@ Gianluca Gaetano	24	MF,FW	Cagliari
 Gianluca Lapadula	34	FW,MF	Cagliari
 Gianluca Mancini	28	DF	Roma
 Gianluca Scamacca	25	FW	Atalanta
-Gianluigi Donnarumma	25	GK	Paris S-G
-Gideon Mensah	26	DF	Auxerre
 Gift Orban	22	FW	Hoffenheim
-Gift Orban	22	FW,DF	Lyon
 Gio Reyna	21	MF	Dortmund
-Giorgi Mamardashvili	23	GK	Valencia
 Giorgio Altare	25	DF	Venezia
 Giorgio Scalvini	20	DF	Atalanta
 Giorgos Kyriakopoulos	28	DF	Monza
 Giorgos Masouras	30	FW,MF	Bochum
-Giovani Lo Celso	28	MF,FW	Betis
 Giovanni Di Lorenzo	30	DF	Napoli
 Giovanni Fabbian	21	MF	Bologna
 Giovanni Leoni	17	DF	Parma
 Giovanni Simeone	29	FW	Napoli
-Giuliano Simeone	21	MF	Atlético Madrid
 Giuseppe Ciocci	22	GK	Cagliari
 Giuseppe Pezzella	26	DF,FW	Empoli
 Gleison Bremer	27	DF	Juventus
-Glen Kamara	28	MF	Rennes
-Goduine Koyalipou	24	FW	Lens
-Gonzalo García	20	FW,DF	Real Madrid
-Gonzalo Montiel	27	DF,MF	Sevilla
-Gonçalo Guedes	27	MF,FW	Wolves
-Gonçalo Ramos	23	FW	Paris S-G
-Gorka Guruzeta	27	FW	Athletic Club
-Gorka Rivera Alonso	19	DF,MF	Getafe
 Granit Xhaka	31	MF	Leverkusen
 Grant Ranos	21	FW	Gladbach
 Gregor Kobel	26	GK	Dortmund
 Grigoris Kastanos	26	MF,FW	Hellas Verona
 Grischa Prömel	29	MF	Hoffenheim
-Grégoire Coudert	25	GK	Brest
-Guela Doué	21	DF	Strasbourg
-Guglielmo Vicario	27	GK	Tottenham
-Guido Rodríguez	30	MF	West Ham
-Guillaume Restes	19	GK	Toulouse
 Guillermo Maripán	30	DF	Torino
-Guimissongui Ouattara	18	DF,FW	Strasbourg
 Gustav Isaksen	23	FW	Lazio
-Gustavo Nunes	18	FW,MF	Brentford
 Gvidas Gineitis	20	MF	Torino
-Habib Diarra	20	MF,FW	Strasbourg
-Hafiz Ibrahim	18	FW	Reims
 Hakan Çalhanoğlu	30	MF	Inter
-Hamari Traoré	32	DF	Real Sociedad
-Hamed Junior Traorè	24	MF	Auxerre
-Hamidou Makalou	18	FW,MF	Brest
-Hamza Choudhury	26	MF,DF	Leicester City
 Hamza Rafia	25	MF	Lecce
-Hamzat Ojediran	20	MF,FW	Lens
-Han-Noah Massengo	23	MF	Auxerre
 Hannes Behrens		DF	Hoffenheim
-Hans Hateboer	30	DF	Rennes
 Hans Nicolussi Caviglia	24	MF	Venezia
-Haris Belkebla	30	MF	Angers
 Haris Tabakovic	30	FW	Hoffenheim
-Harrison Armstrong	17	MF	Everton
-Harrison Reed	29	MF	Fulham
-Harry Amass	17	DF	Manchester Utd
-Harry Clarke	23	DF	Ipswich Town
-Harry Howell	15	FW	Brighton
 Harry Kane	31	FW	Bayern Munich
-Harry Maguire	31	DF	Manchester Utd
-Harry Toffolo	28	DF	Nott'ham Forest
-Harry Wilson	27	FW,MF	Fulham
-Harry Winks	28	MF	Leicester City
-Harvey Barnes	26	FW	Newcastle Utd
-Harvey Elliott	21	MF	Liverpool
 Hassane Kamara	30	DF	Udinese
 Hauke Wahl	30	DF	St. Pauli
 Henri Koudossou	24	DF	Augsburg
-Henrik Meister	20	FW	Rennes
 Henrikh Mkhitaryan	35	MF	Inter
-Henrique	30	DF	Valladolid
 Hernani	30	MF	Parma
-Hervé Koffi	27	GK	Lens
-Hianga Mananga Mbock	24	MF	Brest
-Hicham Boudaoui	24	MF	Nice
-Himad Abdelli	24	MF,FW	Angers
 Hiroki Ito	25	DF	Bayern Munich
-Hiroki Sekine	21	DF	Reims
 Honest Ahanor	16	DF,MF	Genoa
 Hong Hyunseok	25	MF	Mainz 05
-Hugo Duro	24	FW	Valencia
 Hugo Ekitike	22	FW	Eint Frankfurt
-Hugo Guillamón	24	MF	Valencia
 Hugo Larsson	20	MF	Eint Frankfurt
-Hugo Magnetti	26	MF	Brest
-Hugo Novoa	21	DF,MF	Alavés
-Hugo Sotelo	20	MF	Celta Vigo
-Hugo Álvarez	21	MF,DF	Celta Vigo
-Hwang Hee-chan	28	MF,FW	Wolves
-Hákon Arnar Haraldsson	21	MF,FW	Lille
-Hákon Rafn Valdimarsson	22	GK	Brentford
-Héctor Bellerín	29	DF	Betis
-Héctor Fort	17	DF	Barcelona
-Iago Aspas	36	FW,MF	Celta Vigo
-Iago Parente	18	DF	Valladolid
-Ian Maatsen	22	DF	Aston Villa
-Ibrahim Alani	18	MF	Valladolid
-Ibrahim Mbaye	16	FW,MF	Paris S-G
-Ibrahim Salah	22	FW	Brest
-Ibrahim Sangaré	26	MF	Nott'ham Forest
-Ibrahim Sissoko	28	FW	Saint-Étienne
 Ibrahim Sulemana	21	MF	Atalanta
-Ibrahima Konaté	25	DF	Liverpool
-Ibrahima Niane	25	FW	Angers
 Ibrahima Sissoko	26	MF	Bochum
-Ibrahima Wadji	29	FW,MF	Saint-Étienne
-Idrissa Gana Gueye	34	MF	Everton
 Ifechukwu Ogbus	18	DF	Freiburg
-Iglesias	26	DF	Getafe
 Ignace Van Der Brempt	22	DF	Como
-Ignatius Ganago	25	FW,MF	Nantes
-Igor	26	DF	Brighton
 Igor Matanovic	21	FW	Eint Frankfurt
-Igor Miladinović	21	FW,MF	Saint-Étienne
-Igor Zubeldia	27	DF	Real Sociedad
 Ihlas Bebou	30	MF	Hoffenheim
-Ike Orazi	17	MF	Reims
-Iker Almena	20	FW,DF	Girona
-Iker Benito	21	FW,MF	Osasuna
 Iker Bravo	19	FW,MF	Udinese
-Iker Córdoba	18	DF	Valencia
-Iker Losada	22	FW,MF	Celta Vigo
-Iker Losada	22	MF,FW	Betis
-Iker Muñoz	21	MF	Osasuna
-Ilaix Moriba	21	MF	Celta Vigo
-Ilias Akhomach	20	MF,FW	Villarreal
-Iliman Ndiaye	24	FW	Everton
-Illia Zabarnyi	21	DF	Bournemouth
-Ilyes Housni	19	FW,MF	Le Havre
 Ionuț Radu	27	GK	Venezia
-Irvin Cardona	26	FW	Saint-Étienne
-Irvin Cardona	26	FW,MF	Espanyol
-Isaac Palazón Camacho	29	MF,FW	Rayo Vallecano
-Isaac Romero	24	FW	Sevilla
 Isak Hien	25	DF	Atalanta
-Isco	32	MF	Betis
-Ismael Bekhoucha	19	MF,DF	Getafe
 Ismael Konate	18	FW,MF	Empoli
-Ismail Jakobs	24	DF	Monaco
-Ismaila Sarr	26	MF	Crystal Palace
-Ismaily	34	DF	Lille
-Ismaël Bennacer	26	MF	Marseille
 Ismaël Bennacer	26	MF	Milan
-Ismaël Doukouré	21	DF,MF	Strasbourg
-Ismaël Koné	22	MF	Rennes
-Ismaël Koné	22	MF,FW	Marseille
-Israel Domínguez	21	FW	Sevilla
-Issa Diop	27	DF	Fulham
 Issa Doumbia	20	MF	Venezia
 Issa Kaboré	23	DF,FW	Werder Bremen
-Issa Soumaré	23	FW,MF	Le Havre
-Issiaga Camara	19	MF	Nice
-Issiaga Sylla	30	DF	Montpellier
 Ivan Ilić	23	MF	Torino
-Ivan Jaime Pajuelo	23	MF	Valencia
 Ivan Nekić	23	DF	Holstein Kiel
 Ivan Ordets	32	DF	Bochum
 Ivan Provedel	30	GK	Lazio
 Ivan Prtajin	28	FW	Union Berlin
 Ivan Smolčić	23	DF	Como
-Iván Balliu	32	DF	Rayo Vallecano
-Iván Martín	25	MF	Girona
-Iván Sánchez	31	MF,FW	Valladolid
-Iván Villar	27	GK	Celta Vigo
-Iñaki Peña	25	GK	Barcelona
-Iñaki Williams	30	FW	Athletic Club
-Iñigo Lekue	31	DF	Athletic Club
-Iñigo Martínez	33	DF	Barcelona
-Iñigo Ruiz de Galarreta	30	MF	Athletic Club
-Jack Clarke	23	FW,MF	Ipswich Town
-Jack Grealish	28	FW,MF	Manchester City
-Jack Harrison	27	FW	Everton
-Jack Hinshelwood	19	MF,DF	Brighton
-Jack Stephens	30	DF	Southampton
-Jack Taylor	26	MF	Ipswich Town
 Jackson Irvine	31	MF	St. Pauli
 Jackson Tchatchoua	22	DF,MF	Hellas Verona
 Jacob Bruun Larsen	25	FW,MF	Hoffenheim
 Jacob Bruun Larsen	25	MF,FW	Stuttgart
-Jacob Greaves	23	DF	Ipswich Town
-Jacob Murphy	29	FW	Newcastle Utd
 Jacob Ondrejka	21	MF,FW	Parma
-Jacob Ramsey	23	FW,MF	Aston Villa
-Jacobo Ramón	19	DF	Real Madrid
 Jacopo Bacci	19	MF	Empoli
 Jacopo Fazzini	21	MF	Empoli
 Jacopo Seghetti	19	GK	Empoli
-Jacques Ekomie	20	DF,FW	Angers
-Jaden Philogene Bidace	22	FW,DF	Ipswich Town
-Jaden Philogene Bidace	22	FW,MF	Aston Villa
-Jadon Sancho	24	FW	Chelsea
-Jahmai Simpson-Pusey	18	DF	Manchester City
-Jailson Siqueira	28	DF,MF	Celta Vigo
-Jaime Mata	35	FW,MF	Las Palmas
 Jaka Bijol	25	DF	Udinese
-Jake Evans		FW	Leicester City
-Jake O'Brien	23	DF	Everton
 Jakov Medić	25	DF	Bochum
 Jakub Kamiński	22	DF,MF	Wolfsburg
-Jakub Kiwior	24	DF	Arsenal
-Jakub Moder	25	MF	Brighton
-Jakub Stolarczyk	23	GK	Leicester City
 Jamal Musiala	21	MF	Bayern Munich
 James Abankwah	20	DF,MF	Udinese
-James Bree	26	DF	Southampton
-James Garner	23	MF,DF	Everton
-James Hill	22	DF	Bournemouth
-James Justin	26	DF	Leicester City
-James Maddison	27	MF	Tottenham
-James Mcatee	21	MF,FW	Manchester City
-James Milner	38	MF	Brighton
-James Rodríguez	33	MF,FW	Rayo Vallecano
 James Sands	24	MF,DF	St. Pauli
-James Tarkowski	31	DF	Everton
-James Ward-Prowse	29	MF	Nott'ham Forest
-James Ward-Prowse	29	MF	West Ham
 Jamie Gittens	19	FW,MF	Dortmund
 Jamie Leweling	23	MF,FW	Stuttgart
-Jamie Vardy	37	FW	Leicester City
-Jan Bednarek	28	DF	Southampton
-Jan Oblak	31	GK	Atlético Madrid
-Jan Paul van Hecke	24	DF	Brighton
-Jan Salas	18	MF,FW	Mallorca
 Jan Schöppner	25	MF	Heidenheim
 Jan-Niklas Beste	25	FW,MF	Freiburg
 Janik Haberer	30	MF,DF	Union Berlin
 Jann-Fiete Arp	24	FW,MF	Holstein Kiel
-Jannik Vestergaard	31	DF	Leicester City
-Jarell Quansah	21	DF	Liverpool
-Jarrad Branthwaite	22	DF	Everton
-Jarrod Bowen	27	FW,MF	West Ham
 Jarzinho Malanga	18	DF	Stuttgart
-Jason Steele	33	GK	Brighton
-Jasper Cillessen	35	GK	Las Palmas
-Javi Galán	29	DF	Atlético Madrid
-Javi Hernández	26	DF	Leganés
-Javi López	22	DF	Real Sociedad
-Javi Martínez	24	MF	Osasuna
-Javi Martón	25	FW,MF	Athletic Club
-Javi Puado	26	FW,MF	Espanyol
-Javi Rodríguez	21	DF	Celta Vigo
-Javi Sánchez	27	DF	Valladolid
-Javier Guerra	21	MF	Valencia
-Javier Llabrés	21	FW	Mallorca
-Javier Manquillo	30	DF	Celta Vigo
-Javier Muñoz	29	MF,DF	Las Palmas
 Jay Idzes	24	DF	Venezia
-Jay Robinson	17	MF,FW	Southampton
-Jay Stansfield	21	MF	Fulham
-Jaydee Canvot	18	DF,MF	Toulouse
-Jayden Danns	18	MF	Liverpool
-Jayden Meghoma	18	DF	Brentford
 Jean Butez	29	GK	Como
 Jean Mattéo Bahoya	19	MF,FW	Eint Frankfurt
 Jean Onana	24	MF	Genoa
-Jean-Charles Castelletto	29	DF,MF	Nantes
-Jean-Clair Todibo	24	DF	West Ham
 Jean-Daniel Akpa-Akpro	31	MF	Monza
-Jean-Eudes Aholou	30	MF	Angers
-Jean-Kevin Duverne	27	DF	Nantes
-Jean-Philippe Gbamin	28	MF	Nantes
-Jean-Philippe Mateta	27	FW	Crystal Palace
-Jean-Ricner Bellegarde	26	MF,FW	Wolves
 Jeanuël Belocian	19	DF,MF	Leverkusen
 Jeff Ekhator	17	FW,MF	Genoa
-Jefferson Lerma	29	MF,DF	Crystal Palace
 Jeffrey Gouweleeuw	33	DF	Augsburg
-Jeffrey Schlupp	31	MF,DF	Crystal Palace
-Jens Cajuste	24	MF	Ipswich Town
 Jens Odgaard	25	MF,FW	Bologna
 Jens Stage	27	MF	Werder Bremen
 Jeong Woo-yeong	24	MF,FW	Union Berlin
-Jeremie Boga	27	MF,FW	Nice
 Jeremie Frimpong	23	DF,MF	Leverkusen
-Jeremy Agbonifo	18	FW,MF	Lens
-Jeremy Doku	22	FW,MF	Manchester City
-Jeremy Monga		FW,MF	Leicester City
-Jeremy Sarmiento	22	MF	Brighton
 Jesper Karlsson	26	FW	Bologna
 Jesper Karlsson	26	FW	Lecce
 Jesper Karlström	29	MF	Udinese
-Jesper Lindstrøm	24	FW	Everton
 Jesse Joronen	31	GK	Venezia
-Jesus Rodríguez	18	FW	Betis
-Jesus Vazquez	21	DF	Valencia
-Jesús Areso	25	DF	Osasuna
-Jesús Navas	38	FW,MF	Sevilla
-Jesús Owono	23	GK	Alavés
-Jesús Santiago	20	MF	Getafe
-Jesús Vallejo	27	DF	Real Madrid
-Jhoanner Chávez	22	DF,MF	Lens
 Jhon Lucumí	26	DF	Bologna
-Jhon Solis	19	MF	Girona
-Jibril Othman	20	FW	Saint-Étienne
-Jim Allevinah	29	FW	Angers
-Joachim Andersen	28	DF	Crystal Palace
-Joachim Andersen	28	DF	Fulham
-Joachim Kayi Sanda	17	DF	Southampton
 Joakim Mæhle	27	DF	Wolfsburg
-Joan García	23	GK	Espanyol
-Joan Jordán	30	MF	Alavés
 Joaquín Correa	29	FW,MF	Inter
-Joe Aribo	28	MF,DF	Southampton
-Joe Gomez	27	DF	Liverpool
-Joe Lumley	29	GK	Southampton
 Joe Scally	21	DF	Gladbach
-Joe Willock	24	MF,FW	Newcastle Utd
 Joel Pohjanpalo	29	FW	Venezia
-Joel Ward	34	DF	Crystal Palace
-Joelinton	27	MF,FW	Newcastle Utd
-Jofre	23	MF,FW	Espanyol
 Johan Manzambi	18	FW,MF	Freiburg
-Johan Mojica	31	DF	Mallorca
 Johan Vásquez	25	DF	Genoa
-Johann Lepenant	21	MF	Nantes
 Johannes Eggestein	26	FW	St. Pauli
-John Joe	20	MF	Reims
-John Joe	20	MF,FW	Getafe
-John McGinn	29	MF,FW	Aston Villa
-John Stones	30	DF,MF	Manchester City
 John Tolkin	22	DF,MF	Holstein Kiel
 John Yeboah	24	FW,MF	Venezia
-Johnny Cardoso	22	MF	Betis
-Jon Aramburu	22	DF	Real Sociedad
-Jon Guridi	29	MF,FW	Alavés
-Jon Magunazelaia	23	MF	Real Sociedad
-Jon Martin	18	DF	Real Sociedad
-Jon Moncayola	26	MF	Osasuna
-Jon Pacheco	23	DF	Real Sociedad
-Jon Rowe	21	FW,MF	Marseille
 Jonah Kusi-Asare	17	FW	Bayern Munich
 Jonas Föhrenbach	28	DF	Heidenheim
 Jonas Hofmann	32	MF,DF	Leverkusen
-Jonas Martin	34	MF	Brest
 Jonas Omlin	30	GK	Gladbach
 Jonas Rouhi	20	DF	Juventus
 Jonas Urbig	20	GK	Bayern Munich
 Jonas Wind	25	FW,MF	Wolfsburg
-Jonathan Bamba	28	FW,MF	Celta Vigo
 Jonathan Burkardt	24	FW	Mainz 05
-Jonathan Clauss	31	DF,MF	Nice
-Jonathan David	24	FW	Lille
-Jonathan Gradit	31	DF	Lens
 Jonathan Ikone	26	FW	Como
 Jonathan Ikone	26	FW,MF	Fiorentina
 Jonathan Tah	28	DF	Leverkusen
-Jonny Evans	36	DF	Manchester Utd
-Jordan Amavi	30	DF	Brest
-Jordan Ayew	32	FW,MF	Crystal Palace
-Jordan Ayew	32	FW,MF	Leicester City
-Jordan Ferri	32	MF	Montpellier
-Jordan James	20	MF	Rennes
-Jordan Lefort	30	DF	Angers
-Jordan Lotomba	25	MF,DF	Nice
-Jordan Pefok	28	FW	Reims
 Jordan Pefok	28	FW	Union Berlin
-Jordan Pickford	30	GK	Everton
-Jordan Teze	24	DF	Monaco
-Jordan Veretout	31	MF	Lyon
 Jordan Zemura	24	DF	Udinese
 Jordy Makengo	22	DF	Freiburg
-Jorge Cuenca	24	DF	Fulham
-Jorge Herrando	23	DF	Osasuna
-Jorge Sáenz	27	DF	Leganés
-Jorge de Frutos	27	FW,MF	Rayo Vallecano
-Jorginho	32	MF	Arsenal
-Joris Chotard	22	MF	Montpellier
 Josep Martinez	26	GK	Inter
-Joseph Aidoo	28	DF	Celta Vigo
-Joseph Aidoo	28	DF	Valladolid
-Joseph Okumu	27	DF	Reims
 Josha Vagnoman	23	DF,MF	Stuttgart
-Joshua Acheampong	18	DF	Chelsea
 Joshua Kimmich	29	MF	Bayern Munich
-Joshua King	17	MF	Fulham
-Joshua King	32	FW,MF	Toulouse
-Joshua Zirkzee	23	FW,MF	Manchester Utd
 Josip Juranović	28	DF,MF	Union Berlin
 Josip Stanišić	24	DF	Bayern Munich
-Josué Casimir	22	FW,MF	Le Havre
-José Arnaiz	29	FW,MF	Osasuna
-José Campaña	31	MF	Las Palmas
-José Carlos González	18	DF	Las Palmas
-José Gragera	23	MF	Espanyol
-José Luis García Vayá	25	MF	Valencia
-José Luis Gayà	29	DF	Valencia
 José Luis Palomino	34	DF	Cagliari
-José María Giménez	29	DF	Atlético Madrid
-José Sá	31	GK	Wolves
-Jota	25	FW,MF	Rennes
-Jota Silva	24	FW,MF	Nott'ham Forest
-João Félix	24	FW,MF	Chelsea
 João Félix	24	MF	Milan
-João Gomes	23	MF	Wolves
-João Neves	19	MF,DF	Paris S-G
 João Palhinha	29	MF	Bayern Munich
-João Pedro	22	FW,MF	Brighton
 Joël Schingtienne	21	DF	Venezia
-Joël Veltman	32	DF	Brighton
-Joško Gvardiol	22	DF	Manchester City
-Juan Bernat	31	DF,MF	Villarreal
-Juan Bernat	31	MF,DF	Getafe
-Juan Berrocal	25	DF	Getafe
-Juan Cruz	24	FW,MF	Leganés
-Juan Cruz Armada	32	DF	Osasuna
 Juan Cuadrado	36	DF,MF	Atalanta
 Juan David Cabal	23	DF	Juventus
-Juan Foyth	26	DF	Villarreal
-Juan Herzog	21	DF	Las Palmas
 Juan Jesus	33	DF	Napoli
 Juan Miranda	24	DF	Bologna
 Juan Musso	30	GK	Atalanta
-Juan Musso	30	GK	Atlético Madrid
-Juan Soriano	26	GK	Leganés
-Juanlu Sánchez	20	MF,DF	Sevilla
-Juanmi	31	FW,MF	Betis
-Juanmi	31	FW,MF	Getafe
-Juanmi Latasa	23	FW	Valladolid
-Juanpe	33	DF	Girona
-Jubal	30	DF	Auxerre
-Jude Bellingham	21	MF	Real Madrid
-Julen Agirrezabala	23	GK	Athletic Club
-Jules Koundé	25	DF	Barcelona
-Julian Araujo	22	DF	Bournemouth
 Julian Brandt	28	MF	Dortmund
 Julian Chabot	26	DF	Stuttgart
 Julian Niehues	23	MF	Heidenheim
 Julian Ryerson	26	DF	Dortmund
 Julian Weigl	28	MF	Gladbach
 Julien Duranville	18	FW,MF	Dortmund
-Julien Le Cardinal	26	DF	Brest
-Julio Enciso	20	MF,FW	Brighton
-Julio Enciso	20	MF,FW	Ipswich Town
-Julio Soler	19	DF,FW	Bournemouth
-Julián Chicco	26	MF,DF	Leganés
 Julián Malatini	23	DF	Werder Bremen
-Julián Álvarez	24	FW	Atlético Madrid
-Juma Bah	18	DF	Lens
-Juma Bah	18	DF	Valladolid
 Junior Adamu	23	FW	Freiburg
 Junior Ajayi	19	FW	Hellas Verona
 Junior Dina Ebimbe	23	MF,FW	Eint Frankfurt
 Junior Messias	33	MF,FW	Genoa
-Junior Mwanga	21	MF	Le Havre
-Junior Mwanga	21	MF	Strasbourg
-Junior Ndiaye	19	FW	Montpellier
 Junior Sambia	27	DF,FW	Empoli
-Junya Ito	31	FW,MF	Reims
 Jurgen Ekkelenkamp	24	MF	Udinese
-Jurriën Timber	23	DF	Arsenal
-Justin Bourgault	18	DF	Brest
-Justin Devenny	20	MF	Crystal Palace
 Justin Diehl	19	FW,DF	Stuttgart
-Justin Kluivert	25	MF	Bournemouth
 Justin Njinmah	23	FW,MF	Werder Bremen
-Justin Smith	21	MF	Espanyol
-Justin-Noël Kalumba	19	FW,MF	Angers
-Jáder Durán	20	FW	Aston Villa
-Jérémy Jacquet	19	DF	Rennes
-Jérémy Le Douaron	26	FW	Brest
-Jérémy Sebas	21	FW,MF	Strasbourg
 Jérôme Roussillon	31	DF,MF	Union Berlin
-Jørgen Strand Larsen	24	FW	Wolves
 Kacper Koscierski	17	DF	Bochum
 Kacper Urbanski	19	MF	Bologna
 Kacper Urbanski	19	MF	Monza
-Kaelan Casey	19	DF	West Ham
-Kai Havertz	25	FW,MF	Arsenal
 Kaishu Sano	23	MF	Mainz 05
-Kalvin Phillips	28	MF	Ipswich Town
-Kamaldeen Sulemana	22	FW,MF	Southampton
 Kamil Grabara	25	GK	Wolfsburg
-Kamory Doumbia	21	MF,FW	Brest
-Kandet Diawara	24	FW	Le Havre
-Kaoru Mitoma	27	FW,MF	Brighton
 Karim Adeyemi	22	FW,MF	Dortmund
 Karim Onisiwo	32	MF,FW	Mainz 05
-Karl Etta	20	MF,FW	Villarreal
-Karl Jakob Hein	22	GK	Valladolid
-Karl-Johan Johnsson	34	GK	Strasbourg
-Karol Fila	26	MF	Strasbourg
 Karol Linetty	29	MF	Torino
 Karol Mets	31	DF	St. Pauli
-Kasey McAteer	22	FW	Leicester City
-Kassoum Ouattara	19	DF,FW	Monaco
 Kauã Santos	21	GK	Eint Frankfurt
-Kazeem Olaigbe	21	MF,FW	Rennes
-Keane Lewis-Potter	23	DF,FW	Brentford
 Keinan Davis	26	FW	Udinese
 Keita Baldé	29	FW	Monza
-Keito Nakamura	24	FW,MF	Reims
 Keke Maximilian Topp	20	FW,MF	Werder Bremen
-Kelechi Iheanacho	27	FW	Sevilla
-Kelvin Amian	26	DF	Nantes
-Kembo Diliwidi	18	DF	Lens
 Kenan Yıldız	19	FW,MF	Juventus
-Kenedy	28	MF,FW	Valladolid
-Kenny Lala	32	DF	Brest
-Kenny Tete	28	DF	Fulham
-Kepa Arrizabalaga	29	GK	Bournemouth
 Keven Schlotterbeck	27	DF	Augsburg
 Kevin Akpoguma	29	DF	Hoffenheim
 Kevin Behrens	33	FW	Wolfsburg
 Kevin Bonifazi	28	DF	Lecce
-Kevin Danso	25	DF	Lens
-Kevin Danso	25	DF	Tottenham
-Kevin De Bruyne	33	MF,FW	Manchester City
 Kevin Kampl	33	MF	RB Leipzig
 Kevin Martins	19	MF,DF	Monza
 Kevin Müller	33	GK	Heidenheim
 Kevin Paredes	21	DF	Wolfsburg
-Kevin Schade	22	FW	Brentford
 Kevin Stöger	30	MF	Gladbach
 Kevin Trapp	34	GK	Eint Frankfurt
 Kevin Vogt	32	DF	Union Berlin
 Kevin Volland	32	FW,MF	Union Berlin
 Kevin Zeroli	19	MF	Milan
 Kevin Zeroli	19	MF	Monza
-Keyliane Abdallah	18	FW	Marseille
-Khalil Fayad	20	MF,FW	Montpellier
-Khvicha Kvaratskhelia	23	FW	Paris S-G
 Khvicha Kvaratskhelia	23	FW,MF	Napoli
 Khéphren Thuram	23	MF	Juventus
-Ki-Jana Hoever	22	DF	Auxerre
 Kialonda	26	DF	Lecce
-Kieran Tierney	27	DF,FW	Arsenal
-Kieran Trippier	33	DF	Newcastle Utd
-Kiernan Dewsbury-Hall	25	MF,FW	Chelsea
-Kike Barja	27	FW,MF	Osasuna
-Kike Pérez	27	MF	Valladolid
 Kike Pérez	27	MF	Venezia
-Kike Salas	22	DF	Sevilla
-Kiko Femenía	33	DF	Villarreal
-Kiké	34	FW	Alavés
 Kilian Fischer	23	DF	Wolfsburg
 Kiliann Sildillia	22	DF	Freiburg
-Kim Jisoo	19	DF	Brentford
 Kim Min-jae	27	DF	Bayern Munich
-Kim Minsu	18	MF,FW	Girona
 Kingsley Coman	28	FW	Bayern Munich
 Kingsley Ehizibue	29	DF	Udinese
 Kingstone Mutandwa	21	FW,MF	Cagliari
-Kirian Rodríguez	28	MF	Las Palmas
 Kjell-Arik Wätjen	18	MF	Dortmund
-Kjetil Haug	26	GK	Toulouse
 Ko Itakura	27	DF	Gladbach
-Kobbie Mainoo	19	MF	Manchester Utd
 Koji Miyoshi	27	FW,MF	Bochum
-Koka	31	FW	Le Havre
-Koke	32	MF	Atlético Madrid
 Konan N'dri	23	FW,MF	Lecce
 Koni De Winter	22	DF	Genoa
 Konrad Laimer	27	DF	Bayern Munich
 Konstantinos Koulierakis	20	DF	Wolfsburg
-Konstantinos Mavropanos	26	DF	West Ham
-Kosta Nedeljković	18	DF	Aston Villa
 Kosta Nedeljković	18	DF	RB Leipzig
-Kostas Tsimikas	28	DF	Liverpool
-Krapyvtsov Vladyslav	19	GK	Girona
 Kristijan Jakić	27	MF	Augsburg
 Kristjan Asllani	22	MF	Inter
-Kristoffer Ajer	26	DF	Brentford
-Krépin Diatta	25	DF,FW	Monaco
-Kyle Walker	34	DF	Manchester City
 Kyle Walker	34	DF	Milan
-Kyle Walker-Peters	27	DF	Southampton
-Kylian Mbappé	25	FW	Real Madrid
-Kyllian Antonio	16	DF,MF	Lens
-Kyogo Furuhashi	29	FW	Rennes
-Kévin Danois	20	MF	Auxerre
-Kévin Pedro	18	DF	Saint-Étienne
-Ladislav Krejčí	25	DF	Girona
-Lamare Bogarde	20	DF,MF	Aston Villa
 Lameck Banda	23	FW,MF	Lecce
-Lamine Camara	20	MF	Monaco
-Lamine Fomba	26	MF	Saint-Étienne
-Lamine Yamal	17	FW	Barcelona
-Lanroy Machine	18	FW	Angers
 Lars Ritzka	26	DF,MF	St. Pauli
 Lassana Coulibaly	28	MF	Lecce
 Lasse Rieß	23	GK	Mainz 05
 Lasse Rosenboom	22	DF	Holstein Kiel
-Lassine Sinayoko	24	FW,MF	Auxerre
-Lasso Coulibaly	21	FW,MF	Auxerre
 Lautaro Gianetti	30	DF	Udinese
 Lautaro Martínez	26	FW	Inter
 Lautaro Valenti	25	DF	Parma
 Lazar Samardzic	22	MF	Atalanta
-Leandro Antonetti	21	FW	Sevilla
-Leandro Cabrera	33	DF	Espanyol
 Leandro Chichizola	34	GK	Parma
 Leandro Paredes	30	MF	Roma
-Leandro Trossard	29	FW	Arsenal
 Lee Jae-sung	31	MF	Mainz 05
-Lee Kang-in	23	FW,MF	Paris S-G
-Leif Davis	24	DF	Ipswich Town
 Lennard Maloney	24	MF	Heidenheim
 Lennard Maloney	24	MF	Mainz 05
-Leny Yoro	18	DF	Manchester Utd
-Leo Román	24	GK	Mallorca
 Leo Skiri Østigård	24	DF	Hoffenheim
-Leo Skiri Østigård	24	DF	Rennes
-Leon Bailey	26	FW,MF	Aston Villa
 Leon Goretzka	29	MF,DF	Bayern Munich
-Leonardo Balerdi	25	DF	Marseille
 Leonardo Bittencourt	30	MF	Werder Bremen
 Leonardo Pavoletti	35	FW,MF	Cagliari
 Leonardo Spinazzola	31	DF,FW	Napoli
 Leonidas Stergiou	22	DF	Stuttgart
 Leopold Querfeld	20	DF	Union Berlin
 Leroy Sané	28	FW	Bayern Munich
-Lesley Ugochukwu	20	MF	Southampton
-Levi Colwill	21	DF	Chelsea
-Lewis Cook	27	MF,DF	Bournemouth
-Lewis Dunk	32	DF	Brighton
 Lewis Ferguson	24	MF	Bologna
-Lewis Hall	19	DF	Newcastle Utd
 Lewis Holtby	33	MF	Holstein Kiel
-Lewis Miley	18	MF	Newcastle Utd
-Lewis Orford	18	MF	West Ham
-Liam Delap	21	FW	Ipswich Town
 Liam Henderson	28	MF	Empoli
 Liberato Cacace	23	MF,DF	Empoli
-Lilian Brassier	24	DF	Marseille
-Lilian Brassier	24	DF	Rennes
-Lilian Raolisoa	24	DF,FW	Angers
 Lior Kasa	18	MF,FW	Genoa
-Lisandro Martínez	26	DF	Manchester Utd
 Lloyd Kelly	25	DF	Juventus
-Lloyd Kelly	25	DF	Newcastle Utd
-Logan Costa	23	DF	Toulouse
-Logan Costa	23	DF	Villarreal
-Lois Diony	31	FW	Angers
-Lorenz Assignon	24	DF,MF	Rennes
-Lorenzo Aguado	21	DF	Real Madrid
 Lorenzo Anghelè	19	FW	Juventus
 Lorenzo Colombo	22	FW,MF	Empoli
 Lorenzo De Silvestri	36	DF	Bologna
@@ -1605,13 +606,8 @@ Lorenzo Montipò	28	GK	Hellas Verona
 Lorenzo Pellegrini	28	MF	Roma
 Lorenzo Tosto	18	DF	Empoli
 Lorenzo Venturino	18	FW,MF	Genoa
-Louis Leroux	18	MF,DF	Nantes
-Louis Mouton	22	MF	Saint-Étienne
 Loum Tchaouna	20	FW,MF	Lazio
 Lovro Majer	26	MF	Wolfsburg
-Loïc Bade	24	DF	Sevilla
-Loïc N'Gatta	20	DF	Auxerre
-Loïc Nego	33	DF,FW	Le Havre
 Loïs Openda	24	FW,MF	RB Leipzig
 Luca Caldirola	33	DF	Monza
 Luca Jaquez	21	DF	Stuttgart
@@ -1622,116 +618,40 @@ Luca Netz	21	DF	Gladbach
 Luca Pellegrini	25	DF	Lazio
 Luca Philipp	23	GK	Hoffenheim
 Luca Ranieri	25	DF	Fiorentina
-Luca de la Torre	26	MF	Celta Vigo
 Lucas Beltrán	23	FW,MF	Fiorentina
-Lucas Beraldo	20	DF	Paris S-G
-Lucas Bergvall	18	MF	Tottenham
-Lucas Chevalier	22	GK	Lille
 Lucas Da Cunha	23	MF	Como
-Lucas Digne	31	DF	Aston Villa
 Lucas Gourna-Douath	20	MF	Roma
-Lucas Hernández	28	DF	Paris S-G
 Lucas Höler	30	FW,MF	Freiburg
 Lucas Martínez Quarta	28	DF	Fiorentina
-Lucas Michal	19	FW,MF	Monaco
-Lucas Mincarelli	20	DF	Montpellier
-Lucas Ocampos	30	FW	Sevilla
-Lucas Oliveira Rosa	24	DF	Valladolid
-Lucas Paquetá	26	MF,FW	West Ham
-Lucas Perri	26	GK	Lyon
-Lucas Stassin	19	FW	Saint-Étienne
-Lucas Torró	30	MF	Osasuna
 Lucas Tousart	27	MF	Union Berlin
-Lucas Vázquez	33	DF	Real Madrid
-Lucien Agoume	22	MF	Sevilla
-Luck Zogbé	19	DF	Brest
-Ludovic Ajorque	30	FW	Brest
-Ludovic Blas	26	MF,FW	Rennes
-Luis Díaz	27	FW	Liverpool
-Luis Guilherme	18	MF,FW	West Ham
-Luis Henrique	22	DF,FW	Marseille
-Luis Milla	29	MF	Getafe
-Luis Pérez	29	DF	Valladolid
-Luis Rioja	30	FW	Alavés
-Luis Rioja	30	MF,FW	Valencia
-Luis Sinisterra	25	FW,MF	Bournemouth
-Luiz Felipe	27	DF	Marseille
-Luiz Lúcio Reis Júnior	23	GK	Villarreal
 Luka Jović	26	FW,MF	Milan
-Luka Modrić	38	MF	Real Madrid
-Luka Romero	19	FW,MF	Alavés
-Luka Sučić	21	MF	Real Sociedad
 Luka Topalović	18	MF	Inter
 Lukas Daschner	25	MF,FW	Bochum
 Lukas Klostermann	28	DF	RB Leipzig
 Lukas Kübler	31	DF	Freiburg
 Lukas Nmecha	25	FW,MF	Wolfsburg
 Lukas Ullrich	20	DF	Gladbach
-Luke Shaw	29	DF	Manchester Utd
-Luke Thomas	23	DF	Leicester City
-Luke Woolfenden	25	DF	Ipswich Town
-Luken Beitia	20	DF	Real Sociedad
 Lukáš Hrádecký	34	GK	Leverkusen
 Lutsharel Geertruida	24	DF	RB Leipzig
 László Bénes	26	MF,FW	Union Berlin
-Léo Pétrot	27	DF	Saint-Étienne
 Léo Scienza	25	FW,MF	Heidenheim
-M'Bala Nzola	27	FW	Lens
 Maarten Vandevoordt	22	GK	RB Leipzig
 Maat Daniel Caprini	18	FW	Fiorentina
-Mads Hermansen	24	GK	Leicester City
 Mads Pedersen	27	DF	Augsburg
-Mads Roerslev	25	DF	Brentford
 Mads Roerslev	25	DF	Wolfsburg
 Maduka Okoye	24	GK	Udinese
-Maghnes Akliouche	22	FW,MF	Monaco
 Magnus Knudsen	23	MF	Holstein Kiel
 Magnus Kofod Andersen	25	MF	Venezia
-Mahamadou Diawara	19	MF	Le Havre
-Mahamadou Diawara	19	MF	Lyon
-Mahamadou Nagida	19	DF	Rennes
-Mahdi Camara	26	MF,FW	Brest
 Mahmoud Dahoud	28	MF	Eint Frankfurt
-Malang Sarr	25	DF	Lens
-Malcolm Jeng	19	DF	Reims
-Malick Fofana	19	FW	Lyon
 Malick Thiaw	22	DF	Milan
-Malo Gusto	21	DF	Chelsea
-Mama Samba Baldé	28	FW	Brest
-Mama Samba Baldé	28	FW	Lyon
-Mamadou Coulibaly	20	MF	Monaco
-Mamadou Diakhon	18	FW,MF	Reims
-Mamadou Sarr	18	DF	Strasbourg
-Mamadou Sylla	30	FW,MF	Valladolid
 Mandela Keita	22	MF	Parma
 Manolis Saliakas	27	MF,DF	St. Pauli
-Manu Bueno	20	MF,FW	Sevilla
 Manu Koné	23	MF	Roma
-Manu Morlanes	25	MF	Mallorca
-Manu Sánchez	23	DF	Alavés
-Manuel Akanji	29	DF	Manchester City
-Manuel Fuster	26	FW,MF	Las Palmas
 Manuel Lazzari	30	DF	Lazio
 Manuel Locatelli	26	MF	Juventus
 Manuel Neuer	38	GK	Bayern Munich
-Manuel Ugarte Ribeiro	23	MF	Manchester Utd
-Marash Kumbulla	24	DF	Espanyol
-Marc Bartra	33	DF	Betis
-Marc Bernal	17	MF	Barcelona
-Marc Cardona	29	FW,DF	Las Palmas
-Marc Casado	20	MF	Barcelona
-Marc Cucurella	26	DF	Chelsea
-Marc Domenech	18	FW,MF	Mallorca
-Marc Guiu	18	FW	Chelsea
-Marc Guéhi	24	DF	Crystal Palace
-Marc Roca	27	MF	Betis
-Marc-André ter Stegen	32	GK	Barcelona
 Marc-Oliver Kempf	29	DF	Como
 Marcel Sabitzer	30	MF	Dortmund
-Marcin Bułka	24	GK	Nice
-Marco Asensio	28	FW,MF	Paris S-G
-Marco Asensio	28	MF	Aston Villa
-Marco Bizot	33	GK	Brest
 Marco Brescianini	24	MF	Atalanta
 Marco Carnesecchi	24	GK	Atalanta
 Marco Friedl	26	DF	Werder Bremen
@@ -1742,18 +662,8 @@ Marco Sala	25	DF	Como
 Marco Sala	25	DF	Lecce
 Marco Silvestri	33	GK	Empoli
 Marco Sportiello	32	GK	Milan
-Marcos Alonso	33	DF	Celta Vigo
-Marcos André	27	FW	Valladolid
-Marcos Llorente	29	DF,MF	Atlético Madrid
-Marcos Senesi	27	DF	Bournemouth
-Marcus Coco	28	DF	Nantes
-Marcus Harness	28	MF	Ipswich Town
 Marcus Pedersen	24	DF	Torino
-Marcus Rashford	26	FW	Aston Villa
-Marcus Rashford	26	FW,MF	Manchester Utd
-Marcus Tavernier	25	FW,MF	Bournemouth
 Marcus Thuram	26	FW	Inter
-Marcão	28	DF	Sevilla
 Marin Ljubicic	22	FW,MF	Union Berlin
 Marin Pongračić	26	DF	Fiorentina
 Marin Šverko	26	DF	Venezia
@@ -1762,87 +672,35 @@ Mario Gila	23	DF	Lazio
 Mario Götze	32	MF,FW	Eint Frankfurt
 Mario Hermoso	29	DF	Leverkusen
 Mario Hermoso	29	DF	Roma
-Mario Lemina	30	MF,DF	Wolves
-Mario Maroto	20	MF	Valladolid
-Mario Martín	20	MF	Valladolid
 Mario Pašalić	29	MF	Atalanta
 Marius Bülter	31	FW,DF	Hoffenheim
-Marius Courcoul	17	MF,DF	Angers
 Marius Müller	31	GK	Wolfsburg
 Marius Wolf	29	DF	Augsburg
-Mark Flekken	31	GK	Brentford
-Mark McKenzie	25	DF	Toulouse
-Mark Travers	25	GK	Bournemouth
 Marko Arnautović	35	FW	Inter
-Marko Dmitrović	32	GK	Leganés
 Marko Ivezić	22	DF	Holstein Kiel
 Marnon Busch	29	DF,MF	Heidenheim
-Maroan Sannadi	23	FW	Athletic Club
-Marquinhos	30	DF	Paris S-G
-Marshall Munetsi	28	MF	Reims
-Marshall Munetsi	28	MF,FW	Wolves
 Marten de Roon	33	MF,DF	Atalanta
-Martial Godo	21	FW,DF	Fulham
-Martin Adeline	20	MF	Reims
-Martin Dúbravka	35	GK	Newcastle Utd
 Martin Erlic	26	DF	Bologna
 Martin Frese	26	DF	Hellas Verona
-Martin Satriano	23	FW,DF	Lens
 Martin Terrier	27	MF,FW	Leverkusen
-Martin Valjent	28	DF	Mallorca
-Martin Ødegaard	25	MF	Arsenal
 Martín Payero	25	MF	Udinese
-Martín Tejón	20	MF,DF	Valencia
-Martín Zubimendi	25	MF	Real Sociedad
-Marvin	24	DF,FW	Las Palmas
 Marvin Ducksch	30	FW	Werder Bremen
 Marvin Friedrich	28	DF	Gladbach
 Marvin Pieringer	24	FW,MF	Heidenheim
 Marvin Schulz	29	MF,DF	Holstein Kiel
-Marvin Senaya	23	DF	Strasbourg
-Marwann Nzuzi	20	DF	Saint-Étienne
-Mason Greenwood	22	FW,MF	Marseille
-Mason Holgate	27	FW,DF	Everton
-Mason Mount	25	MF	Manchester Utd
-Massadio Haïdara	31	DF	Brest
-Massimo Luongo	31	MF	Ipswich Town
 Matej Kovar	24	GK	Leverkusen
-Mateo Flores	20	MF	Betis
-Mateo Kovačić	30	MF	Manchester City
-Mateo Mejía	21	FW	Sevilla
 Mateo Pellegrino	23	FW	Parma
 Mateo Retegui	25	FW	Atalanta
-Mateu Morey	24	DF	Mallorca
-Mateus Fernandes	20	MF	Southampton
-Mateus Mane		MF	Wolves
 Mateusz Kowalski	19	MF	Parma
 Mateusz Wieteska	27	DF	Cagliari
-Matheus Cunha	25	MF,FW	Wolves
-Matheus França	20	MF,FW	Crystal Palace
-Matheus Nunes	25	DF,MF	Manchester City
-Mathew Ryan	32	GK	Lens
 Mathias Honsak	27	FW,DF	Heidenheim
-Mathias Jensen	28	MF	Brentford
 Mathias Løvik	20	DF,FW	Parma
-Mathias Pereira Lage	27	FW,MF	Brest
-Mathieu Cafaro	27	MF,FW	Saint-Étienne
-Mathieu Gorgelin	33	GK	Le Havre
-Mathis Amougou	18	MF	Chelsea
-Mathis Amougou	18	MF	Saint-Étienne
 Mathis Lambourde	18	FW,MF	Hellas Verona
-Mathys Tel	19	FW	Tottenham
 Mathys Tel	19	FW,MF	Bayern Munich
-Mathéo Bodmer	20	MF	Le Havre
 Mathías Olivera	26	DF	Napoli
-Matias Fernandez-Pardo	19	FW,MF	Lille
 Matias Moreno	20	DF	Fiorentina
-Matija Nastasić	31	DF	Leganés
 Mats Hummels	35	DF	Roma
 Mats Pannewig	19	MF	Bochum
-Mats Wieffer	24	DF,MF	Brighton
-Matt Doherty	32	DF	Wolves
-Matt O'Riley	23	MF	Brighton
-Matt Targett	28	DF	Newcastle Utd
 Matteo Cancellieri	22	FW,MF	Parma
 Matteo Darmian	34	DF	Inter
 Matteo Gabbia	24	DF	Milan
@@ -1853,8 +711,6 @@ Matteo Prati	20	MF	Cagliari
 Matteo Ruggeri	22	DF	Atalanta
 Matthias Braunöder	22	MF	Como
 Matthias Ginter	30	DF	Freiburg
-Matthijs de Ligt	24	DF	Manchester Utd
-Matthis Abline	21	FW	Nantes
 Mattia Bani	30	DF	Genoa
 Mattia De Sciglio	31	DF	Empoli
 Mattia Felici	23	MF,FW	Cagliari
@@ -1864,26 +720,16 @@ Mattia Valoti	30	MF	Monza
 Mattia Viti	22	DF	Empoli
 Mattia Zaccagni	29	FW	Lazio
 Mattias Svanberg	25	MF	Wolfsburg
-Matty Cash	26	DF	Aston Villa
 Mattéo Guendouzi	25	MF	Lazio
-Matvei Safonov	25	GK	Paris S-G
-Matz Sels	32	GK	Nott'ham Forest
 Matìas Soulé	21	MF,DF	Roma
 Matías Vecino	32	MF	Lazio
 Matúš Bero	28	MF	Bochum
 Maurides	30	FW	St. Pauli
-Mauro Arambarri	28	MF	Getafe
-Max Aarons	24	DF	Bournemouth
-Max Aarons	24	DF,MF	Valencia
 Max Geschwill	23	DF	Holstein Kiel
-Max Kilman	27	DF	West Ham
 Max Moerstedt		FW	Hoffenheim
 Max Rosenfelder	21	DF	Freiburg
 Maxence Caqueret	24	MF	Como
-Maxence Caqueret	24	MF	Lyon
-Maxence Lacroix	24	DF	Crystal Palace
 Maxim Leitsch	26	DF	Mainz 05
-Maxime Bernauer	26	DF	Saint-Étienne
 Maximilian Arnold	30	MF	Wolfsburg
 Maximilian Bauer	24	DF	Augsburg
 Maximilian Beier	21	FW,MF	Dortmund
@@ -1892,180 +738,78 @@ Maximilian Eggestein	27	MF	Freiburg
 Maximilian Mittelstädt	27	DF	Stuttgart
 Maximilian Philipp	30	MF,FW	Freiburg
 Maximilian Wittek	28	DF	Bochum
-Maximiliano Caufriez	27	DF	Valencia
-Maxwel Cornet	27	FW	Southampton
 Maxwel Cornet	27	FW,MF	Genoa
 Medon Berisha	20	MF	Lecce
 Mehdi Taremi	32	FW	Inter
-Melvin Bard	23	DF,MF	Nice
-Melvin Zinga	22	GK	Angers
 Mergim Berisha	26	FW	Augsburg
 Mergim Berisha	26	FW,MF	Hoffenheim
 Merlin Röhl	22	MF,FW	Freiburg
 Mert Kömür	19	MF	Augsburg
-Meschak Elia	26	FW	Nantes
-Michael Amir Murillo	28	DF	Marseille
 Michael Folorunsho	26	FW,MF	Fiorentina
 Michael Folorunsho	26	FW,MF	Napoli
-Michael Golding	18	MF	Leicester City
 Michael Gregoritsch	30	FW	Freiburg
-Michael Kayode	20	DF	Brentford
 Michael Kayode	20	DF,FW	Fiorentina
-Michael Keane	31	DF	Everton
 Michael Olise	22	FW,MF	Bayern Munich
 Michael Svoboda	25	DF	Venezia
 Michael Zetterer	29	GK	Werder Bremen
-Michail Antonio	34	FW	West Ham
 Michel Aebischer	27	MF	Bologna
 Michel Ndary Adopo	24	MF	Cagliari
 Michele Di Gregorio	27	GK	Juventus
 Michy Batshuayi	30	FW	Eint Frankfurt
-Mickael Nade	25	DF	Saint-Étienne
-Micky van de Ven	23	DF	Tottenham
-Miguel	24	FW	Leganés
-Miguel Almirón	30	FW	Newcastle Utd
-Miguel Gutiérrez	23	DF,MF	Girona
-Miha Zajc	30	MF	Toulouse
-Mihailo Ristić	28	DF,MF	Celta Vigo
-Mika Biereth	21	FW	Monaco
-Mika Mármol	23	DF	Las Palmas
 Mikael Ellertsson	22	DF,MF	Venezia
-Mikayil Ngor Faye	20	DF	Rennes
 Mike Maignan	29	GK	Milan
-Mikel Jauregizar	20	MF	Athletic Club
-Mikel Merino	28	MF,FW	Arsenal
-Mikel Oyarzabal	27	FW	Real Sociedad
-Mikel Vesga	31	MF	Athletic Club
-Mikey Moore	16	FW	Tottenham
-Mikkel Damsgaard	24	MF,FW	Brentford
 Mikkel Kaufmann	23	FW	Heidenheim
 Milan Badelj	35	MF	Genoa
 Milan Đurić	34	FW	Monza
 Milan Đurić	34	FW	Parma
-Milan Škriniar	29	DF	Paris S-G
 Mile Svilar	24	GK	Roma
-Milos Kerkez	20	DF	Bournemouth
-Milos Lukovic	18	FW,MF	Strasbourg
 Miloš Veljković	28	DF	Werder Bremen
 Mirko Marić	29	FW	Venezia
 Mirko Marić	29	FW,MF	Monza
-Mitchel Bakker	24	FW,DF	Lille
 Mitchel Bakker	24	MF	Atalanta
 Mitchell Weiser	30	DF,MF	Werder Bremen
-Modibo Sagnan	25	DF	Montpellier
-Mohamed Abdelmoneim	25	DF	Nice
-Mohamed Ali Cho	20	FW,MF	Nice
 Mohamed Amoura	24	FW	Wolfsburg
-Mohamed Bamba	19	MF	Reims
-Mohamed Daramy	22	FW	Reims
 Mohamed Haj	19	MF	Parma
 Mohamed Kaba	22	MF	Lecce
-Mohamed Lamine Bayo	26	FW	Lille
-Mohamed Meité	16	FW	Rennes
-Mohamed Salah	32	FW	Liverpool
 Mohamed Simakan	24	DF	RB Leipzig
-Mohammed Kudus	23	FW,MF	West Ham
-Mohammed Salisu	25	DF	Monaco
-Moi Gómez	30	MF,FW	Osasuna
 Moise Kean	24	FW	Fiorentina
-Moisés Caicedo	22	MF,DF	Chelsea
-Morato	23	DF	Nott'ham Forest
-Morgan Gibbs-White	24	MF	Nott'ham Forest
 Morgan Guilavogui	26	FW,MF	St. Pauli
-Morgan Rogers	22	FW,MF	Aston Villa
-Morgan Sanson	29	MF	Nice
 Moritz Broschinski	23	FW,MF	Bochum
 Moritz Jenz	25	DF	Mainz 05
 Moritz Nicolas	26	GK	Gladbach
 Moritz-Broni Kwarteng	26	MF,FW	Bochum
 Morten Frendrup	23	MF	Genoa
 Morten Thorsby	28	MF,FW	Genoa
-Mory Gbane	23	DF,MF	Reims
-Moses Simon	29	FW,MF	Nantes
-Mostafa Mohamed	26	FW	Nantes
-Mouctar Diakhaby	27	DF	Valencia
-Moussa Diarra	23	DF	Alavés
-Moussa Niakhate	28	DF	Lyon
-Moïse Bombito	24	DF	Nice
-Munir El Haddadi	28	FW,MF	Leganés
-Murillo	22	DF	Nott'ham Forest
-Musa Al-Taamari	27	FW,MF	Montpellier
-Musa Al-Taamari	27	FW,MF	Rennes
-Mykhailo Mudryk	23	FW	Chelsea
-Myles Lewis-Skelly	17	DF	Arsenal
 Myron Boadu	23	FW	Bochum
 Máximo Perrone	21	MF	Como
 Mërgim Vojvoda	29	DF	Como
 Mërgim Vojvoda	29	DF	Torino
-Naatan Skyttä	22	FW	Toulouse
-Nabil Aberdin	21	MF	Getafe
-Nabil Bentaleb	29	MF	Lille
-Nabil Fekir	31	MF	Betis
-Nacho Vidal	29	DF	Osasuna
-Naci Ünüvar	21	MF,DF	Espanyol
 Nadiem Amiri	27	MF	Mainz 05
 Nadir Zortea	25	DF,MF	Cagliari
 Nahuel Estévez	28	MF	Parma
-Nahuel Molina	26	DF	Atlético Madrid
-Nahuel Tenaglia	28	DF	Alavés
-Nampalys Mendy	32	MF	Lens
-Naouirou Ahamada	22	MF,FW	Rennes
-Nasser Djiga	21	DF	Wolves
-Natan	23	DF	Betis
-Nathan Aké	29	DF	Manchester City
-Nathan Broadhead	26	MF,FW	Ipswich Town
-Nathan Butler-Oyedeji	21	FW	Arsenal
-Nathan Collins	23	DF	Brentford
 Nathan N'Goumou	24	FW	Gladbach
-Nathan Patterson	22	DF	Everton
 Nathan Tella	25	MF,FW	Leverkusen
-Nathan Wood-Gordon	22	DF	Southampton
-Nathan Zeze	19	DF	Nantes
 Nathaniel Brown	21	DF,MF	Eint Frankfurt
-Nathaniel Clyne	33	DF,MF	Crystal Palace
-Nayef Aguerd	28	DF	Real Sociedad
-Neal Maupay	27	FW	Marseille
-Neco Williams	23	DF	Nott'ham Forest
 Nediljko Labrović	24	GK	Augsburg
 Nehuén Pérez	24	DF	Udinese
-Neil El Aynaoui	23	MF	Lens
 Nelson Weiper	19	FW,MF	Mainz 05
-Nemanja Gudelj	32	MF,DF	Sevilla
-Nemanja Matić	35	MF	Lyon
-Neto	35	GK	Bournemouth
-Ngal'Ayel Mukau	19	MF	Lille
-Nhoa Sangui	18	DF,MF	Reims
-Niama Sissoko	18	FW,MF	Reims
 Niccolò Pisilli	19	MF	Roma
 Nicholas Pierini	25	MF	Venezia
-Nick Pope	32	GK	Newcastle Utd
 Nick Woltemade	22	FW,MF	Stuttgart
-Niclas Füllkrug	31	FW	West Ham
 Nico Elvedi	27	DF	Gladbach
-Nico O’Reilly	19	DF	Manchester City
 Nico Schlotterbeck	24	DF	Dortmund
-Nico Williams	22	FW	Athletic Club
 Nicola Leali	31	GK	Genoa
 Nicola Pintus	19	DF	Cagliari
 Nicola Sansone	32	MF,FW	Lecce
 Nicola Zalewski	22	DF,FW	Roma
 Nicola Zalewski	22	DF,MF	Inter
 Nicolai Remberg	24	MF	Holstein Kiel
-Nicolas Cozza	25	DF,MF	Nantes
 Nicolas Haas	28	MF	Empoli
 Nicolas Höfler	34	MF	Freiburg
-Nicolas Jackson	23	FW	Chelsea
-Nicolas Pallois	36	DF	Nantes
-Nicolas Pays	20	FW,MF	Montpellier
-Nicolas Pépé	29	FW,MF	Villarreal
 Nicolas Seiwald	23	MF,DF	RB Leipzig
 Nicolas Viola	34	FW,MF	Cagliari
-Nicolás Domínguez	26	MF,FW	Nott'ham Forest
-Nicolás González	22	MF	Manchester City
 Nicolás González	26	FW,MF	Juventus
 Nicolás Paz	19	MF,FW	Como
-Nicolás Serrano	21	FW	Athletic Club
-Nicolás Tagliafico	31	DF	Lyon
 Nicolás Valentini	23	DF	Hellas Verona
 Nicolò Barella	27	MF	Inter
 Nicolò Cambiaghi	23	FW	Bologna
@@ -2080,12 +824,9 @@ Nicolò Zaniolo	25	FW,MF	Atalanta
 Niels Nkounkou	23	DF,MF	Eint Frankfurt
 Niklas Dorsch	26	MF	Augsburg
 Niklas Dorsch	26	MF	Heidenheim
-Niklas Schmidt	26	MF	Toulouse
 Niklas Stark	29	DF	Werder Bremen
 Niklas Süle	28	DF	Dortmund
 Nikola Krstović	24	FW	Lecce
-Nikola Maksimović	32	DF	Montpellier
-Nikola Milenković	26	DF	Nott'ham Forest
 Nikola Moro	26	MF	Bologna
 Nikola Vasilj	28	GK	St. Pauli
 Nikola Vlašić	26	MF,FW	Torino
@@ -2093,436 +834,184 @@ Nikolas Nartey	24	MF	Stuttgart
 Nikolas Veratschnig	21	DF,MF	Mainz 05
 Nnamdi Collins	20	DF	Eint Frankfurt
 Noah Atubolu	22	GK	Freiburg
-Noah Edjouma	18	MF,FW	Toulouse
 Noah Okafor	24	FW	Milan
 Noah Okafor	24	FW,MF	Napoli
 Noah Pesch	19	FW	Gladbach
 Noah Weißhaupt	22	FW	Freiburg
 Noah Weißhaupt	22	FW,MF	St. Pauli
 Noahkai Banks	17	DF	Augsburg
-Nobel Mendy	19	DF	Betis
-Noham Kamara	17	DF	Paris S-G
-Noni Madueke	22	FW	Chelsea
 Nordi Mukiele	26	DF	Leverkusen
-Nordine Kandil	22	MF	Strasbourg
 Norman Theuerkauf	37	MF	Heidenheim
-Noussair Mazraoui	26	DF	Manchester Utd
-Nuno Mendes	22	DF	Paris S-G
 Nuno Tavares	24	DF	Lazio
 Nunzio Lella	24	MF	Venezia
-Nélson Semedo	30	DF	Wolves
 Obite N'Dicka	24	DF	Roma
 Odilon Kossounou	23	DF	Atalanta
-Odsonne Édouard	26	FW	Leicester City
-Odsonne Édouard	26	MF,FW	Crystal Palace
 Oier Zarraga	25	MF	Udinese
-Oihan Sancet	24	MF	Athletic Club
-Ola Aina	27	DF	Nott'ham Forest
 Ola Solbakken	25	MF,FW	Empoli
-Olabade Aluko		DF	Leicester City
 Oladapo Afolayan	26	FW,MF	St. Pauli
-Olasagasti	23	MF	Real Sociedad
-Oleksandr Zinchenko	27	DF,MF	Arsenal
 Oliver Abildgaard	28	MF	Como
 Oliver Baumann	34	GK	Hoffenheim
 Oliver Burke	27	FW	Werder Bremen
-Oliver McBurnie	28	FW	Las Palmas
 Oliver Nielsen	21	DF	Lazio
-Oliver Scarles	18	DF,FW	West Ham
-Oliver Skipp	23	MF	Leicester City
 Olivier Deman	24	DF	Werder Bremen
-Ollie Watkins	28	FW	Aston Villa
-Omar Alderete	27	DF	Getafe
-Omar El Hilali	20	DF	Espanyol
 Omar Marmoush	25	FW	Eint Frankfurt
-Omar Marmoush	25	FW,MF	Manchester City
-Omar Mascarell	31	MF	Mallorca
 Omar Traoré	26	DF	Heidenheim
 Omari Forson	20	MF,FW	Monza
-Omari Hutchinson	20	MF,FW	Ipswich Town
 Ondrej Duda	29	MF	Hellas Verona
-Orel Mangala	26	MF	Everton
-Orel Mangala	26	MF	Lyon
-Oriol Romeu	32	MF	Girona
-Orri Steinn Óskarsson	19	FW	Real Sociedad
-Osame Sahraoui	23	FW,MF	Lille
-Oscar Bobb	21	FW	Manchester City
 Oscar Højlund	19	MF	Eint Frankfurt
-Othmane Maamma	18	FW,MF	Montpellier
-Oumar Diakité	20	FW	Reims
 Oumar Solet	24	DF	Udinese
-Ousmane Camara	21	DF	Angers
-Ousmane Dembélé	27	FW	Paris S-G
-Ousmane Toure	19	DF	Lille
 Oussama El Azzouzi	23	MF	Bologna
-Oussama Targhalline	22	MF	Le Havre
-Pablo Barrios	21	MF	Atlético Madrid
-Pablo Durán	23	FW,MF	Celta Vigo
-Pablo Fornals	28	MF,FW	Betis
-Pablo Garcia	17	FW	Betis
-Pablo Ibáñez	25	MF	Osasuna
-Pablo Maffeo	27	DF	Mallorca
 Pablo Marí	30	DF	Fiorentina
 Pablo Marí	30	DF	Monza
-Pablo Marín	21	MF	Real Sociedad
-Pablo Rosario	27	MF,DF	Nice
-Pablo Sarabia	32	MF,FW	Wolves
-Pablo Torre	21	MF,FW	Barcelona
-Papa Ba	19	MF	Girona
-Pape Daouda Diongue		MF,FW	Strasbourg
-Pape Gueye	25	MF	Villarreal
-Pape Matar Sarr	21	MF	Tottenham
 Pascal Groß	33	MF,DF	Dortmund
 Pascal Stenzel	28	DF	Stuttgart
 Pasquale Mazzocchi	29	DF,FW	Napoli
-Pathé Ciss	30	MF,DF	Rayo Vallecano
 Patric	31	DF	Lazio
 Patrick Ciurria	29	MF,DF	Monza
 Patrick Cutrone	26	FW	Como
-Patrick Dorgu	19	DF	Manchester Utd
 Patrick Dorgu	19	DF,FW	Lecce
 Patrick Drewes	31	GK	Bochum
 Patrick Erras	29	DF	Holstein Kiel
 Patrick Mainka	29	DF	Heidenheim
 Patrick Osterhage	24	MF	Freiburg
 Patrick Wimmer	23	MF,FW	Wolfsburg
-Patrik Carlgren	32	GK	Nantes
 Patrik Schick	28	FW	Leverkusen
 Patrizio Masini	23	MF	Genoa
-Patson Daka	25	FW,MF	Leicester City
-Pau Cabanes	19	MF,FW	Alavés
-Pau Cabanes	19	MF,FW	Villarreal
-Pau Cubarsí	17	DF	Barcelona
-Pau López	29	GK	Girona
-Pau Navarro	19	DF	Villarreal
-Pau Torres	27	DF	Aston Villa
-Pau Victor	22	FW	Barcelona
-Paul Akouokou	26	MF	Lyon
 Paul Hennrich	19	MF	Hoffenheim
-Paul Joly	24	DF	Auxerre
 Paul Nebel	21	MF	Mainz 05
-Paul Onuachu	30	FW	Southampton
 Paul Wanner	18	MF,FW	Heidenheim
 Paulo Azzi	30	DF	Cagliari
 Paulo Dybala	30	FW,MF	Roma
-Paulo Gazzaniga	32	GK	Girona
 Pavel Kadeřábek	32	DF	Hoffenheim
 Paweł Dawidowicz	29	DF,MF	Hellas Verona
-Pedri	21	MF	Barcelona
 Pedro	37	FW,MF	Lazio
-Pedro Chirivella	27	MF	Nantes
-Pedro Díaz	26	MF	Rayo Vallecano
-Pedro Lima	18	DF	Wolves
-Pedro Neto	24	FW	Chelsea
 Pedro Pereira	26	DF	Monza
-Pedro Porro	24	DF	Tottenham
-Peio Canales	19	MF,FW	Athletic Club
-Pejiño	28	FW	Las Palmas
-Pelayo Fernandez	21	DF	Rayo Vallecano
-Pep Chavarría	26	DF,FW	Rayo Vallecano
 Pepe Reina	41	GK	Como
-Peque	21	MF,FW	Sevilla
-Pere Milla	31	MF,FW	Espanyol
-Pervis Estupiñán	26	DF	Brighton
 Petar Stojanović	28	MF	Empoli
-Peter González	22	MF,FW	Getafe
-Phil Foden	24	MF,FW	Manchester City
 Phil Harres	22	FW	Holstein Kiel
-Philip Billing	28	MF	Bournemouth
 Philip Billing	28	MF	Napoli
 Philipp Hofmann	31	FW	Bochum
-Philipp Köhn	26	GK	Monaco
 Philipp Lienhart	28	DF	Freiburg
 Philipp Sander	26	MF	Gladbach
 Philipp Treu	23	MF,DF	St. Pauli
 Phillip Tietz	27	FW	Augsburg
 Phillipp Mwene	30	DF	Mainz 05
-Pica	22	DF	Alavés
 Pierluigi Gollini	29	GK	Genoa
 Piero Hincapié	22	DF	Leverkusen
-Pierre Cornud	27	DF	Saint-Étienne
-Pierre Ekwah Elimby	22	MF	Saint-Étienne
-Pierre Højbjerg	28	MF	Marseille
 Pierre Kalulu	24	DF	Juventus
-Pierre Lees-Melou	31	MF	Brest
-Pierrick Capelle	37	MF	Angers
 Pietro Comuzzo	19	DF	Fiorentina
 Pietro Pellegri	23	FW	Empoli
 Pietro Terracciano	34	GK	Fiorentina
 Piotr Zieliński	30	MF	Inter
-Plamedi Nsingi	23	MF	Nantes
-Pol Lirola	26	DF	Marseille
-Pol Lozano	24	MF	Espanyol
 Pontus Almqvist	25	FW,MF	Parma
-Portu	32	FW,MF	Girona
-Presnel Kimpembe	28	DF	Paris S-G
-Prosper Peter	16	MF,FW	Angers
-Przemysław Frankowski	29	DF	Lens
 Péter Gulácsi	34	GK	RB Leipzig
-Quentin Merlin	22	DF	Marseille
-Rabby Nzingoula	18	MF	Montpellier
-Radosław Majecki	24	GK	Monaco
-Radu Drăgușin	22	DF	Tottenham
 Rafa Marín	22	DF	Napoli
-Rafa Mir	27	FW,MF	Valencia
-Rafael Bauza	19	MF	Espanyol
 Rafael Leão	25	FW	Milan
 Rafael Tolói	33	DF	Atalanta
-Rafik Messali	21	DF	Toulouse
-Raheem Sterling	29	FW,MF	Arsenal
 Ramon Hendriks	23	DF	Stuttgart
 Ramy Bensebaini	29	DF	Dortmund
-Ramón Martínez	21	DF	Sevilla
-Ramón Sosa	24	FW,MF	Nott'ham Forest
-Ramón Terrats	23	MF,FW	Getafe
-Ramón Terrats	23	MF,FW	Villarreal
 Randal Kolo Muani	25	FW	Juventus
-Randal Kolo Muani	25	FW	Paris S-G
-Randy Nteka	26	FW	Rayo Vallecano
 Rani Khedira	30	MF	Union Berlin
 Raoul Bellanova	24	DF	Atalanta
 Raoul Bellanova	24	DF	Torino
 Raphaël Guerreiro	30	DF,MF	Bayern Munich
-Raphinha	27	FW,MF	Barcelona
-Rareş Ilie	21	MF	Nice
 Rareș-Cătălin Burnete	20	FW	Lecce
-Rasmus Højlund	21	FW	Manchester Utd
 Rasmus Kristensen	27	DF	Eint Frankfurt
-Rasmus Nicolaisen	27	DF	Toulouse
-Rassoul Ndiaye	22	MF	Le Havre
-Rayan Aït-Nouri	23	DF	Wolves
-Rayan Cherki	20	FW,MF	Lyon
-Rayan Fofana	18	FW,MF	Lens
-Rayan Raveloson	27	MF,DF	Auxerre
 Razvan Sava	22	GK	Udinese
-Raúl	23	FW,MF	Osasuna
-Raúl Albiol	38	DF	Villarreal
-Raúl Asencio	21	DF	Real Madrid
-Raúl Chasco	20	DF	Valladolid
-Raúl Jiménez	33	FW	Fulham
-Raúl Moro	21	MF,FW	Valladolid
-Raúl de Tomás	29	DF,FW	Rayo Vallecano
 Reda Belahyane	20	MF	Hellas Verona
 Reda Belahyane	20	MF	Lazio
-Reda Khadra	23	MF,FW	Reims
-Reece James	24	DF,MF	Chelsea
-Reinildo Mandava	30	DF	Atlético Madrid
-Reiss Nelson	24	FW	Arsenal
-Reiss Nelson	24	FW	Fulham
 Remi Oudin	27	MF,FW	Lecce
 Remo Freuler	32	MF	Bologna
-Remy Rees-Dottin	18	FW	Bournemouth
-Renato Tapia	29	MF,DF	Leganés
 Renato Veiga	21	DF	Juventus
-Renato Veiga	21	DF,MF	Chelsea
-Ricardo Pereira	30	DF	Leicester City
-Ricardo Rodríguez	31	DF	Betis
-Riccardo Calafiori	22	DF	Arsenal
 Riccardo Orsolini	27	FW	Bologna
 Riccardo Sottil	25	FW,MF	Fiorentina
 Riccardo Sottil	25	FW,MF	Milan
-Richarlison	27	FW	Tottenham
 Richie Sagrado	20	DF	Venezia
-Rico Henry	27	DF	Brentford
-Rico Lewis	19	DF,MF	Manchester City
 Ridgeciano Haps	31	DF	Venezia
 Ridle Baku	26	DF,MF	RB Leipzig
 Ridle Baku	26	FW,MF	Wolfsburg
 Ritsu Doan	26	FW,MF	Freiburg
 Robert Andrich	29	MF,DF	Leverkusen
 Robert Gumny	26	DF	Augsburg
-Robert Lewandowski	35	FW	Barcelona
 Robert Skov	28	DF,MF	Union Berlin
-Robert Sánchez	26	GK	Chelsea
 Robert Wagner	21	MF	St. Pauli
-Roberto Férnandez	22	FW	Espanyol
 Roberto Gagliardini	30	MF,DF	Monza
-Roberto López	24	MF	Leganés
-Roberto Navarro	22	MF,FW	Mallorca
 Roberto Piccoli	23	FW	Cagliari
 Robin Gosens	30	DF	Fiorentina
 Robin Gosens	30	DF	Union Berlin
 Robin Hack	25	FW,MF	Gladbach
 Robin Hranáč	24	DF	Hoffenheim
 Robin Koch	28	DF	Eint Frankfurt
-Robin Le Normand	27	DF	Atlético Madrid
-Robin Olsen	34	GK	Aston Villa
 Robin Zentner	29	GK	Mainz 05
-Robinio Vaz	17	FW	Marseille
 Rocco Reitz	22	MF	Gladbach
-Rodri	24	FW	Betis
-Rodri	28	MF	Manchester City
-Rodrigo Abajas	21	DF	Valencia
-Rodrigo Bentancur	27	MF	Tottenham
-Rodrigo De Paul	30	MF	Atlético Madrid
-Rodrigo Gomes	21	DF,FW	Wolves
-Rodrigo Muniz	23	FW	Fulham
-Rodrigo Riquelme	24	MF,DF	Atlético Madrid
-Rodrygo	23	FW,MF	Real Madrid
-Roger Hinojo	19	DF	Espanyol
 Roland Sallai	27	FW,MF	Freiburg
 Rolando Mandragora	27	MF	Fiorentina
-Romain Del Castillo	28	FW	Brest
-Romain Esse	19	MF	Crystal Palace
-Romain Faivre	26	MF,FW	Brest
-Romain Perraud	26	DF	Betis
-Roman Dixon	19	DF	Everton
 Romano Schmid	24	MF	Werder Bremen
 Romelu Lukaku	31	FW	Napoli
-Roméo Lavia	20	MF	Chelsea
-Ronald Araújo	25	DF	Barcelona
-Ronnie Edwards	21	DF	Southampton
-Ross Barkley	30	MF	Aston Villa
-Ross Stewart	28	FW	Southampton
-Ruben Aguilar	31	DF,MF	Lens
 Ruben Loftus-Cheek	28	MF	Milan
-Ruben Vargas	25	FW,MF	Sevilla
 Ruben Vargas	25	MF,FW	Augsburg
-Rubén García	31	FW,MF	Osasuna
-Rubén Peña	33	FW,DF	Osasuna
-Rudy Matondo	16	MF	Auxerre
 Rui Modesto	24	DF,MF	Udinese
 Rui Patrício	36	GK	Atalanta
-Rui Silva	30	GK	Betis
 Ruslan Malinovskyi	31	MF,FW	Genoa
-Ryan Christie	29	MF	Bournemouth
-Ryan Fraser	30	FW,DF	Southampton
-Ryan Gravenberch	22	MF	Liverpool
-Ryan Manning	28	DF,MF	Southampton
-Ryan Sessegnon	24	FW,DF	Fulham
-Ryan Trevitt	21	MF	Brentford
-Ryan Yates	26	MF	Nott'ham Forest
-Rémy Cabella	34	FW,MF	Lille
-Rémy Descamps	28	GK	Lyon
-Rémy Labeau Lascary	21	FW,MF	Lens
-Rúben Dias	27	DF	Manchester City
 Răzvan Marin	28	MF	Cagliari
 Saad El Haddad	19	MF	Venezia
 Saba Goglichidze	20	DF	Empoli
 Saba Sazonov	22	DF	Torino
 Sacha Boey	23	DF	Bayern Munich
-Sael Kumbedi	19	DF	Lyon
-Saidou Sow	22	DF	Nantes
-Saidou Sow	22	DF	Strasbourg
 Salih Özcan	26	MF	Dortmund
 Salih Özcan	26	MF	Wolfsburg
 Sam Beukema	25	DF	Bologna
-Sam Johnstone	31	GK	Wolves
-Sam Morsy	32	MF	Ipswich Town
-Sammie Szmodics	28	FW,MF	Ipswich Town
-Samu Costa	23	MF	Mallorca
-Samuel Amo-Ameyaw	18	DF,MF	Strasbourg
-Samuel Amo-Ameyaw	18	FW,DF	Southampton
 Samuel Bamba	20	FW,MF	Bochum
 Samuel Chukwueze	25	FW,MF	Milan
 Samuel Dahl	24	DF,MF	Roma
-Samuel Edozie	21	DF,FW	Southampton
 Samuel Essende	26	FW	Augsburg
 Samuel Gigot	30	DF	Lazio
-Samuel Grandsir	27	MF,FW	Le Havre
 Samuel Iling-Junior	20	FW,MF	Bologna
-Samuel Lino	24	MF,DF	Atlético Madrid
 Samuel Mbangula	20	FW	Juventus
 Samuele Birindelli	25	DF,MF	Monza
 Samuele Ricci	22	MF	Torino
 Samuele Vignato	20	MF	Monza
-Sander Berge	26	MF	Fulham
 Sandi Lovrić	26	MF	Udinese
-Sandro Ramírez	29	FW,MF	Las Palmas
-Sandro Tonali	24	MF	Newcastle Utd
-Santi Comesaña	27	MF	Villarreal
-Santiago Bueno	25	DF	Wolves
 Santiago Castro	19	FW	Bologna
 Santiago Giménez	23	FW	Milan
-Santiago Mouriño	22	DF	Alavés
 Santiago Pierotti	23	FW	Lecce
 Saud Abdulhamid	25	DF	Roma
-Saïd Benrahma	28	FW,MF	Lyon
-Saïmon Bouabré	18	MF,FW	Monaco
 Saúl Coco	25	DF	Torino
-Saúl Ñíguez	29	MF	Sevilla
-Saša Lukić	27	MF	Fulham
 Scott Banks	22	FW,MF	St. Pauli
-Scott McKenna	27	DF	Las Palmas
-Scott McTominay	27	MF	Manchester Utd
 Scott McTominay	27	MF	Napoli
 Sead Kolašinac	31	DF	Atalanta
-Sean Longstaff	26	MF	Newcastle Utd
 Sebastiaan Bornauw	25	DF	Wolfsburg
-Sebastian Nanasi	22	MF,FW	Strasbourg
 Sebastian Otoa	20	DF	Genoa
 Sebastian Walukiewicz	24	DF	Empoli
 Sebastian Walukiewicz	24	DF	Torino
 Sebastiano Esposito	22	FW,MF	Empoli
 Sebastiano Luperto	27	DF	Cagliari
-Seko Fofana	29	MF	Rennes
-Sekou Mara	22	FW,MF	Strasbourg
-Selim Amallah	27	MF	Valladolid
 Semuel Pizzignacco	22	GK	Monza
 Senne Lynen	25	MF	Werder Bremen
-Senny Mayulu	18	MF	Paris S-G
-Sepp van den Berg	22	DF	Brentford
 Serge Gnabry	29	FW,MF	Bayern Munich
-Sergi	32	DF	Leganés
-Sergi Altimira	22	MF	Betis
-Sergi Canós	27	MF,FW	Valencia
-Sergi Cardona	25	DF	Villarreal
-Sergi Darder	30	MF,FW	Mallorca
-Sergi Dominguez	19	DF	Barcelona
-Sergi Guardiola	33	FW	Rayo Vallecano
-Sergi Gómez	32	DF	Espanyol
 Sergi Roberto	32	MF	Como
-Sergio Akieme	26	DF	Reims
-Sergio Arribas	21	DF	Betis
-Sergio Camello	23	FW	Rayo Vallecano
-Sergio Carreira	23	MF,DF	Celta Vigo
-Sergio Gómez	23	MF,DF	Real Sociedad
-Sergio Herrera	31	GK	Osasuna
-Sergio Reguilón	27	DF	Tottenham
-Sergio Viera	19	MF	Las Palmas
 Sergiu Perciun	18	FW,MF	Torino
 Serhou Guirassy	28	FW	Dortmund
-Seydouba Cissé	23	MF	Leganés
-Shavy Babicka	24	MF,FW	Toulouse
-Sheraldo Becker	29	FW,MF	Real Sociedad
 Shiō Fukuda	20	FW	Gladbach
-Shumaira Mheuka	16	MF	Chelsea
 Shuto Machino	24	FW,MF	Holstein Kiel
-Sidiki Cherif	17	FW	Angers
-Siebe Van Der Heyden	26	DF,MF	Mallorca
 Siebe Van Der Heyden	26	DF,MF	St. Pauli
 Silvan Widmer	31	DF	Mainz 05
-Silvi Clúa	19	MF	Girona
 Silvère Ganvoula M'Boussy	28	FW	Monza
-Simon Adingra	22	FW,MF	Brighton
-Simon Cara	19	MF,FW	Montpellier
 Simon Sohm	23	MF	Parma
 Simone Pafundi	18	MF,DF	Udinese
 Simone Perilli	29	GK	Hellas Verona
 Simone Scuffet	28	GK	Cagliari
 Simone Scuffet	28	GK	Napoli
 Simone Verdi	32	MF,FW	Como
-Sinaly Diomande	23	DF	Auxerre
 Sirlord Conteh	28	FW,MF	Heidenheim
 Skelly Alvero	22	MF	Werder Bremen
-Sofiane Diop	24	MF,FW	Nice
 Sofyan Amrabat	27	MF	Fiorentina
-Solly March	30	FW,MF	Brighton
-Son Heung-min	32	FW	Tottenham
-Sorba Thomas	24	FW,MF	Nantes
 Souleymane Touré	21	DF	Udinese
-Soumaïla Coulibaly	20	DF	Brest
-Soungoutou Magassa	20	MF	Monaco
-Stanis Idumbo	19	FW,MF	Sevilla
 Stanislav Lobotka	29	MF	Napoli
-Stanko Jurić	27	MF	Valladolid
 Stanley N'Soki	25	DF	Hoffenheim
-Stefan Bajcetic	19	MF,DF	Las Palmas
 Stefan Bell	32	DF	Mainz 05
-Stefan Džodić	19	DF,MF	Montpellier
 Stefan Lainer	31	DF	Gladbach
 Stefan Lekovic	20	DF	Monza
-Stefan Ortega	31	GK	Manchester City
 Stefan Posch	27	DF	Atalanta
 Stefan Posch	27	DF	Bologna
 Stefan Schimmer	30	FW,MF	Heidenheim
@@ -2531,325 +1020,108 @@ Stefano Sabelli	31	DF	Genoa
 Stefano Sensi	28	MF	Monza
 Stefano Turati	22	GK	Monza
 Stephan El Shaarawy	31	DF,MF	Roma
-Stephy Mavididi	26	FW	Leicester City
-Steve Mandanda	39	GK	Rennes
 Steve Mounié	29	FW,MF	Augsburg
-Steve Ngoura	19	FW	Le Havre
 Steven Skrzybski	31	MF,FW	Holstein Kiel
-Stoichkov	30	MF,FW	Alavés
-Stole Dimitrievski	30	GK	Valencia
 Strahinja Pavlović	23	DF	Milan
 Suat Serdar	27	MF	Hellas Verona
-Suso	30	FW,MF	Sevilla
-Sven Botman	24	DF	Newcastle Utd
 Sven Ulreich	35	GK	Bayern Munich
 Szymon Żurkowski	26	MF	Empoli
-Sávio	20	FW,MF	Manchester City
-Séamus Coleman	35	DF	Everton
-Sébastien Haller	30	FW	Leganés
-Sékou Doucoure	19	DF	Nantes
-Sérigné Diop	19	FW	Brest
-Tadeo Allende	25	FW	Celta Vigo
-Taiwo Awoniyi	26	FW	Nott'ham Forest
 Tajon Buchanan	25	DF,FW	Inter
-Tajon Buchanan	25	MF	Villarreal
-Takefusa Kubo	23	MF,FW	Real Sociedad
-Takehiro Tomiyasu	25	DF	Arsenal
-Takuma Asano	29	FW,MF	Mallorca
-Takumi Minamino	29	MF,FW	Monaco
 Tammy Abraham	26	FW	Milan
 Tammy Abraham	26	FW	Roma
-Tamás Nikitscher	24	MF,DF	Valladolid
-Tanguy Coulibaly	23	FW,MF	Montpellier
-Tanguy Ndombele	27	MF	Nice
-Tanguy Nianzou	22	DF	Sevilla
-Tanner Tessmann	22	MF	Lyon
-Tariq Lamptey	23	DF	Brighton
-Taylor Harwood-Bellis	22	DF	Southampton
-Teddy Teuma	30	MF	Reims
-Terem Moffi	25	FW	Nice
 Tete Morente	27	FW,MF	Lecce
 Teun Koopmeiners	26	MF,FW	Juventus
-Theo Bair	24	FW	Auxerre
 Theo Hernández	26	DF	Milan
-Thiago	23	FW,MF	Brentford
-Thiago Almada	23	MF,FW	Lyon
-Thiago Ojeda	21	MF	Villarreal
-Thibault De Smet	26	DF	Reims
-Thibaut Courtois	32	GK	Real Madrid
-Thierno Barry	21	FW	Villarreal
-Thierry Correia	25	DF	Valencia
 Thijs Dallinga	23	FW	Bologna
-Thilo Kehrer	27	DF	Monaco
 Thomas Campaniello	16	FW	Empoli
-Thomas Delaine	32	DF	Strasbourg
 Thomas Dähne	30	GK	Holstein Kiel
 Thomas Keller	24	DF,MF	Heidenheim
 Thomas Kristensen	22	DF	Udinese
-Thomas Lemar	28	MF	Atlético Madrid
-Thomas Meunier	32	DF	Lille
 Thomas Müller	34	MF,FW	Bayern Munich
-Thomas Partey	31	MF,DF	Arsenal
-Théo Chennahi	19	DF	Montpellier
-Théo De Percin	23	GK	Auxerre
-Théo Pellenard	30	DF	Auxerre
-Théo Sainte-Luce	25	DF	Montpellier
 Tiago Cardoso	18	GK	Gladbach
 Tiago Gabriel	19	DF	Lecce
-Tiago Santos	22	DF	Lille
 Tiago Tomás	22	FW,MF	Wolfsburg
 Tidiam Gomis	17	MF,FW	RB Leipzig
 Tijjani Noslin	25	FW,MF	Lazio
 Tijjani Reijnders	26	MF	Milan
 Tim Breithaupt	22	MF	Augsburg
 Tim Drexler	19	DF	Hoffenheim
-Tim Iroegbunam	21	MF	Everton
 Tim Kleindienst	28	FW	Gladbach
 Tim Oermann	20	DF	Bochum
 Tim Siersleben	24	DF	Heidenheim
 Tim Skarke	27	FW,MF	Union Berlin
 Timo Becker	27	DF	Holstein Kiel
 Timo Horn	31	GK	Bochum
-Timo Werner	28	FW,MF	Tottenham
 Timon Weiner	25	GK	Holstein Kiel
-Timothee Pembele	21	DF	Le Havre
-Timothy Castagne	28	DF	Fulham
 Timothy Chandler	34	DF	Eint Frankfurt
 Timothy Weah	24	DF,FW	Juventus
-Tino Kadewere	28	MF,FW	Nantes
 Tobias Sippel	36	GK	Gladbach
-Toby Collyer	20	MF	Manchester Utd
 Tom Bischof	19	MF,FW	Hoffenheim
-Tom Cairney	33	MF	Fulham
-Tom King	29	GK	Wolves
 Tom Krauß	23	MF	Bochum
-Tom Louchet	21	DF,MF	Nice
-Tom Pouilly	21	DF,MF	Lens
 Tom Rothe	19	DF,MF	Union Berlin
 Tommaso Augello	29	DF	Cagliari
 Tommaso Baldanzi	21	MF,FW	Roma
 Tommaso Gabellini	17	FW	Torino
 Tommaso Pobega	25	MF	Bologna
 Tommaso Rubino	17	MF	Fiorentina
-Tommy Doyle	22	MF	Wolves
-Tomás Conechny	26	FW,MF	Alavés
 Tomás Palacios	21	DF	Inter
 Tomás Palacios	21	DF	Monza
-Tomáš Souček	29	MF	West Ham
 Tomáš Suslov	22	MF,FW	Hellas Verona
 Tomáš Čvančara	23	FW	Gladbach
-Toni Lato	26	DF	Mallorca
-Toni Martínez	27	FW	Alavés
-Tosin Adarabioyo	26	DF	Chelsea
-Toti Gomes	25	DF	Wolves
-Trent Alexander-Arnold	25	DF	Liverpool
-Trevoh Chalobah	25	DF	Chelsea
-Trevoh Chalobah	25	DF	Crystal Palace
 Tuta	25	DF,MF	Eint Frankfurt
-Tyler Adams	25	MF	Bournemouth
-Tyler Dibling	18	FW,MF	Southampton
-Tyler Fredricson	19	DF	Manchester Utd
 Tymoteusz Puchacz	25	DF	Holstein Kiel
-Tyrell Malacia	24	DF	Manchester Utd
-Tyrick Mitchell	24	DF	Crystal Palace
-Tyrique George	18	FW	Chelsea
-Tyrone Mings	31	DF	Aston Villa
 Tyronne Ebuehi	28	DF,MF	Empoli
-Téji Savanier	32	MF	Montpellier
-Téo Barisic	19	DF	Lyon
-Ulisses Garcia	28	DF	Marseille
-Umar Sadiq	27	FW	Real Sociedad
-Umar Sadiq	27	FW	Valencia
 Umut Tohumcu	19	MF,FW	Hoffenheim
-Unai García	32	DF	Osasuna
-Unai Gómez	21	MF,FW	Athletic Club
-Unai López	28	MF	Rayo Vallecano
-Unai Marrero	22	GK	Real Sociedad
-Unai Núñez	27	DF	Athletic Club
-Unai Simón	27	GK	Athletic Club
-Urko González	23	MF	Espanyol
-Urko González	23	MF	Real Sociedad
-Valentin Atangana Edoa	18	MF	Reims
-Valentin Carboni	19	MF,FW	Marseille
 Valentin Gendrey	24	DF	Hoffenheim
 Valentin Gendrey	24	DF	Lecce
 Valentin Mihaila	24	FW,MF	Parma
-Valentin Rongier	29	MF,DF	Marseille
-Valentin Rosier	27	DF	Leganés
 Valentino Lazaro	28	DF,FW	Torino
-Valentino Livramento	21	DF	Newcastle Utd
-Valentín Barco	20	DF,FW	Sevilla
-Valentín Barco	20	MF,DF	Strasbourg
 Valentín Castellanos	25	FW	Lazio
-Valentín Pezzolesi	17	DF	Las Palmas
-Valery Fernández	24	MF,FW	Mallorca
-Vanderson	23	DF	Monaco
 Vanja Milinković-Savić	27	GK	Torino
 Vanja Vlahović	20	FW,MF	Atalanta
 Vasilije Adžić	18	MF,FW	Juventus
-Vedat Muriqi	30	FW	Mallorca
-Vicente Guaita	37	GK	Celta Vigo
-Victor Bernth Kristiansen	21	DF	Leicester City
 Victor Boniface	23	FW	Leverkusen
-Victor Lindelöf	30	DF	Manchester Utd
 Victor Nelsson	25	DF	Roma
-Victor Orakpo	18	FW	Nice
 Viggo Gebel	16	MF	RB Leipzig
 Viktor Kovalenko	28	MF	Empoli
-Viktor Tsyhankov	26	FW,MF	Girona
-Vincent Sierro	28	MF	Toulouse
 Vincenzo Grifo	31	FW,MF	Freiburg
-Vinicius Júnior	24	FW	Real Madrid
-Virgil van Dijk	33	DF	Liverpool
-Vitaliy Mykolenko	25	DF	Everton
-Vitaly Janelt	26	MF	Brentford
-Vitezslav Jaros	23	GK	Liverpool
-Viti	26	DF	Las Palmas
 Vitinha	24	FW,MF	Genoa
-Vitinha	24	MF	Paris S-G
-Vitor Reis	18	DF	Manchester City
-Vitor Roque	19	FW	Betis
-Vladimír Coufal	31	DF	West Ham
-Víctor Meseguer	25	MF	Valladolid
-Víctor Muñoz	21	FW,DF	Real Madrid
-Wahbi Khazri	33	FW,MF	Montpellier
 Waldemar Anton	28	DF	Dortmund
-Walid Cheddira	26	FW	Espanyol
 Walid Cheddira	26	FW	Napoli
-Warmed Omari	24	DF	Lyon
 Warren Bondo	20	MF	Milan
 Warren Bondo	20	MF	Monza
-Warren Kamanzi	23	DF,MF	Toulouse
-Warren Zaïre-Emery	18	MF,DF	Paris S-G
-Wataru Endo	31	MF,DF	Liverpool
-Welington	23	DF	Southampton
-Wes Burns	29	FW,DF	Ipswich Town
-Wesley Fofana	23	DF	Chelsea
-Wesley Saïd	29	FW	Lens
 Weston McKennie	25	MF,DF	Juventus
-Wilfred Ndidi	27	MF	Leicester City
-Wilfried Ndollo	19	DF	Montpellier
-Wilfried Singo	23	DF	Monaco
-Wilfried Zaha	31	FW	Lyon
-Will Alves	19	FW	Leicester City
-Will Hughes	29	MF	Crystal Palace
-Will Lankshear	19	FW,MF	Tottenham
 Willi Orban	31	DF	RB Leipzig
-William Carvalho	32	MF	Betis
-William Osula	20	FW	Newcastle Utd
-William Saliba	23	DF	Arsenal
-William Smallbone	24	MF	Southampton
-Willian	35	FW,MF	Fulham
-Willian Pacho	22	DF	Paris S-G
-Williot Swedberg	20	FW,MF	Celta Vigo
-Willy Boly	33	DF	Nott'ham Forest
-Willy Kambwala	19	DF	Villarreal
-Wilson Odobert	19	FW,MF	Tottenham
 Wladimiro Falcone	29	GK	Lecce
-Wojciech Szczęsny	34	GK	Barcelona
-Wout Faes	26	DF	Leicester City
-Woyo Coulibaly	25	DF	Leicester City
 Woyo Coulibaly	25	DF	Parma
 Wylan Cyprien	29	MF	Parma
 Xaver Schlager	26	MF	RB Leipzig
 Xavi Simons	21	MF	RB Leipzig
-Xavier Moreno	19	FW	Valladolid
 Yacine Adli	24	MF	Fiorentina
-Yael Mouanga	19	DF	Montpellier
-Yael Nandjou	19	DF	Nice
-Yahia Fofana	23	GK	Angers
 Yan Couto	22	DF,FW	Dortmund
-Yan Diomandé	17	MF,FW	Leganés
-Yangel Herrera	26	MF	Girona
-Yanis Issoufou	17	MF,FW	Montpellier
-Yanis Zouaoui	30	DF,FW	Le Havre
-Yankuba Minteh	20	FW,MF	Brighton
 Yann Aurel Bisseck	23	DF	Inter
-Yann Gboho	23	MF,FW	Toulouse
 Yann Karamoh	26	MF,FW	Torino
 Yann Sommer	35	GK	Inter
 Yannick Gerhardt	30	MF,DF	Wolfsburg
 Yannik Engelhardt	23	MF,DF	Como
 Yannik Keitel	24	MF	Stuttgart
 Yannik Lührs	20	DF	Dortmund
-Yarek Gasiorowski	19	DF	Valencia
-Yaser Asprilla	20	FW,MF	Girona
-Yasin Ayari	20	MF	Brighton
-Yassin Belkhdim	22	MF	Angers
-Yassine Kechta	22	MF,FW	Le Havre
-Yaya Kader Fofana	20	MF,FW	Reims
-Yehor Yarmoliuk	20	MF	Brentford
-Yehvann Diouf	24	GK	Reims
-Yeray Álvarez	29	DF	Athletic Club
-Yeremi Pino	21	MF,FW	Villarreal
 Yerry Mina	29	DF	Cagliari
-Yerson Mosquera	23	DF	Wolves
 Ylber Ramadani	28	MF	Lecce
 Yllan Okou	21	DF	Hellas Verona
-Yoane Wissa	27	FW	Brentford
-Yoann Cissé	19	MF	Auxerre
-Yoann Salmier	31	DF	Le Havre
-Yoel Lago	20	DF	Celta Vigo
-Yoram Zague	18	DF,FW	Paris S-G
 Yorbe Vertessen	23	MF,FW	Union Berlin
 Yordan Osorio	30	DF	Parma
-Younes Lachaab	19	MF,FW	Lille
-Youri Tielemans	27	MF	Aston Villa
-Youssef Chermiti	20	FW,MF	Everton
 Youssef Maleh	25	MF	Empoli
 Youssouf Fofana	25	MF	Milan
-Youssouf Ndayishimiye	25	DF	Nice
-Youssouf Sabaly	31	DF	Betis
-Youssoufa Moukoko	19	FW,MF	Nice
-Yukinari Sugawara	24	DF,MF	Southampton
-Yunis Abdelhamid	36	DF	Saint-Étienne
-Yunus Emre Konak	18	FW,MF	Brentford
 Yunus Musah	21	MF,FW	Milan
-Yuri Berchiche	34	DF	Athletic Club
 Yussuf Poulsen	30	FW,MF	RB Leipzig
 Yusuf Kabadayı	20	FW,MF	Augsburg
-Yvan Neyou	27	MF	Leganés
-Yvann Macon	25	DF	Saint-Étienne
-Yves Bissouma	27	MF	Tottenham
-Zain Silcott-Duberry	19	FW	Bournemouth
-Zakaria Aboukhlal	24	MF,FW	Toulouse
 Zeki Çelik	27	DF	Roma
-Zinedine Ferhat	31	FW,MF	Angers
-Zinédine Ould Khaled	24	MF	Angers
 Zion Suzuki	21	GK	Parma
 Zito Luvumbo	22	FW,MF	Cagliari
-Zuriko Davitashvili	23	FW,MF	Saint-Étienne
-Álex Berenguer	29	FW,MF	Athletic Club
-Álex Domínguez	26	GK	Toulouse
 Álex Grimaldo	28	DF	Leverkusen
-Álex Moreno	31	DF,MF	Nott'ham Forest
-Álex Muñoz	30	DF	Las Palmas
-Álex Remiro	29	GK	Real Sociedad
-Álex Suárez	31	DF	Las Palmas
 Álex Valle	20	DF	Como
-Álvaro Aguado	28	MF	Espanyol
-Álvaro Fernández	26	GK	Sevilla
-Álvaro García	31	FW,MF	Rayo Vallecano
 Álvaro Morata	31	FW,MF	Milan
-Álvaro Odriozola	28	DF	Real Sociedad
-Álvaro Pascual	22	FW	Sevilla
-Álvaro Rodríguez	20	FW	Getafe
-Álvaro Tejero	28	MF,DF	Espanyol
-Álvaro djaló	24	FW	Athletic Club
-Ángel Correa	29	FW,MF	Atlético Madrid
-Ángel Ortíz	20	DF	Betis
-Éder Militão	26	DF	Real Madrid
 Éderson	25	MF	Atalanta
-Óscar Mingueza	25	MF,DF	Celta Vigo
-Óscar Perea	18	MF,DF	Strasbourg
-Óscar Rodríguez Arnaiz	26	MF,FW	Leganés
-Óscar Trejo	36	MF	Rayo Vallecano
-Óscar Valentín	29	MF	Rayo Vallecano
-Óscar de Marcos	35	DF	Athletic Club
-Ørjan Nyland	33	GK	Sevilla
-Ümit Akdag	20	DF	Toulouse
 Þórir Jóhann Helgason	23	MF	Lecce
-Đorđe Petrović	24	GK	Strasbourg
-İlkay Gündoğan	33	MF	Manchester City
-Łukasz Fabiański	39	GK	West Ham
 Łukasz Skorupski	33	GK	Bologna

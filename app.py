@@ -1,3 +1,5 @@
+
+# --- Imports ---
 import feedparser
 from datetime import datetime, timedelta, timezone
 from flask import Flask, request, Response, render_template, jsonify
@@ -11,7 +13,200 @@ import time
 from pathlib import Path
 from dataclasses import dataclass
 
+# --- Flask App Setup ---
+app = Flask(__name__)
 
+# --- Routes ---
+@app.route("/", methods=["GET"])
+def home():
+    return render_template("home.html")
+
+@app.route("/autocomplete", methods=["GET"])
+def autocomplete():
+    query = request.args.get("query", "").strip().lower()
+    suggestions = set()
+    if query:
+        for norm_name, names in player_aliases.items():
+            for name in names:
+                if query in name.lower():
+                    suggestions.add(name)
+        for norm_name, names in club_aliases.items():
+            for name in names:
+                if query in name.lower():
+                    suggestions.add(name)
+    return jsonify(sorted(suggestions)[:10])
+
+@app.route("/transfers", methods=["GET"])
+def get_transfer_mentions():
+    query = request.args.get("query", "").rstrip()
+    search_type = request.args.get("type", "team")
+    window = 48  # Standardized 48 hour window
+
+    if not query:
+        return render_error("Missing 'query' parameter")
+
+    try:
+        recent_articles = fetch_recent_articles(query, hours=window)
+    except Exception as e:
+        return render_template("home.html", error=f"Failed to fetch news: {str(e)}")
+
+    canonical_team = get_canonical_entity(query, club_aliases)
+    canonical_player = get_canonical_entity(query, player_aliases)
+
+    if search_type == "team" and canonical_team:
+        try:
+            player_article_links = get_entity_mentions(
+                recent_articles, canonical_team, 'team', player_automaton, club_automaton
+            )
+            mentions_list = [
+                (player, len(links), f"/transfers/link?player={urllib.parse.quote(player)}&team={urllib.parse.quote(canonical_team)}")
+                for player, links in sorted(player_article_links.items(), key=lambda x: len(x[1]), reverse=True)
+            ]
+            context = build_team_context(canonical_team, mentions_list)
+            return render_template("transfers.html", **context)
+        except Exception as e:
+            import traceback
+            print("[ERROR] /transfers team block:", traceback.format_exc())
+            return render_template("home.html", error=f"Internal error: {str(e)}")
+    elif canonical_player:
+        try:
+            player_info = get_player_info(canonical_player)
+            current_club = player_info.club if player_info else None
+            club_article_map = get_entity_mentions(
+                recent_articles, canonical_player, 'player', player_automaton, club_automaton, exclude=current_club
+            )
+            linked_teams = [
+                (club, len(links), f"/transfers/link?player={urllib.parse.quote(canonical_player)}&team={urllib.parse.quote(club)}")
+                for club, links in sorted(club_article_map.items(), key=lambda x: len(x[1]), reverse=True)
+            ]
+            context = build_player_context(canonical_player, player_info, linked_teams)
+            return render_template("player.html", **context)
+        except Exception as e:
+            import traceback
+            print("[ERROR] /transfers player block:", traceback.format_exc())
+            return render_template("home.html", error=f"Internal error: {str(e)}")
+    return render_error("No articles found for this player or team.")
+
+@app.route("/transfers/link", methods=["GET"])
+def transfers_link():
+    player = request.args.get("player")
+    team = request.args.get("team")
+    window = 48  # Standardized 48 hour window
+    if not player or not team:
+        return render_error("Missing player or team parameter")
+    decoded_player = urllib.parse.unquote(player)
+    decoded_team = urllib.parse.unquote(team)
+    canonical_player = get_canonical_entity(decoded_player, player_aliases)
+    canonical_team = get_canonical_entity(decoded_team, club_aliases)
+    if not canonical_player or not canonical_team:
+        return render_error("Player or team not found")
+    try:
+        search_query = f"{decoded_player} {decoded_team}"
+        recent_articles = fetch_recent_articles(search_query, hours=window)
+    except Exception as e:
+        return render_error(f"Failed to fetch news: {str(e)}")
+    matching_articles = filter_articles_with_entities(
+        recent_articles,
+        required_players=[canonical_player],
+        required_teams=[canonical_team],
+        player_automaton=player_automaton,
+        club_automaton=club_automaton
+    )
+    context = build_transfer_link_context(canonical_player, canonical_team, matching_articles)
+    return render_template("player.html", **context)
+
+@app.route("/team-stats", methods=["GET"])
+def team_stats_page():
+    team_name = request.args.get("name")
+    if not team_name:
+        return render_error("Missing team name")
+    decoded_team = urllib.parse.unquote(team_name)
+    team_players = get_players_for_team(decoded_team)
+    # --- TeamInfo ---
+    team_info = get_team_info(decoded_team)
+    # --- Team Stats ---
+    DATA_DIR = Path(__file__).parent
+    TEAM_FILE = DATA_DIR / "team-stats.sql"
+    insert_re = re.compile(r"INSERT INTO team_stats VALUES \((.*?)\);", re.IGNORECASE)
+    stat_keys = []
+    stats_row = None
+    # Get columns
+    with open(TEAM_FILE, encoding="utf-8") as f:
+        content = f.read()
+        create_match = re.search(r"CREATE TABLE.*?team_stats\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
+        if create_match:
+            columns_text = create_match.group(1)
+            column_matches = re.findall(r"`([^`]+)`", columns_text)
+            stat_keys = column_matches
+    # Find row for this team (normalize for partial match)
+    def normalize(s):
+        return ''.join(c for c in unicodedata.normalize('NFD', s.lower()) if unicodedata.category(c) != 'Mn').replace(' fc','').replace(' afc','').replace('.','').replace(',','').replace('-',' ').strip()
+    norm_decoded = normalize(decoded_team)
+    with open(TEAM_FILE, encoding="utf-8") as f:
+        for line in f:
+            match = insert_re.match(line.strip())
+            if not match:
+                continue
+            raw = match.group(1)
+            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
+            if len(values) >= 3:
+                norm_sql_name = normalize(values[2])
+                if norm_decoded == norm_sql_name or norm_decoded in norm_sql_name or norm_sql_name in norm_decoded:
+                    stats_row = values
+                    break
+    team_stats = {}
+    if stats_row and stat_keys and len(stats_row) == len(stat_keys):
+        for i, (key, value) in enumerate(zip(stat_keys, stats_row)):
+            team_stats[key] = value
+    context = build_team_roster_context(decoded_team, team_players)
+    context["team_info"] = team_info
+    context["team_stats"] = team_stats if team_stats else None
+    return render_template("team-stats.html", **context)
+
+@app.route("/player-stats", methods=["GET"])
+def player_stats_page():
+    player_name = request.args.get("player", "").strip()
+    if not player_name:
+        return render_error("Missing player parameter")
+    decoded_player = urllib.parse.unquote(player_name)
+    canonical_player = get_canonical_entity(decoded_player, player_aliases)
+    if not canonical_player:
+        return render_error("Player not found")
+    stats_row = None
+    stat_keys = []
+    sql_file = str(PLAYER_FILE)
+    insert_re = re.compile(r"INSERT INTO player_stats VALUES \((.*?)\);", re.IGNORECASE)
+    with open(sql_file, encoding="utf-8") as f:
+        content = f.read()
+        create_match = re.search(r"CREATE TABLE.*?player_stats\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
+        if create_match:
+            columns_text = create_match.group(1)
+            column_matches = re.findall(r"`([^`]+)`", columns_text)
+            stat_keys = column_matches
+    with open(sql_file, encoding="utf-8") as f:
+        for line in f:
+            match = insert_re.match(line.strip())
+            if not match:
+                continue
+            raw = match.group(1)
+            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
+            if len(values) < 2:
+                continue
+            if values[1].lower() == canonical_player.lower():
+                stats_row = values
+                break
+    player_stats = {}
+    if stats_row and stat_keys and len(stats_row) == len(stat_keys):
+        for i, (key, value) in enumerate(zip(stat_keys, stats_row)):
+            if key not in ['Rk', 'Player', 'Nation', 'Pos', 'Squad', 'Born', 'Matches']:
+                player_stats[key] = value
+    player_info = get_player_info(canonical_player)
+    linked_teams = []
+    context = build_player_context(canonical_player, player_info, linked_teams, show_stats_link=False)
+    context["player_stats"] = player_stats
+    return render_template("player-stats.html", **context)
+
+# --- Data Loading and Helper Functions ---
 @dataclass
 class PlayerInfo:
     name: str
@@ -20,7 +215,6 @@ class PlayerInfo:
     club: str
     nationality: str
 
-# Dataclass for team info, building this out for future use with a separate SQL table
 @dataclass
 class TeamInfo:
     name: str
@@ -144,7 +338,7 @@ def fetch_recent_articles(query: str, hours: int = 24):
 def build_team_context(canonical_team, mentions_list):
     team_display = canonical_team.title()
     header = f'{team_display} trending mentions'
-    current_roster_link = f'<a href="/teams?name={urllib.parse.quote(canonical_team)}" class="results-header-link">Current Roster</a>'
+    current_roster_link = f'<a href="/team-stats?name={urllib.parse.quote(canonical_team)}" class="results-header-link">Current Roster</a>'
     # Get TeamInfo
     team_info = get_team_info(canonical_team)
     context = dict(
@@ -157,6 +351,7 @@ def build_team_context(canonical_team, mentions_list):
         context["outgoing_mentions"] = []
         context["no_mentions_message"] = "No recent mentions."
     return context
+
 def get_team_info(canonical_team: str) -> 'TeamInfo|None':
     # Load from team-stats.sql (simple parse, not efficient for large files)
     DATA_DIR = Path(__file__).parent
@@ -189,7 +384,7 @@ def get_team_info(canonical_team: str) -> 'TeamInfo|None':
                     league = values[0] if len(values) > 0 else "Unknown"
                     country = values[1] if len(values) > 1 else "Unknown"
                     name = values[2]
-                    current_roster = f"/teams?name={urllib.parse.quote(name)}"
+                    current_roster = f"/team-stats?name={urllib.parse.quote(name)}"
                     return TeamInfo(name=name, league=league, country=country, current_roster=current_roster)
     return None
 
@@ -290,199 +485,6 @@ club_aliases = add_aliases(club_aliases, [
 ])
 player_automaton = build_automaton(player_aliases)
 club_automaton = build_automaton(club_aliases)
-
-# --- Flask App Setup ---
-app = Flask(__name__)
-
-# --- Routes ---
-@app.route("/", methods=["GET"])
-def home():
-    return render_template("home.html")
-
-@app.route("/autocomplete", methods=["GET"])
-def autocomplete():
-    query = request.args.get("query", "").strip().lower()
-    suggestions = set()
-    if query:
-        for norm_name, names in player_aliases.items():
-            for name in names:
-                if query in name.lower():
-                    suggestions.add(name)
-        for norm_name, names in club_aliases.items():
-            for name in names:
-                if query in name.lower():
-                    suggestions.add(name)
-    return jsonify(sorted(suggestions)[:10])
-
-@app.route("/transfers", methods=["GET"])
-def get_transfer_mentions():
-    query = request.args.get("query", "").rstrip()
-    search_type = request.args.get("type", "team")
-    window = 48  # Standardized 48 hour window
-
-    if not query:
-        return render_error("Missing 'query' parameter")
-
-    try:
-        recent_articles = fetch_recent_articles(query, hours=window)
-    except Exception as e:
-        return render_template("home.html", error=f"Failed to fetch news: {str(e)}")
-
-    canonical_team = get_canonical_entity(query, club_aliases)
-    canonical_player = get_canonical_entity(query, player_aliases)
-
-    if search_type == "team" and canonical_team:
-        try:
-            player_article_links = get_entity_mentions(
-                recent_articles, canonical_team, 'team', player_automaton, club_automaton
-            )
-            mentions_list = [
-                (player, len(links), f"/transfers/link?player={urllib.parse.quote(player)}&team={urllib.parse.quote(canonical_team)}")
-                for player, links in sorted(player_article_links.items(), key=lambda x: len(x[1]), reverse=True)
-            ]
-            context = build_team_context(canonical_team, mentions_list)
-            return render_template("transfers.html", **context)
-        except Exception as e:
-            import traceback
-            print("[ERROR] /transfers team block:", traceback.format_exc())
-            return render_template("home.html", error=f"Internal error: {str(e)}")
-    elif canonical_player:
-        try:
-            player_info = get_player_info(canonical_player)
-            current_club = player_info.club if player_info else None
-            club_article_map = get_entity_mentions(
-                recent_articles, canonical_player, 'player', player_automaton, club_automaton, exclude=current_club
-            )
-            linked_teams = [
-                (club, len(links), f"/transfers/link?player={urllib.parse.quote(canonical_player)}&team={urllib.parse.quote(club)}")
-                for club, links in sorted(club_article_map.items(), key=lambda x: len(x[1]), reverse=True)
-            ]
-            context = build_player_context(canonical_player, player_info, linked_teams)
-            return render_template("player.html", **context)
-        except Exception as e:
-            import traceback
-            print("[ERROR] /transfers player block:", traceback.format_exc())
-            return render_template("home.html", error=f"Internal error: {str(e)}")
-    return render_error("No articles found for this player or team.")
-
-@app.route("/transfers/link", methods=["GET"])
-def transfers_link():
-    player = request.args.get("player")
-    team = request.args.get("team")
-    window = 48  # Standardized 48 hour window
-    if not player or not team:
-        return render_error("Missing player or team parameter")
-    decoded_player = urllib.parse.unquote(player)
-    decoded_team = urllib.parse.unquote(team)
-    canonical_player = get_canonical_entity(decoded_player, player_aliases)
-    canonical_team = get_canonical_entity(decoded_team, club_aliases)
-    if not canonical_player or not canonical_team:
-        return render_error("Player or team not found")
-    try:
-        search_query = f"{decoded_player} {decoded_team}"
-        recent_articles = fetch_recent_articles(search_query, hours=window)
-    except Exception as e:
-        return render_error(f"Failed to fetch news: {str(e)}")
-    matching_articles = filter_articles_with_entities(
-        recent_articles,
-        required_players=[canonical_player],
-        required_teams=[canonical_team],
-        player_automaton=player_automaton,
-        club_automaton=club_automaton
-    )
-    context = build_transfer_link_context(canonical_player, canonical_team, matching_articles)
-    return render_template("player.html", **context)
-
-@app.route("/teams", methods=["GET"])
-def teams_page():
-    team_name = request.args.get("name")
-    if not team_name:
-        return render_error("Missing team name")
-    decoded_team = urllib.parse.unquote(team_name)
-    team_players = get_players_for_team(decoded_team)
-    # --- TeamInfo ---
-    team_info = get_team_info(decoded_team)
-    # --- Team Stats ---
-    DATA_DIR = Path(__file__).parent
-    TEAM_FILE = DATA_DIR / "team-stats.sql"
-    insert_re = re.compile(r"INSERT INTO team_stats VALUES \((.*?)\);", re.IGNORECASE)
-    stat_keys = []
-    stats_row = None
-    # Get columns
-    with open(TEAM_FILE, encoding="utf-8") as f:
-        content = f.read()
-        create_match = re.search(r"CREATE TABLE.*?team_stats\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
-        if create_match:
-            columns_text = create_match.group(1)
-            column_matches = re.findall(r"`([^`]+)`", columns_text)
-            stat_keys = column_matches
-    # Find row for this team (normalize for partial match)
-    def normalize(s):
-        return ''.join(c for c in unicodedata.normalize('NFD', s.lower()) if unicodedata.category(c) != 'Mn').replace(' fc','').replace(' afc','').replace('.','').replace(',','').replace('-',' ').strip()
-    norm_decoded = normalize(decoded_team)
-    with open(TEAM_FILE, encoding="utf-8") as f:
-        for line in f:
-            match = insert_re.match(line.strip())
-            if not match:
-                continue
-            raw = match.group(1)
-            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
-            if len(values) >= 3:
-                norm_sql_name = normalize(values[2])
-                if norm_decoded == norm_sql_name or norm_decoded in norm_sql_name or norm_sql_name in norm_decoded:
-                    stats_row = values
-                    break
-    team_stats = {}
-    if stats_row and stat_keys and len(stats_row) == len(stat_keys):
-        for i, (key, value) in enumerate(zip(stat_keys, stats_row)):
-            team_stats[key] = value
-    context = build_team_roster_context(decoded_team, team_players)
-    context["team_info"] = team_info
-    context["team_stats"] = team_stats if team_stats else None
-    return render_template("team-stats.html", **context)
-
-@app.route("/player-stats", methods=["GET"])
-def player_stats_page():
-    player_name = request.args.get("player", "").strip()
-    if not player_name:
-        return render_error("Missing player parameter")
-    decoded_player = urllib.parse.unquote(player_name)
-    canonical_player = get_canonical_entity(decoded_player, player_aliases)
-    if not canonical_player:
-        return render_error("Player not found")
-    stats_row = None
-    stat_keys = []
-    sql_file = str(PLAYER_FILE)
-    insert_re = re.compile(r"INSERT INTO player_stats VALUES \((.*?)\);", re.IGNORECASE)
-    with open(sql_file, encoding="utf-8") as f:
-        content = f.read()
-        create_match = re.search(r"CREATE TABLE.*?player_stats\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
-        if create_match:
-            columns_text = create_match.group(1)
-            column_matches = re.findall(r"`([^`]+)`", columns_text)
-            stat_keys = column_matches
-    with open(sql_file, encoding="utf-8") as f:
-        for line in f:
-            match = insert_re.match(line.strip())
-            if not match:
-                continue
-            raw = match.group(1)
-            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
-            if len(values) < 2:
-                continue
-            if values[1].lower() == canonical_player.lower():
-                stats_row = values
-                break
-    player_stats = {}
-    if stats_row and stat_keys and len(stats_row) == len(stat_keys):
-        for i, (key, value) in enumerate(zip(stat_keys, stats_row)):
-            if key not in ['Rk', 'Player', 'Nation', 'Pos', 'Squad', 'Born', 'Matches']:
-                player_stats[key] = value
-    player_info = get_player_info(canonical_player)
-    linked_teams = []
-    context = build_player_context(canonical_player, player_info, linked_teams, show_stats_link=False)
-    context["player_stats"] = player_stats
-    return render_template("player-stats.html", **context)
 
 # --- Main ---
 if __name__ == "__main__":

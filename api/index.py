@@ -1,10 +1,11 @@
 import sys
 import os
 
-# Add the parent directory to Python path so we can import app
+# Add the parent directory to Python path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app import app
+# Import the Flask app
+from app import app as flask_app
 
-# Export the Flask app for Vercel
-app = app
+# Export for Vercel
+app = flask_app

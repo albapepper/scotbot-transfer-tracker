@@ -11,46 +11,6 @@ import time
 from pathlib import Path
 from dataclasses import dataclass
 
-# --- Utility Functions & Data Model ---
-
-# --- Nation Mapping ---
-NATION_MAP = {
-    "ENG": ("English", "🏴"),
-    "SCO": ("Scottish", "🏴"),
-    "WAL": ("Welsh", "🏴"),
-    "NIR": ("Northern Irish", "🇬🇧"),
-    "IRL": ("Irish", "🇮🇪"),
-    "FRA": ("French", "🇫🇷"),
-    "ESP": ("Spanish", "🇪🇸"),
-    "GER": ("German", "🇩🇪"),
-    "ITA": ("Italian", "🇮🇹"),
-    "POR": ("Portuguese", "🇵🇹"),
-    "NED": ("Dutch", "🇳🇱"),
-    "BEL": ("Belgian", "🇧🇪"),
-    "SUI": ("Swiss", "🇨🇭"),
-    "SWE": ("Swedish", "🇸🇪"),
-    "NOR": ("Norwegian", "🇳🇴"),
-    "DEN": ("Danish", "🇩🇰"),
-    "CRO": ("Croatian", "🇭🇷"),
-    "SRB": ("Serbian", "🇷🇸"),
-    "USA": ("American", "🇺🇸"),
-    "BRA": ("Brazilian", "🇧🇷"),
-    "ARG": ("Argentinian", "🇦🇷"),
-    "URU": ("Uruguayan", "🇺🇾"),
-    "COL": ("Colombian", "🇨🇴"),
-    "MEX": ("Mexican", "🇲🇽"),
-    "JPN": ("Japanese", "🇯🇵"),
-    "KOR": ("South Korean", "🇰🇷"),
-    "AUS": ("Australian", "🇦🇺"),
-    # ...add more as needed
-}
-
-def get_nation_display(nation_field):
-    if not nation_field or len(nation_field) < 3:
-        return nation_field or "Unknown"
-    code = nation_field[-3:].upper()
-    name, flag = NATION_MAP.get(code, (nation_field, ""))
-    return f"{name} {flag}".strip()
 
 @dataclass
 class PlayerInfo:
@@ -268,7 +228,7 @@ def load_player_data(filename: str) -> Tuple[Dict[str, List[str]], Dict[str, Lis
             if len(values) < 6:
                 continue
             name = values[1]
-            nationality = get_nation_display(values[2]) if len(values) > 2 and values[2] else "Unknown"
+            nationality = values[2] if len(values) > 2 and values[2] else "Unknown"
             position = values[3] if values[3] else "Unknown"
             club = values[4] if values[4] else "Unknown"
             born = values[6] if len(values) > 6 and values[6] else "Unknown"
@@ -479,7 +439,7 @@ def teams_page():
     context = build_team_roster_context(decoded_team, team_players)
     context["team_info"] = team_info
     context["team_stats"] = team_stats if team_stats else None
-    return render_template("team.html", **context)
+    return render_template("team-stats.html", **context)
 
 @app.route("/player-stats", methods=["GET"])
 def player_stats_page():

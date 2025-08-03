@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ decoded_team.title() }} Team Info{% endblock %}
+{% block content %}
+    <div class="main-title">{{ decoded_team.title() }} Team Info</div>
+    {% if team_info %}
+        <div class="info-block" style="margin-bottom: 24px;">
+            <b>Team:</b> {{ team_info.name }}<br>
+            <b>League:</b> {{ team_info.league }}<br>
+            <b>Country:</b> {{ team_info.country }}<br>
+        </div>
+    {% endif %}
+
+    {% if team_stats is defined and team_stats %}
+        <div class="player-stats-block">
+            <h3 style="font-family: inherit; font-size: 1.4em; font-weight: bold; color: inherit; text-align: center; margin-bottom: 20px;">Full Team Stats</h3>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <table class="player-stats-table" style="width: 100%; border-collapse: collapse; margin: 0 auto;">
+                    <tbody>
+                    {% for stat, value in team_stats.items() %}
+                        <tr>
+                            <td style="border: 1px solid #ccc; padding: 8px 12px; font-weight: bold; background-color: #f5f5f5; text-align: left; width: 40%;">{{ stat }}</td>
+                            <td style="border: 1px solid #ccc; padding: 8px 12px; text-align: left; width: 60%;">{{ value }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="main-title" style="margin-top: 2em;">Squad</div>
+    <div class="player-list">
+    {% if not players %}
+        <div style="text-align:center; color:black; font-weight:bold; margin:2em 0;">No recent mentions found</div>
+    {% else %}
+        {% for player in players %}
+            <div class="player-row"><a href="{{ player.link }}">{{ player.name }}</a> <span class="player-meta">({{ player.position }}, Age: {{ player.age }}, {{ player.nationality }})</span></div>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}

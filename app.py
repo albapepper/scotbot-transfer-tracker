@@ -622,6 +622,9 @@ club_aliases = add_aliases(club_aliases, [
 player_automaton = build_automaton(player_aliases)
 club_automaton = build_automaton(club_aliases)
 
+# Export for WSGI deployment (Vercel, etc.)
+application = app
+
 # --- Main ---
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)

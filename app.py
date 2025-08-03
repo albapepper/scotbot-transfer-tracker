@@ -38,7 +38,7 @@ def autocomplete():
 @app.route("/transfers", methods=["GET"])
 def get_transfer_mentions():
     query = request.args.get("query", "").rstrip()
-    search_type = request.args.get("type", "team")
+    search_type = request.args.get("type", "auto")  # Auto-detect by default
     window = 48  # Standardized 48 hour window
 
     if not query:
@@ -51,6 +51,15 @@ def get_transfer_mentions():
 
     canonical_team = get_canonical_entity(query, club_aliases)
     canonical_player = get_canonical_entity(query, player_aliases)
+
+    # Auto-detect search type if not specified
+    if search_type == "auto":
+        if canonical_player:
+            search_type = "player"
+        elif canonical_team:
+            search_type = "team"
+        else:
+            search_type = "player"  # Default to player when nothing found
 
     if search_type == "team":
         if canonical_team:
@@ -72,27 +81,28 @@ def get_transfer_mentions():
             # Team not found, but still show team template with no results
             context = build_team_context_for_unknown(query)
             return render_template("team.html", **context)
-    elif canonical_player:
-        try:
-            player_info = get_player_info(canonical_player)
-            current_club = player_info.club if player_info else None
-            club_article_map = get_entity_mentions(
-                recent_articles, canonical_player, 'player', player_automaton, club_automaton, exclude=current_club
-            )
-            linked_teams = [
-                (club, len(links), f"/transfers/link?player={urllib.parse.quote(canonical_player)}&team={urllib.parse.quote(club)}")
-                for club, links in sorted(club_article_map.items(), key=lambda x: len(x[1]), reverse=True)
-            ]
-            context = build_player_context(canonical_player, player_info, linked_teams)
+    else:  # search_type == "player" or anything else defaults to player
+        if canonical_player:
+            try:
+                player_info = get_player_info(canonical_player)
+                current_club = player_info.club if player_info else None
+                club_article_map = get_entity_mentions(
+                    recent_articles, canonical_player, 'player', player_automaton, club_automaton, exclude=current_club
+                )
+                linked_teams = [
+                    (club, len(links), f"/transfers/link?player={urllib.parse.quote(canonical_player)}&team={urllib.parse.quote(club)}")
+                    for club, links in sorted(club_article_map.items(), key=lambda x: len(x[1]), reverse=True)
+                ]
+                context = build_player_context(canonical_player, player_info, linked_teams)
+                return render_template("player.html", **context)
+            except Exception as e:
+                import traceback
+                print("[ERROR] /transfers player block:", traceback.format_exc())
+                return render_template("home.html", error=f"Internal error: {str(e)}")
+        else:
+            # Player not found, show player template with no results
+            context = build_player_context_for_unknown(query)
             return render_template("player.html", **context)
-        except Exception as e:
-            import traceback
-            print("[ERROR] /transfers player block:", traceback.format_exc())
-            return render_template("home.html", error=f"Internal error: {str(e)}")
-    else:
-        # Neither player nor team found, default to player template with no results
-        context = build_player_context_for_unknown(query)
-        return render_template("player.html", **context)
 
 @app.route("/transfers/link", methods=["GET"])
 def transfers_link():

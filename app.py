@@ -63,7 +63,7 @@ def get_transfer_mentions():
                 for player, links in sorted(player_article_links.items(), key=lambda x: len(x[1]), reverse=True)
             ]
             context = build_team_context(canonical_team, mentions_list)
-            return render_template("transfers.html", **context)
+            return render_template("team.html", **context)
         except Exception as e:
             import traceback
             print("[ERROR] /transfers team block:", traceback.format_exc())
@@ -234,11 +234,14 @@ def get_players_for_team(team_name: str) -> list[dict]:
     players = []
     for player_info in PLAYER_LOOKUP.values():
         if player_info.club.lower() == team_name.lower():
+            age = calculate_age_from_birth_year(player_info.born)
+            nationality_full = convert_nationality_to_full_name(player_info.nationality)
             players.append({
                 'name': player_info.name,
                 'born': player_info.born,
+                'age': age,
                 'position': player_info.position,
-                'nationality': player_info.nationality,
+                'nationality': nationality_full,
                 'link': f"/transfers?query={urllib.parse.quote(player_info.name)}&type=player"
             })
     return players
@@ -306,12 +309,15 @@ def build_player_info_block(player_info, canonical_player, show_stats_link=True)
     if player_info:
         club_link = f"/transfers?query={urllib.parse.quote(player_info.club)}&type=team"
         stats_url = f"/player-stats?player={urllib.parse.quote(canonical_player)}"
+        age = calculate_age_from_birth_year(player_info.born)
+        nationality_full = convert_nationality_to_full_name(player_info.nationality)
         base_info = (
             f"<b>Club:</b> "
             f"<a href='{club_link}' class='results-header-link' style='color:#7c31ff;text-decoration:underline;font-weight:bold;font-size:1.1rem'>{player_info.club}</a><br>"
             f"<b>Position:</b> {player_info.position}<br>"
+            f"<b>Age:</b> {age}<br>"
             f"<b>Born:</b> {player_info.born}<br>"
-            f"<b>Nationality:</b> {player_info.nationality}"
+            f"<b>Nationality:</b> {nationality_full}"
         )
         if show_stats_link:
             base_info += f"<br><a href='{stats_url}' class='results-header-link' style='color:#7c31ff;text-decoration:underline;font-weight:bold;font-size:1.1rem'>Stats</a>"
@@ -320,6 +326,7 @@ def build_player_info_block(player_info, canonical_player, show_stats_link=True)
         return (
             f"<b>Club:</b> Unknown<br>"
             f"<b>Position:</b> Unknown<br>"
+            f"<b>Age:</b> Unknown<br>"
             f"<b>Born:</b> Unknown<br>"
             f"<b>Nationality:</b> Unknown"
         )
@@ -342,6 +349,7 @@ def build_team_context(canonical_team, mentions_list):
     # Get TeamInfo
     team_info = get_team_info(canonical_team)
     context = dict(
+        decoded_team=canonical_team,
         header=header,
         current_roster_link=current_roster_link,
         outgoing_mentions=mentions_list,
@@ -408,6 +416,121 @@ def normalize_name(s: str) -> str:
         if unicodedata.category(c) != 'Mn'
     )
 
+def convert_nationality_to_full_name(nationality_code: str) -> str:
+    """Convert nationality codes like 'esESP' to full country names like 'Spanish'"""
+    nationality_mapping = {
+        'esESP': 'Spanish',
+        'engENG': 'English', 
+        'frFRA': 'French',
+        'deGER': 'German',
+        'itITA': 'Italian',
+        'nlNED': 'Dutch',
+        'ptPOR': 'Portuguese',
+        'brBRA': 'Brazilian',
+        'arARG': 'Argentinian',
+        'uyURU': 'Uruguayan',
+        'plPOL': 'Polish',
+        'dkDEN': 'Danish',
+        'seSWE': 'Swedish',
+        'noNOR': 'Norwegian',
+        'chSUI': 'Swiss',
+        'atAUT': 'Austrian',
+        'beRBEL': 'Belgian',
+        'czCZE': 'Czech',
+        'hrCRO': 'Croatian',
+        'rsSRB': 'Serbian',
+        'skSVK': 'Slovakian',
+        'siSVN': 'Slovenian',
+        'huHUN': 'Hungarian',
+        'roROU': 'Romanian',
+        'bgBUL': 'Bulgarian',
+        'grGRE': 'Greek',
+        'trTUR': 'Turkish',
+        'ruRUS': 'Russian',
+        'uaUKR': 'Ukrainian',
+        'rsRSA': 'South African',
+        'ngNGA': 'Nigerian',
+        'ghGHA': 'Ghanaian',
+        'ciCIV': 'Ivorian',
+        'snSEN': 'Senegalese',
+        'mlMLI': 'Malian',
+        'cmCMR': 'Cameroonian',
+        'egEGY': 'Egyptian',
+        'maMAR': 'Moroccan',
+        'dzALG': 'Algerian',
+        'tnTUN': 'Tunisian',
+        'usUSA': 'American',
+        'caRCAN': 'Canadian',
+        'mxMEX': 'Mexican',
+        'jmJAM': 'Jamaican',
+        'coRCOL': 'Colombian',
+        'clCHI': 'Chilean',
+        'ecECU': 'Ecuadorian',
+        'pePER': 'Peruvian',
+        'pyPAR': 'Paraguayan',
+        'veVEN': 'Venezuelan',
+        'boRBOL': 'Bolivian',
+        'jpJPN': 'Japanese',
+        'krKOR': 'South Korean',
+        'cnCHN': 'Chinese',
+        'auAUS': 'Australian',
+        'nzNZL': 'New Zealand',
+        'inIND': 'Indian',
+        'pkPAK': 'Pakistani',
+        'irIRN': 'Iranian',
+        'iqIRQ': 'Iraqi',
+        'saKSA': 'Saudi Arabian',
+        'qatQAT': 'Qatari',
+        'aeUAE': 'Emirati',
+        'gwGNB': 'Guinea-Bissauan',
+        'gvCPV': 'Cape Verdean',
+        'aoANG': 'Angolan',
+        'mzMOZ': 'Mozambican',
+        'stSTP': 'São Toméan',
+        'isISL': 'Icelandic',
+        'fiRFIN': 'Finnish',
+        'eeEST': 'Estonian',
+        'lvLAT': 'Latvian',
+        'ltLTU': 'Lithuanian',
+        'mdMDA': 'Moldovan',
+        'byBLR': 'Belarusian',
+        'mkMKD': 'North Macedonian',
+        'alALB': 'Albanian',
+        'meRMNE': 'Montenegrin',
+        'baRBIH': 'Bosnian',
+        'xkKOS': 'Kosovar',
+        'cyRCYP': 'Cypriot',
+        'mtMLT': 'Maltese',
+        'luLUX': 'Luxembourgish',
+        'liLIE': 'Liechtensteiner',
+        'mcRMON': 'Monégasque',
+        'smRSMR': 'Sammarinese',
+        'vaVAT': 'Vatican',
+        'adAND': 'Andorran',
+        'caCAN': 'Canadian',
+        'glGIB': 'Gibraltar',
+    }
+    
+    return nationality_mapping.get(nationality_code, nationality_code if nationality_code else 'Unknown')
+
+def calculate_age_from_birth_year(birth_year: str) -> str:
+    """Calculate age from birth year string, handling various formats"""
+    if not birth_year or birth_year == "Unknown":
+        return "Unknown"
+    
+    try:
+        # Handle cases where birth_year might be just a year or have other formats
+        birth_year_clean = birth_year.strip()
+        if birth_year_clean.isdigit() and len(birth_year_clean) == 4:
+            birth_year_int = int(birth_year_clean)
+            current_year = datetime.now().year
+            age = current_year - birth_year_int
+            return str(age)
+        else:
+            return "Unknown"
+    except (ValueError, TypeError):
+        return "Unknown"
+
 def load_player_data(filename: str) -> Tuple[Dict[str, List[str]], Dict[str, List[str]], Dict[str, PlayerInfo]]:
     player_aliases: Dict[str, List[str]] = {}
     club_aliases: Dict[str, List[str]] = {}
@@ -449,15 +572,28 @@ def add_aliases(aliases_dict: Dict[str, List[str]], replacements: list[tuple[str
 def build_automaton(aliases_dict: Dict[str, List[str]]) -> ahocorasick.Automaton:
     A = ahocorasick.Automaton()
     for norm_alias in aliases_dict:
-        A.add_word(norm_alias, aliases_dict[norm_alias][0])
+        # Store both the canonical name and the alias length for boundary checking
+        A.add_word(norm_alias, (aliases_dict[norm_alias][0], len(norm_alias)))
     A.make_automaton()
     return A
 
 def find_entities(text: str, automaton: ahocorasick.Automaton) -> Set[str]:
     norm_text = normalize_name(text)
     found: Set[str] = set()
-    for _, canon in automaton.iter(norm_text):
-        found.add(canon)
+    for end_index, (canon, alias_length) in automaton.iter(norm_text):
+        start_index = end_index - alias_length + 1
+        
+        # For very short matches (2-3 chars), require word boundaries to avoid false positives
+        if alias_length <= 3:
+            # Check if the match is surrounded by word boundaries (non-alphanumeric chars)
+            is_start_boundary = start_index == 0 or not norm_text[start_index - 1].isalnum()
+            is_end_boundary = end_index == len(norm_text) - 1 or not norm_text[end_index + 1].isalnum()
+            
+            if is_start_boundary and is_end_boundary:
+                found.add(canon)
+        else:
+            # For longer matches, add them as before
+            found.add(canon)
     return found
 
 def filter_recent_articles(entries: List[Any], hours: int = 24) -> List[Any]:

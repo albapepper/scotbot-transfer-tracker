@@ -1,17 +1,37 @@
 {% extends "base.html" %}
-{% block title %}{{ decoded_team.title() }} Team Info{% endblock %}
+{% block title %}{{ header }}{% endblock %}
 {% block content %}
-    <div class="main-title">{{ decoded_team.title() }} Team Info</div>
     {% if team_info %}
-        <div class="info-block" style="margin-bottom: 24px;">
-            <b>Team:</b> {{ team_info.name }}<br>
+        <div class="main-title" style="text-align:center;">{{ team_info.name }}</div>
+        <div style="text-align:center; margin-bottom: 1.5em; font-size:1.1rem;">
             <b>League:</b> {{ team_info.league }}<br>
             <b>Country:</b> {{ team_info.country }}<br>
+            <a href="{{ team_info.current_roster }}" class="results-header-link" style="color:#7c31ff;text-decoration:underline;font-weight:bold;font-size:1.1rem">Team Info</a>
         </div>
+        <div style="text-align:center; font-size:1.2rem; font-weight:bold; margin-bottom:0.5em;">Trending Players</div>
+    {% else %}
+        <div class="main-title" style="text-align:center;">{{ header|safe }}</div>
+        {% if current_roster_link %}
+            <div style="text-align:center; margin-bottom: 1.5em;">{{ current_roster_link|safe }}</div>
+        {% endif %}
+        <div style="text-align:center; font-size:1.2rem; font-weight:bold; margin-bottom:0.5em;">Trending Players</div>
     {% endif %}
+    <div class="results-container" style="flex-direction: column; align-items: center;">
+        <div class="column" style="max-width: 500px; margin: 0 auto;">
+            <ul>
+            {% if not outgoing_mentions %}
+                <li style="text-align:center; color:black; font-weight:bold; margin:2em 0;">No recent mentions found</li>
+            {% else %}
+                {% for entity, count, link in outgoing_mentions %}
+                    <li><a href="{{ link }}">{{ entity.title() }}</a> - {{ '1 mention' if count == 1 else count ~ ' mentions' }}</li>
+                {% endfor %}
+            {% endif %}
+            </ul>
+        </div>
+    </div>
 
     {% if team_stats is defined and team_stats %}
-        <div class="player-stats-block">
+        <div class="player-stats-block" style="margin-top: 2em;">
             <h3 style="font-family: inherit; font-size: 1.4em; font-weight: bold; color: inherit; text-align: center; margin-bottom: 20px;">Full Team Stats</h3>
             <div style="max-width: 600px; margin: 0 auto;">
                 <table class="player-stats-table" style="width: 100%; border-collapse: collapse; margin: 0 auto;">
@@ -28,14 +48,16 @@
         </div>
     {% endif %}
 
-    <div class="main-title" style="margin-top: 2em;">Squad</div>
-    <div class="player-list">
-    {% if not players %}
-        <div style="text-align:center; color:black; font-weight:bold; margin:2em 0;">No recent mentions found</div>
-    {% else %}
-        {% for player in players %}
-            <div class="player-row"><a href="{{ player.link }}">{{ player.name }}</a> <span class="player-meta">({{ player.position }}, Age: {{ player.age }}, {{ player.nationality }})</span></div>
-        {% endfor %}
+    {% if players is defined and players %}
+        <div class="main-title" style="margin-top: 2em;">Squad</div>
+        <div class="player-list">
+        {% if not players %}
+            <div style="text-align:center; color:black; font-weight:bold; margin:2em 0;">No recent mentions found</div>
+        {% else %}
+            {% for player in players %}
+                <div class="player-row"><a href="{{ player.link }}">{{ player.name }}</a> <span class="player-meta">({{ player.position }}, Age: {{ player.age }}, {{ player.nationality }})</span></div>
+            {% endfor %}
+        {% endif %}
+        </div>
     {% endif %}
-    </div>
 {% endblock %}

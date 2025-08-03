@@ -28,7 +28,12 @@
         </div>
     {% endif %}
 
-    <div class="main-title" style="margin-top: 2em;">Squad</div>
+    <div class="main-title" style="margin-top: 2em;">Roster</div>
+    {% if current_roster_link %}
+        <div class="info-block" style="text-align: center; margin-bottom: 1.5em;">
+            <a href="{{ current_roster_link }}" class="results-header-link" style="color:#7c31ff;text-decoration:underline;font-weight:bold;font-size:1.1rem">View Current Roster</a>
+        </div>
+    {% endif %}
     <div class="player-list">
     {% if not players %}
         <div style="text-align:center; color:black; font-weight:bold; margin:2em 0;">No recent mentions found</div>

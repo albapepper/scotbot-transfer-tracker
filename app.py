@@ -2,11 +2,10 @@
 # --- Imports ---
 import feedparser
 from datetime import datetime, timedelta, timezone
-from flask import Flask, request, Response, render_template, jsonify
+from flask import Flask, request, render_template, jsonify
 import urllib.parse
 import unicodedata
 import ahocorasick
-import pandas as pd
 import re
 from typing import Any, Dict, List, Optional, Set, Tuple
 import time
@@ -53,21 +52,26 @@ def get_transfer_mentions():
     canonical_team = get_canonical_entity(query, club_aliases)
     canonical_player = get_canonical_entity(query, player_aliases)
 
-    if search_type == "team" and canonical_team:
-        try:
-            player_article_links = get_entity_mentions(
-                recent_articles, canonical_team, 'team', player_automaton, club_automaton
-            )
-            mentions_list = [
-                (player, len(links), f"/transfers/link?player={urllib.parse.quote(player)}&team={urllib.parse.quote(canonical_team)}")
-                for player, links in sorted(player_article_links.items(), key=lambda x: len(x[1]), reverse=True)
-            ]
-            context = build_team_context(canonical_team, mentions_list)
+    if search_type == "team":
+        if canonical_team:
+            try:
+                player_article_links = get_entity_mentions(
+                    recent_articles, canonical_team, 'team', player_automaton, club_automaton
+                )
+                mentions_list = [
+                    (player, len(links), f"/transfers/link?player={urllib.parse.quote(player)}&team={urllib.parse.quote(canonical_team)}")
+                    for player, links in sorted(player_article_links.items(), key=lambda x: len(x[1]), reverse=True)
+                ]
+                context = build_team_context(canonical_team, mentions_list)
+                return render_template("team.html", **context)
+            except Exception as e:
+                import traceback
+                print("[ERROR] /transfers team block:", traceback.format_exc())
+                return render_template("home.html", error=f"Internal error: {str(e)}")
+        else:
+            # Team not found, but still show team template with no results
+            context = build_team_context_for_unknown(query)
             return render_template("team.html", **context)
-        except Exception as e:
-            import traceback
-            print("[ERROR] /transfers team block:", traceback.format_exc())
-            return render_template("home.html", error=f"Internal error: {str(e)}")
     elif canonical_player:
         try:
             player_info = get_player_info(canonical_player)
@@ -85,7 +89,10 @@ def get_transfer_mentions():
             import traceback
             print("[ERROR] /transfers player block:", traceback.format_exc())
             return render_template("home.html", error=f"Internal error: {str(e)}")
-    return render_error("No articles found for this player or team.")
+    else:
+        # Neither player nor team found, default to player template with no results
+        context = build_player_context_for_unknown(query)
+        return render_template("player.html", **context)
 
 @app.route("/transfers/link", methods=["GET"])
 def transfers_link():
@@ -125,39 +132,15 @@ def team_stats_page():
     # --- TeamInfo ---
     team_info = get_team_info(decoded_team)
     # --- Team Stats ---
-    DATA_DIR = Path(__file__).parent
-    TEAM_FILE = DATA_DIR / "team-stats.sql"
-    insert_re = re.compile(r"INSERT INTO team_stats VALUES \((.*?)\);", re.IGNORECASE)
-    stat_keys = []
-    stats_row = None
-    # Get columns
-    with open(TEAM_FILE, encoding="utf-8") as f:
-        content = f.read()
-        create_match = re.search(r"CREATE TABLE.*?team_stats\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
-        if create_match:
-            columns_text = create_match.group(1)
-            column_matches = re.findall(r"`([^`]+)`", columns_text)
-            stat_keys = column_matches
-    # Find row for this team (normalize for partial match)
-    def normalize(s):
-        return ''.join(c for c in unicodedata.normalize('NFD', s.lower()) if unicodedata.category(c) != 'Mn').replace(' fc','').replace(' afc','').replace('.','').replace(',','').replace('-',' ').strip()
-    norm_decoded = normalize(decoded_team)
-    with open(TEAM_FILE, encoding="utf-8") as f:
-        for line in f:
-            match = insert_re.match(line.strip())
-            if not match:
-                continue
-            raw = match.group(1)
-            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
-            if len(values) >= 3:
-                norm_sql_name = normalize(values[2])
-                if norm_decoded == norm_sql_name or norm_decoded in norm_sql_name or norm_sql_name in norm_decoded:
-                    stats_row = values
-                    break
+    team_file = DATA_DIR / "team-stats.sql"
+    stat_keys = parse_sql_columns(str(team_file), "team_stats")
+    stats_row = find_sql_row_by_name(str(team_file), "team_stats", 2, decoded_team, normalize_team_name)
+    
     team_stats = {}
     if stats_row and stat_keys and len(stats_row) == len(stat_keys):
-        for i, (key, value) in enumerate(zip(stat_keys, stats_row)):
+        for key, value in zip(stat_keys, stats_row):
             team_stats[key] = value
+    
     context = build_team_roster_context(decoded_team, team_players)
     context["team_info"] = team_info
     context["team_stats"] = team_stats if team_stats else None
@@ -172,34 +155,18 @@ def player_stats_page():
     canonical_player = get_canonical_entity(decoded_player, player_aliases)
     if not canonical_player:
         return render_error("Player not found")
-    stats_row = None
-    stat_keys = []
-    sql_file = str(PLAYER_FILE)
-    insert_re = re.compile(r"INSERT INTO player_stats VALUES \((.*?)\);", re.IGNORECASE)
-    with open(sql_file, encoding="utf-8") as f:
-        content = f.read()
-        create_match = re.search(r"CREATE TABLE.*?player_stats\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
-        if create_match:
-            columns_text = create_match.group(1)
-            column_matches = re.findall(r"`([^`]+)`", columns_text)
-            stat_keys = column_matches
-    with open(sql_file, encoding="utf-8") as f:
-        for line in f:
-            match = insert_re.match(line.strip())
-            if not match:
-                continue
-            raw = match.group(1)
-            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
-            if len(values) < 2:
-                continue
-            if values[1].lower() == canonical_player.lower():
-                stats_row = values
-                break
+    
+    player_file = str(PLAYER_FILE)
+    stat_keys = parse_sql_columns(player_file, "player_stats")
+    stats_row = find_sql_row_by_name(player_file, "player_stats", 1, canonical_player)
+    
     player_stats = {}
     if stats_row and stat_keys and len(stats_row) == len(stat_keys):
-        for i, (key, value) in enumerate(zip(stat_keys, stats_row)):
-            if key not in ['Rk', 'Player', 'Nation', 'Pos', 'Squad', 'Born', 'Matches']:
+        excluded_keys = {'Rk', 'Player', 'Nation', 'Pos', 'Squad', 'Born', 'Matches'}
+        for key, value in zip(stat_keys, stats_row):
+            if key not in excluded_keys:
                 player_stats[key] = value
+    
     player_info = get_player_info(canonical_player)
     linked_teams = []
     context = build_player_context(canonical_player, player_info, linked_teams, show_stats_link=False)
@@ -224,6 +191,54 @@ class TeamInfo:
 
 def render_error(message, status=400):
     return render_template("home.html", error=message), status
+
+# --- SQL Parsing Helper Functions ---
+def normalize_team_name(s: str) -> str:
+    """Enhanced normalization for team names including common abbreviations"""
+    return ''.join(
+        c for c in unicodedata.normalize('NFD', s.lower()) 
+        if unicodedata.category(c) != 'Mn'
+    ).replace(' fc','').replace(' afc','').replace('.','').replace(',','').replace('-',' ').strip()
+
+def parse_sql_columns(file_path: str, table_name: str) -> List[str]:
+    """Extract column names from SQL CREATE TABLE statement"""
+    with open(file_path, encoding="utf-8") as f:
+        content = f.read()
+        create_match = re.search(rf"CREATE TABLE.*?{table_name}\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
+        if create_match:
+            columns_text = create_match.group(1)
+            return re.findall(r"`([^`]+)`", columns_text)
+    return []
+
+def split_sql_values(raw_string: str) -> List[str]:
+    """Split CSV values while respecting quoted strings"""
+    return [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw_string)]
+
+def find_sql_row_by_name(file_path: str, table_name: str, name_column_index: int, target_name: str, 
+                        normalize_func=None) -> Optional[List[str]]:
+    """Find a row in SQL file by matching a name in a specific column"""
+    if normalize_func is None:
+        normalize_func = normalize_name
+    
+    insert_pattern = rf"INSERT INTO {table_name} VALUES \((.*?)\);"
+    insert_re = re.compile(insert_pattern, re.IGNORECASE)
+    norm_target = normalize_func(target_name)
+    
+    with open(file_path, encoding="utf-8") as f:
+        for line in f:
+            match = insert_re.match(line.strip())
+            if not match:
+                continue
+            raw = match.group(1)
+            values = split_sql_values(raw)
+            if len(values) > name_column_index:
+                norm_sql_name = normalize_func(values[name_column_index])
+                # Allow exact or partial match
+                if (norm_target == norm_sql_name or 
+                    norm_target in norm_sql_name or 
+                    norm_sql_name in norm_target):
+                    return values
+    return None
 
 def get_player_info(canonical_player: str) -> 'PlayerInfo|None':
     if not canonical_player:
@@ -343,8 +358,7 @@ def fetch_recent_articles(query: str, hours: int = 24):
     return filter_recent_articles(feed.entries, hours=hours)
 
 def build_team_context(canonical_team, mentions_list):
-    team_display = canonical_team.title()
-    header = f'{team_display} trending mentions'
+    header = f'{canonical_team.title()} trending mentions'
     current_roster_link = f'<a href="/team-stats?name={urllib.parse.quote(canonical_team)}" class="results-header-link">Current Roster</a>'
     # Get TeamInfo
     team_info = get_team_info(canonical_team)
@@ -362,38 +376,15 @@ def build_team_context(canonical_team, mentions_list):
 
 def get_team_info(canonical_team: str) -> 'TeamInfo|None':
     # Load from team-stats.sql (simple parse, not efficient for large files)
-    DATA_DIR = Path(__file__).parent
-    TEAM_FILE = DATA_DIR / "team-stats.sql"
-    insert_re = re.compile(r"INSERT INTO team_stats VALUES \((.*?)\);", re.IGNORECASE)
-    # Try to get columns
-    stat_keys = []
-    def normalize(s):
-        return ''.join(c for c in unicodedata.normalize('NFD', s.lower()) if unicodedata.category(c) != 'Mn').replace(' fc','').replace(' afc','').replace('.','').replace(',','').replace('-',' ').strip()
-    norm_canonical = normalize(canonical_team)
-    with open(TEAM_FILE, encoding="utf-8") as f:
-        content = f.read()
-        create_match = re.search(r"CREATE TABLE.*?team_stats\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
-        if create_match:
-            columns_text = create_match.group(1)
-            column_matches = re.findall(r"`([^`]+)`", columns_text)
-            stat_keys = column_matches
-    # Now find the row (allow partial/normalized match)
-    with open(TEAM_FILE, encoding="utf-8") as f:
-        for line in f:
-            match = insert_re.match(line.strip())
-            if not match:
-                continue
-            raw = match.group(1)
-            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
-            if len(values) >= 3:
-                norm_sql_name = normalize(values[2])
-                # Allow exact or partial match
-                if norm_canonical == norm_sql_name or norm_canonical in norm_sql_name or norm_sql_name in norm_canonical:
-                    league = values[0] if len(values) > 0 else "Unknown"
-                    country = values[1] if len(values) > 1 else "Unknown"
-                    name = values[2]
-                    current_roster = f"/team-stats?name={urllib.parse.quote(name)}"
-                    return TeamInfo(name=name, league=league, country=country, current_roster=current_roster)
+    team_file = DATA_DIR / "team-stats.sql"
+    stats_row = find_sql_row_by_name(str(team_file), "team_stats", 2, canonical_team, normalize_team_name)
+    
+    if stats_row and len(stats_row) >= 3:
+        league = stats_row[0] if stats_row else "Unknown"
+        country = stats_row[1] if len(stats_row) > 1 else "Unknown"
+        name = stats_row[2]
+        current_roster = f"/team-stats?name={urllib.parse.quote(name)}"
+        return TeamInfo(name=name, league=league, country=country, current_roster=current_roster)
     return None
 
 def build_player_context(canonical_player, player_info, linked_teams, show_stats_link=True):
@@ -405,8 +396,44 @@ def build_player_context(canonical_player, player_info, linked_teams, show_stats
         club_str=club_str,
         articles=None,
         entity_type="players",
-        linked_teams=linked_teams if linked_teams else [],
+        linked_teams=linked_teams or [],
         no_mentions_message="No recent mentions" if not linked_teams else None
+    )
+    return context
+
+def build_team_context_for_unknown(query):
+    """Build team context for unknown/not found teams"""
+    header = f'{query.title()} trending mentions'
+    
+    # Try to get team info even for "unknown" teams
+    team_info = get_team_info(query)
+    
+    # Build current roster link if we have team info
+    current_roster_link = None
+    if team_info:
+        current_roster_link = f'<a href="/team-stats?name={urllib.parse.quote(query)}" class="results-header-link">Current Roster</a>'
+    
+    context = dict(
+        decoded_team=query,
+        header=header,
+        current_roster_link=current_roster_link,
+        outgoing_mentions=[],
+        team_info=team_info,
+        no_mentions_message="No recent mentions found"
+    )
+    return context
+
+def build_player_context_for_unknown(query):
+    """Build player context for unknown/not found players"""
+    header = f"{query.title()}"
+    context = dict(
+        decoded_name=query,
+        header=header,
+        club_str="",
+        articles=None,
+        entity_type="players",
+        linked_teams=[],
+        no_mentions_message="No recent mentions found"
     )
     return context
 
@@ -536,13 +563,14 @@ def load_player_data(filename: str) -> Tuple[Dict[str, List[str]], Dict[str, Lis
     club_aliases: Dict[str, List[str]] = {}
     player_lookup: Dict[str, PlayerInfo] = {}
     insert_re = re.compile(r"INSERT INTO player_stats VALUES \((.*?)\);", re.IGNORECASE)
+    
     with open(filename, encoding="utf-8") as f:
         for line in f:
             match = insert_re.match(line.strip())
             if not match:
                 continue
             raw = match.group(1)
-            values = [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw)]
+            values = split_sql_values(raw)
             if len(values) < 6:
                 continue
             name = values[1]
@@ -616,7 +644,7 @@ club_aliases = add_aliases(club_aliases, [
     ("utd", "united"), ("united", "utd"),
     ("manchester united", "man united"), ("man united", "manchester united"),
     ("manchester city", "man city"), ("man city", "manchester city"),
-    ("man united", "man u"), ("man u", "man united"), ("manchester united", "man u"), ("man u", "manchester united"),
+    ("man united", "man u"), ("man u", "man united"),
     ("nott'ham forest", "nottingham forest"), ("nottingham forest", "nott'ham forest")
 ])
 player_automaton = build_automaton(player_aliases)

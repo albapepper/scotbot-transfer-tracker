@@ -536,6 +536,12 @@ def convert_nationality_to_full_name(nationality_code: str) -> str:
         'adAND': 'Andorran',
         'caCAN': 'Canadian',
         'glGIB': 'Gibraltar',
+        'beBEL': 'Belgian',
+        'liLIE': 'Liechtenstein',
+        'foFRO': 'Faroe Islands',
+        'isISL': 'Icelandic',
+        'jeJEY': 'Jersey',
+        'ggGGY': 'Guernsey',
     }
     
     return nationality_mapping.get(nationality_code, nationality_code if nationality_code else 'Unknown')

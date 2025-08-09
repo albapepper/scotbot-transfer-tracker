@@ -1,4 +1,3 @@
-
 # --- Imports ---
 import feedparser
 from datetime import datetime, timedelta, timezone
@@ -623,22 +622,33 @@ def build_automaton(aliases_dict: Dict[str, List[str]]) -> ahocorasick.Automaton
 
 def find_entities(text: str, automaton: ahocorasick.Automaton) -> Set[str]:
     norm_text = normalize_name(text)
-    found: Set[str] = set()
+    raw_matches: List[Tuple[int, int, str, int]] = []  # (start, end, canon, length)
     for end_index, (canon, alias_length) in automaton.iter(norm_text):
         start_index = end_index - alias_length + 1
-        
-        # For very short matches (2-3 chars), require word boundaries to avoid false positives
-        if alias_length <= 3:
-            # Check if the match is surrounded by word boundaries (non-alphanumeric chars)
-            is_start_boundary = start_index == 0 or not norm_text[start_index - 1].isalnum()
-            is_end_boundary = end_index == len(norm_text) - 1 or not norm_text[end_index + 1].isalnum()
-            
-            if is_start_boundary and is_end_boundary:
-                found.add(canon)
-        else:
-            # For longer matches, add them as before
-            found.add(canon)
-    return found
+        # Require word boundaries for every match to avoid substrings inside longer tokens (e.g. 'fran' in 'frank')
+        is_start_boundary = start_index == 0 or not norm_text[start_index - 1].isalnum()
+        is_end_boundary = end_index == len(norm_text) - 1 or not norm_text[end_index + 1].isalnum()
+        if not (is_start_boundary and is_end_boundary):
+            continue
+        raw_matches.append((start_index, end_index, canon, alias_length))
+
+    if not raw_matches:
+        return set()
+
+    raw_matches.sort(key=lambda x: (x[0], -x[3]))
+
+    accepted: List[Tuple[int, int, str, int]] = []
+    for match in raw_matches:
+        s, e, canon, length = match
+        skip = False
+        for as_, ae_, acanon, alen in accepted:
+            if as_ <= s and e <= ae_ and (alen >= length) and acanon != canon:
+                skip = True
+                break
+        if not skip:
+            accepted.append(match)
+
+    return {canon for _, _, canon, _ in accepted}
 
 def filter_recent_articles(entries: List[Any], hours: int = 24) -> List[Any]:
     cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)

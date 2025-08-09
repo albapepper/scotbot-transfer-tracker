@@ -10,6 +10,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 import time
 from pathlib import Path
 from dataclasses import dataclass
+from api_client import api_client
 
 # --- Flask App Setup ---
 app = Flask(__name__)
@@ -22,17 +23,8 @@ def home():
 @app.route("/autocomplete", methods=["GET"])
 def autocomplete():
     query = request.args.get("query", "").strip().lower()
-    suggestions = set()
-    if query:
-        for norm_name, names in player_aliases.items():
-            for name in names:
-                if query in name.lower():
-                    suggestions.add(name)
-        for norm_name, names in club_aliases.items():
-            for name in names:
-                if query in name.lower():
-                    suggestions.add(name)
-    return jsonify(sorted(suggestions)[:10])
+    suggestions = api_client.autocomplete(query)
+    return jsonify(suggestions)
 
 @app.route("/transfers", methods=["GET"])
 def get_transfer_mentions():
@@ -48,6 +40,14 @@ def get_transfer_mentions():
     except Exception as e:
         return render_template("home.html", error=f"Failed to fetch news: {str(e)}")
 
+    # Get aliases from API
+    aliases_data = api_client.get_aliases()
+    if not aliases_data:
+        return render_template("home.html", error="Failed to load player/team data")
+    
+    player_aliases = aliases_data.get("player_aliases", {})
+    club_aliases = aliases_data.get("club_aliases", {})
+
     canonical_team = get_canonical_entity(query, club_aliases)
     canonical_player = get_canonical_entity(query, player_aliases)
 
@@ -59,6 +59,10 @@ def get_transfer_mentions():
             search_type = "team"
         else:
             search_type = "player"  # Default to player when nothing found
+
+    # Build automatons for entity extraction
+    player_automaton = build_automaton(player_aliases)
+    club_automaton = build_automaton(club_aliases)
 
     if search_type == "team":
         if canonical_team:
@@ -83,8 +87,19 @@ def get_transfer_mentions():
     else:  # search_type == "player" or anything else defaults to player
         if canonical_player:
             try:
-                player_info = get_player_info(canonical_player)
-                current_club = player_info.club if player_info else None
+                player_info_data = api_client.get_player_info(canonical_player)
+                player_info = None
+                current_club = None
+                if player_info_data:
+                    player_info = PlayerInfo(
+                        name=player_info_data.get("name", ""),
+                        born=player_info_data.get("born", ""),
+                        position=player_info_data.get("position", ""),
+                        club=player_info_data.get("club", ""),
+                        nationality=player_info_data.get("nationality", "")
+                    )
+                    current_club = player_info.club
+                
                 club_article_map = get_entity_mentions(
                     recent_articles, canonical_player, 'player', player_automaton, club_automaton, exclude=current_club
                 )
@@ -110,17 +125,34 @@ def transfers_link():
     window = 48  # Standardized 48 hour window
     if not player or not team:
         return render_error("Missing player or team parameter")
+    
     decoded_player = urllib.parse.unquote(player)
     decoded_team = urllib.parse.unquote(team)
+    
+    # Get aliases from API
+    aliases_data = api_client.get_aliases()
+    if not aliases_data:
+        return render_error("Failed to load player/team data")
+    
+    player_aliases = aliases_data.get("player_aliases", {})
+    club_aliases = aliases_data.get("club_aliases", {})
+    
     canonical_player = get_canonical_entity(decoded_player, player_aliases)
     canonical_team = get_canonical_entity(decoded_team, club_aliases)
+    
     if not canonical_player or not canonical_team:
         return render_error("Player or team not found")
+    
     try:
         search_query = f"{decoded_player} {decoded_team}"
         recent_articles = fetch_recent_articles(search_query, hours=window)
     except Exception as e:
         return render_error(f"Failed to fetch news: {str(e)}")
+    
+    # Build automatons for entity extraction
+    player_automaton = build_automaton(player_aliases)
+    club_automaton = build_automaton(club_aliases)
+    
     matching_articles = filter_articles_with_entities(
         recent_articles,
         required_players=[canonical_player],
@@ -136,23 +168,45 @@ def team_stats_page():
     team_name = request.args.get("name")
     if not team_name:
         return render_error("Missing team name")
-    decoded_team = urllib.parse.unquote(team_name)
-    team_players = get_players_for_team(decoded_team)
-    # --- TeamInfo ---
-    team_info = get_team_info(decoded_team)
-    # --- Team Stats ---
-    team_file = DATA_DIR / "team-stats.sql"
-    stat_keys = parse_sql_columns(str(team_file), "team_stats")
-    stats_row = find_sql_row_by_name(str(team_file), "team_stats", 2, decoded_team, normalize_team_name)
     
-    team_stats = {}
-    if stats_row and stat_keys and len(stats_row) == len(stat_keys):
-        for key, value in zip(stat_keys, stats_row):
-            team_stats[key] = value
+    decoded_team = urllib.parse.unquote(team_name)
+    
+    # Get team data from API
+    team_data = api_client.get_team_stats(decoded_team)
+    if not team_data:
+        return render_error("Team not found")
+    
+    # Extract data
+    team_info_dict = team_data.get("team_info")
+    team_stats = team_data.get("stats")
+    roster_data = team_data.get("roster", [])
+    
+    # Convert roster to expected format
+    team_players = []
+    for player in roster_data:
+        age = calculate_age_from_birth_year(player.get("born", ""))
+        nationality_full = convert_nationality_to_full_name(player.get("nationality", ""))
+        team_players.append({
+            'name': player.get("name", ""),
+            'born': player.get("born", ""),
+            'age': age,
+            'position': player.get("position", ""),
+            'nationality': nationality_full,
+            'link': f"/transfers?query={urllib.parse.quote(player.get('name', ''))}&type=player"
+        })
+    
+    # Convert team info
+    team_info = None
+    if team_info_dict:
+        team_info = TeamInfo(
+            name=team_info_dict.get("name", ""),
+            league=team_info_dict.get("league", ""),
+            country=team_info_dict.get("country", "")
+        )
     
     context = build_team_roster_context(decoded_team, team_players)
     context["team_info"] = team_info
-    context["team_stats"] = team_stats if team_stats else None
+    context["team_stats"] = team_stats
     return render_template("team-stats.html", **context)
 
 @app.route("/player-stats", methods=["GET"])
@@ -160,25 +214,31 @@ def player_stats_page():
     player_name = request.args.get("player", "").strip()
     if not player_name:
         return render_error("Missing player parameter")
+    
     decoded_player = urllib.parse.unquote(player_name)
-    canonical_player = get_canonical_entity(decoded_player, player_aliases)
-    if not canonical_player:
+    
+    # Get player data from API
+    player_data = api_client.get_player_stats(decoded_player)
+    if not player_data:
         return render_error("Player not found")
     
-    player_file = str(PLAYER_FILE)
-    stat_keys = parse_sql_columns(player_file, "player_stats")
-    stats_row = find_sql_row_by_name(player_file, "player_stats", 1, canonical_player)
+    # Extract data
+    player_info_dict = player_data.get("player_info")
+    player_stats = player_data.get("stats", {})
     
-    player_stats = {}
-    if stats_row and stat_keys and len(stats_row) == len(stat_keys):
-        excluded_keys = {'Rk', 'Player', 'Nation', 'Pos', 'Squad', 'Born', 'Matches'}
-        for key, value in zip(stat_keys, stats_row):
-            if key not in excluded_keys:
-                player_stats[key] = value
+    # Convert player info
+    player_info = None
+    if player_info_dict:
+        player_info = PlayerInfo(
+            name=player_info_dict.get("name", ""),
+            born=player_info_dict.get("born", ""),
+            position=player_info_dict.get("position", ""),
+            club=player_info_dict.get("club", ""),
+            nationality=player_info_dict.get("nationality", "")
+        )
     
-    player_info = get_player_info(canonical_player)
     linked_teams = []
-    context = build_player_context(canonical_player, player_info, linked_teams, show_stats_link=False)
+    context = build_player_context(decoded_player, player_info, linked_teams, show_stats_link=False)
     context["player_stats"] = player_stats
     return render_template("player-stats.html", **context)
 
@@ -200,75 +260,6 @@ class TeamInfo:
 
 def render_error(message, status=400):
     return render_template("home.html", error=message), status
-
-# --- SQL Parsing Helper Functions ---
-def normalize_team_name(s: str) -> str:
-    """Enhanced normalization for team names including common abbreviations"""
-    return ''.join(
-        c for c in unicodedata.normalize('NFD', s.lower()) 
-        if unicodedata.category(c) != 'Mn'
-    ).replace(' fc','').replace(' afc','').replace('.','').replace(',','').replace('-',' ').strip()
-
-def parse_sql_columns(file_path: str, table_name: str) -> List[str]:
-    """Extract column names from SQL CREATE TABLE statement"""
-    with open(file_path, encoding="utf-8") as f:
-        content = f.read()
-        create_match = re.search(rf"CREATE TABLE.*?{table_name}\s*\((.*?)\);", content, re.DOTALL | re.IGNORECASE)
-        if create_match:
-            columns_text = create_match.group(1)
-            return re.findall(r"`([^`]+)`", columns_text)
-    return []
-
-def split_sql_values(raw_string: str) -> List[str]:
-    """Split CSV values while respecting quoted strings"""
-    return [v.strip().strip("'") for v in re.split(r",(?=(?:[^']*'[^']*')*[^']*$)", raw_string)]
-
-def find_sql_row_by_name(file_path: str, table_name: str, name_column_index: int, target_name: str, 
-                        normalize_func=None) -> Optional[List[str]]:
-    """Find a row in SQL file by matching a name in a specific column"""
-    if normalize_func is None:
-        normalize_func = normalize_name
-    
-    insert_pattern = rf"INSERT INTO {table_name} VALUES \((.*?)\);"
-    insert_re = re.compile(insert_pattern, re.IGNORECASE)
-    norm_target = normalize_func(target_name)
-    
-    with open(file_path, encoding="utf-8") as f:
-        for line in f:
-            match = insert_re.match(line.strip())
-            if not match:
-                continue
-            raw = match.group(1)
-            values = split_sql_values(raw)
-            if len(values) > name_column_index:
-                norm_sql_name = normalize_func(values[name_column_index])
-                # Allow exact or partial match
-                if (norm_target == norm_sql_name or 
-                    norm_target in norm_sql_name or 
-                    norm_sql_name in norm_target):
-                    return values
-    return None
-
-def get_player_info(canonical_player: str) -> 'PlayerInfo|None':
-    if not canonical_player:
-        return None
-    return PLAYER_LOOKUP.get(canonical_player.lower())
-
-def get_players_for_team(team_name: str) -> list[dict]:
-    players = []
-    for player_info in PLAYER_LOOKUP.values():
-        if player_info.club.lower() == team_name.lower():
-            age = calculate_age_from_birth_year(player_info.born)
-            nationality_full = convert_nationality_to_full_name(player_info.nationality)
-            players.append({
-                'name': player_info.name,
-                'born': player_info.born,
-                'age': age,
-                'position': player_info.position,
-                'nationality': nationality_full,
-                'link': f"/transfers?query={urllib.parse.quote(player_info.name)}&type=player"
-            })
-    return players
 
 def filter_articles_with_entities(articles, required_players=None, required_teams=None, player_automaton=None, club_automaton=None):
     if required_players is not None:
@@ -384,17 +375,16 @@ def build_team_context(canonical_team, mentions_list):
     return context
 
 def get_team_info(canonical_team: str) -> 'TeamInfo|None':
-    # Load from team-stats.sql (simple parse, not efficient for large files)
-    team_file = DATA_DIR / "team-stats.sql"
-    stats_row = find_sql_row_by_name(str(team_file), "team_stats", 2, canonical_team, normalize_team_name)
+    """Get team info from API"""
+    team_data = api_client.get_team_info(canonical_team)
+    if not team_data:
+        return None
     
-    if stats_row and len(stats_row) >= 3:
-        league = stats_row[0] if stats_row else "Unknown"
-        country = stats_row[1] if len(stats_row) > 1 else "Unknown"
-        name = stats_row[2]
-        current_roster = f"/team-stats?name={urllib.parse.quote(name)}"
-        return TeamInfo(name=name, league=league, country=country, current_roster=current_roster)
-    return None
+    return TeamInfo(
+        name=team_data.get("name", ""),
+        league=team_data.get("league", ""),
+        country=team_data.get("country", "")
+    )
 
 def build_player_context(canonical_player, player_info, linked_teams, show_stats_link=True):
     club_str = build_player_info_block(player_info, canonical_player, show_stats_link)
@@ -573,34 +563,6 @@ def calculate_age_from_birth_year(birth_year: str) -> str:
     except (ValueError, TypeError):
         return "Unknown"
 
-def load_player_data(filename: str) -> Tuple[Dict[str, List[str]], Dict[str, List[str]], Dict[str, PlayerInfo]]:
-    player_aliases: Dict[str, List[str]] = {}
-    club_aliases: Dict[str, List[str]] = {}
-    player_lookup: Dict[str, PlayerInfo] = {}
-    insert_re = re.compile(r"INSERT INTO player_stats VALUES \((.*?)\);", re.IGNORECASE)
-    
-    with open(filename, encoding="utf-8") as f:
-        for line in f:
-            match = insert_re.match(line.strip())
-            if not match:
-                continue
-            raw = match.group(1)
-            values = split_sql_values(raw)
-            if len(values) < 6:
-                continue
-            name = values[1]
-            nationality = values[2] if len(values) > 2 and values[2] else "Unknown"
-            position = values[3] if values[3] else "Unknown"
-            club = values[4] if values[4] else "Unknown"
-            born = values[6] if len(values) > 6 and values[6] else "Unknown"
-            norm_name = normalize_name(name)
-            player_aliases.setdefault(norm_name, []).append(name)
-            player_lookup[name.lower()] = PlayerInfo(name, born, position, club, nationality)
-            if club != "Unknown":
-                norm_club = normalize_name(club)
-                club_aliases.setdefault(norm_club, []).append(club)
-    return player_aliases, club_aliases, player_lookup
-
 def add_aliases(aliases_dict: Dict[str, List[str]], replacements: list[tuple[str, str]]) -> Dict[str, List[str]]:
     new_aliases: Dict[str, List[str]] = {}
     for norm_alias, canon_list in list(aliases_dict.items()):
@@ -661,20 +623,6 @@ def filter_recent_articles(entries: List[Any], hours: int = 24) -> List[Any]:
 def get_canonical_entity(user_input: str, aliases: Dict[str, List[str]]) -> Optional[str]:
     norm_input = normalize_name(user_input)
     return aliases.get(norm_input, [None])[0]
-
-# --- Data Loading ---
-DATA_DIR = Path(__file__).parent
-PLAYER_FILE = DATA_DIR / "player-stats.sql"
-player_aliases, club_aliases, PLAYER_LOOKUP = load_player_data(str(PLAYER_FILE))
-club_aliases = add_aliases(club_aliases, [
-    ("utd", "united"), ("united", "utd"),
-    ("manchester united", "man united"), ("man united", "manchester united"),
-    ("manchester city", "man city"), ("man city", "manchester city"),
-    ("man united", "man u"), ("man u", "man united"),
-    ("nott'ham forest", "nottingham forest"), ("nottingham forest", "nott'ham forest")
-])
-player_automaton = build_automaton(player_aliases)
-club_automaton = build_automaton(club_aliases)
 
 # Export for WSGI deployment (Vercel, etc.)
 application = app

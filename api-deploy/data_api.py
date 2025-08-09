@@ -174,16 +174,24 @@ def ensure_data_loaded():
     """Lazy load data on first request (better for serverless)"""
     global player_aliases, club_aliases, PLAYER_LOOKUP, _data_loaded
     if not _data_loaded:
-        player_aliases, club_aliases, PLAYER_LOOKUP = load_player_data(str(PLAYER_FILE))
-        # Add club aliases
-        club_aliases = add_aliases(club_aliases, [
-            ("utd", "united"), ("united", "utd"),
-            ("manchester united", "man united"), ("man united", "manchester united"),
-            ("manchester city", "man city"), ("man city", "manchester city"),
-            ("man united", "man u"), ("man u", "man united"),
-            ("nott'ham forest", "nottingham forest"), ("nottingham forest", "nott'ham forest")
-        ])
-        _data_loaded = True
+        try:
+            player_aliases, club_aliases, PLAYER_LOOKUP = load_player_data(str(PLAYER_FILE))
+            # Add club aliases
+            club_aliases = add_aliases(club_aliases, [
+                ("utd", "united"), ("united", "utd"),
+                ("manchester united", "man united"), ("man united", "manchester united"),
+                ("manchester city", "man city"), ("man city", "manchester city"),
+                ("man united", "man u"), ("man u", "man united"),
+                ("nott'ham forest", "nottingham forest"), ("nottingham forest", "nott'ham forest")
+            ])
+            _data_loaded = True
+        except Exception as e:
+            print(f"Error loading data: {e}")
+            # Set empty defaults to prevent crashes
+            player_aliases = {}
+            club_aliases = {}
+            PLAYER_LOOKUP = {}
+            _data_loaded = True
 
 # Add club aliases
 club_aliases = add_aliases(club_aliases, [
@@ -384,13 +392,22 @@ def get_aliases():
 # --- Health Check ---
 @app.get("/health")
 def health_check():
-    ensure_data_loaded()
-    return {
-        "status": "healthy",
-        "players_loaded": len(PLAYER_LOOKUP),
-        "player_aliases": len(player_aliases),
-        "club_aliases": len(club_aliases)
-    }
+    try:
+        ensure_data_loaded()
+        return {
+            "status": "healthy",
+            "players_loaded": len(PLAYER_LOOKUP),
+            "player_aliases": len(player_aliases),
+            "club_aliases": len(club_aliases)
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e),
+            "players_loaded": 0,
+            "player_aliases": 0,
+            "club_aliases": 0
+        }
 
 if __name__ == "__main__":
     import uvicorn

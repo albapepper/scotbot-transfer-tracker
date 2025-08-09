@@ -11,6 +11,7 @@ import time
 from pathlib import Path
 from dataclasses import dataclass
 from api_client import api_client
+from hybrid_client import hybrid_client
 
 # --- Flask App Setup ---
 app = Flask(__name__)
@@ -23,7 +24,7 @@ def home():
 @app.route("/autocomplete", methods=["GET"])
 def autocomplete():
     query = request.args.get("query", "").strip().lower()
-    suggestions = api_client.autocomplete(query)
+    suggestions = hybrid_client.autocomplete(query)
     return jsonify(suggestions)
 
 @app.route("/transfers", methods=["GET"])
@@ -41,7 +42,7 @@ def get_transfer_mentions():
         return render_template("home.html", error=f"Failed to fetch news: {str(e)}")
 
     # Get aliases from API
-    aliases_data = api_client.get_aliases()
+    aliases_data = hybrid_client.get_aliases()
     if not aliases_data:
         return render_template("home.html", error="Failed to load player/team data")
     
@@ -87,7 +88,7 @@ def get_transfer_mentions():
     else:  # search_type == "player" or anything else defaults to player
         if canonical_player:
             try:
-                player_info_data = api_client.get_player_info(canonical_player)
+                player_info_data = hybrid_client.get_player_info(canonical_player)
                 player_info = None
                 current_club = None
                 if player_info_data:

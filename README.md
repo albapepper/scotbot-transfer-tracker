@@ -1,3 +1,3 @@
-# ⚽ Player Transfer Search
+# ⚽ Football Rumors Search
 
-A lightweight Flask service to retrieve football player transfer rumors
+A lightweight Flask service to retrieve football team and player rumors
